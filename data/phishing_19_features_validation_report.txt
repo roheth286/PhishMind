@@ -1,0 +1,130 @@
+==================================================
+PHISHING 19-FEATURE DATASET FINAL VALIDATION REPORT
+==================================================
+
+1. Dataset path:
+   C:\Users\tanvi\Downloads\CN_COURSE_PROJECT\data\phishing_19_features.csv
+
+2. Row count:
+   11055
+
+3. Column count:
+   20
+
+4. Exact column order:
+   1. having_IP_Address
+   2. URL_Length
+   3. Shortining_Service
+   4. having_At_Symbol
+   5. double_slash_redirecting
+   6. Prefix_Suffix
+   7. having_Sub_Domain
+   8. port
+   9. HTTPS_token
+   10. Favicon
+   11. Request_URL
+   12. URL_of_Anchor
+   13. Links_in_tags
+   14. SFH
+   15. Submitting_to_email
+   16. Iframe
+   17. Redirect
+   18. on_mouseover
+   19. RightClick
+   20. Result
+
+5. Feature count:
+   19
+
+6. Target column:
+   Result
+
+7. Missing values for every column:
+   - having_IP_Address: count = 0, percentage = 0.00%
+   - URL_Length: count = 0, percentage = 0.00%
+   - Shortining_Service: count = 0, percentage = 0.00%
+   - having_At_Symbol: count = 0, percentage = 0.00%
+   - double_slash_redirecting: count = 0, percentage = 0.00%
+   - Prefix_Suffix: count = 0, percentage = 0.00%
+   - having_Sub_Domain: count = 0, percentage = 0.00%
+   - port: count = 0, percentage = 0.00%
+   - HTTPS_token: count = 0, percentage = 0.00%
+   - Favicon: count = 0, percentage = 0.00%
+   - Request_URL: count = 0, percentage = 0.00%
+   - URL_of_Anchor: count = 0, percentage = 0.00%
+   - Links_in_tags: count = 0, percentage = 0.00%
+   - SFH: count = 0, percentage = 0.00%
+   - Submitting_to_email: count = 0, percentage = 0.00%
+   - Iframe: count = 0, percentage = 0.00%
+   - Redirect: count = 0, percentage = 0.00%
+   - on_mouseover: count = 0, percentage = 0.00%
+   - RightClick: count = 0, percentage = 0.00%
+   - Result: count = 0, percentage = 0.00%
+
+8. Actual unique values for every column:
+   - having_IP_Address: ['-1', '1']
+   - URL_Length: ['-1', '0', '1']
+   - Shortining_Service: ['-1', '1']
+   - having_At_Symbol: ['-1', '1']
+   - double_slash_redirecting: ['-1', '1']
+   - Prefix_Suffix: ['-1', '1']
+   - having_Sub_Domain: ['-1', '0', '1']
+   - port: ['-1', '1']
+   - HTTPS_token: ['-1', '1']
+   - Favicon: ['-1', '1']
+   - Request_URL: ['-1', '1']
+   - URL_of_Anchor: ['-1', '0', '1']
+   - Links_in_tags: ['-1', '0', '1']
+   - SFH: ['-1', '0', '1']
+   - Submitting_to_email: ['-1', '1']
+   - Iframe: ['-1', '1']
+   - Redirect: ['0', '1']
+   - on_mouseover: ['-1', '1']
+   - RightClick: ['-1', '1']
+   - Result: ['-1', '1']
+
+9. Invalid-value check:
+   Invalid values found: NO
+
+10. Data type information:
+   - having_IP_Address: int64
+   - URL_Length: int64
+   - Shortining_Service: int64
+   - having_At_Symbol: int64
+   - double_slash_redirecting: int64
+   - Prefix_Suffix: int64
+   - having_Sub_Domain: int64
+   - port: int64
+   - HTTPS_token: int64
+   - Favicon: int64
+   - Request_URL: int64
+   - URL_of_Anchor: int64
+   - Links_in_tags: int64
+   - SFH: int64
+   - Submitting_to_email: int64
+   - Iframe: int64
+   - Redirect: int64
+   - on_mouseover: int64
+   - RightClick: int64
+   - Result: int64
+
+11. Original ARFF row count:
+   11055
+
+12. CSV row count:
+   11055
+
+13. Row count comparison:
+   Matches: YES
+
+14. Cell-level integrity comparison result:
+   Cell mismatches count: 0
+   Every cell exactly matches the original ARFF dataset.
+
+15. Result class distribution:
+   Result = -1: Count = 4898, Percentage = 44.31%
+   Result = 1:  Count = 6157, Percentage = 55.69%
+   Total rows:  11055
+
+16. Final validation status:
+   PASS
