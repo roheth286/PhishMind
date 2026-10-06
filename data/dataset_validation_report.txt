@@ -1,0 +1,276 @@
+==================================================
+DATASET VALIDATION REPORT
+==================================================
+
+1. Dataset path:
+   C:\Users\tanvi\Downloads\CN_COURSE_PROJECT\data\original\Training Dataset.arff
+
+2. Number of rows:
+   11055
+
+3. Number of columns:
+   31
+
+4. Complete actual attribute list:
+   1. having_IP_Address
+   2. URL_Length
+   3. Shortining_Service
+   4. having_At_Symbol
+   5. double_slash_redirecting
+   6. Prefix_Suffix
+   7. having_Sub_Domain
+   8. SSLfinal_State
+   9. Domain_registeration_length
+   10. Favicon
+   11. port
+   12. HTTPS_token
+   13. Request_URL
+   14. URL_of_Anchor
+   15. Links_in_tags
+   16. SFH
+   17. Submitting_to_email
+   18. Abnormal_URL
+   19. Redirect
+   20. on_mouseover
+   21. RightClick
+   22. popUpWidnow
+   23. Iframe
+   24. age_of_domain
+   25. DNSRecord
+   26. web_traffic
+   27. Page_Rank
+   28. Google_Index
+   29. Links_pointing_to_page
+   30. Statistical_report
+   31. Result
+
+5. Attribute order verification:
+   Order exactly matches expected: YES
+
+6. All 19 required features verification:
+   19 required features present: YES
+   - having_IP_Address: PRESENT
+   - URL_Length: PRESENT
+   - Shortining_Service: PRESENT
+   - having_At_Symbol: PRESENT
+   - double_slash_redirecting: PRESENT
+   - Prefix_Suffix: PRESENT
+   - having_Sub_Domain: PRESENT
+   - port: PRESENT
+   - HTTPS_token: PRESENT
+   - Favicon: PRESENT
+   - Request_URL: PRESENT
+   - URL_of_Anchor: PRESENT
+   - Links_in_tags: PRESENT
+   - SFH: PRESENT
+   - Submitting_to_email: PRESENT
+   - Iframe: PRESENT
+   - Redirect: PRESENT
+   - on_mouseover: PRESENT
+   - RightClick: PRESENT
+
+7. Result target verification:
+   Result present: YES
+
+8. Allowed values from the ARFF and 9. Actual observed values:
+   Attribute: having_IP_Address
+     Type: nominal
+     Allowed values in ARFF: ['-1', '1']
+     Observed unique values: ['-1', '1']
+     Unexpected values: None
+   Attribute: URL_Length
+     Type: nominal
+     Allowed values in ARFF: ['-1', '0', '1']
+     Observed unique values: ['-1', '0', '1']
+     Unexpected values: None
+   Attribute: Shortining_Service
+     Type: nominal
+     Allowed values in ARFF: ['-1', '1']
+     Observed unique values: ['-1', '1']
+     Unexpected values: None
+   Attribute: having_At_Symbol
+     Type: nominal
+     Allowed values in ARFF: ['-1', '1']
+     Observed unique values: ['-1', '1']
+     Unexpected values: None
+   Attribute: double_slash_redirecting
+     Type: nominal
+     Allowed values in ARFF: ['-1', '1']
+     Observed unique values: ['-1', '1']
+     Unexpected values: None
+   Attribute: Prefix_Suffix
+     Type: nominal
+     Allowed values in ARFF: ['-1', '1']
+     Observed unique values: ['-1', '1']
+     Unexpected values: None
+   Attribute: having_Sub_Domain
+     Type: nominal
+     Allowed values in ARFF: ['-1', '0', '1']
+     Observed unique values: ['-1', '0', '1']
+     Unexpected values: None
+   Attribute: SSLfinal_State
+     Type: nominal
+     Allowed values in ARFF: ['-1', '0', '1']
+     Observed unique values: ['-1', '0', '1']
+     Unexpected values: None
+   Attribute: Domain_registeration_length
+     Type: nominal
+     Allowed values in ARFF: ['-1', '1']
+     Observed unique values: ['-1', '1']
+     Unexpected values: None
+   Attribute: Favicon
+     Type: nominal
+     Allowed values in ARFF: ['-1', '1']
+     Observed unique values: ['-1', '1']
+     Unexpected values: None
+   Attribute: port
+     Type: nominal
+     Allowed values in ARFF: ['-1', '1']
+     Observed unique values: ['-1', '1']
+     Unexpected values: None
+   Attribute: HTTPS_token
+     Type: nominal
+     Allowed values in ARFF: ['-1', '1']
+     Observed unique values: ['-1', '1']
+     Unexpected values: None
+   Attribute: Request_URL
+     Type: nominal
+     Allowed values in ARFF: ['-1', '1']
+     Observed unique values: ['-1', '1']
+     Unexpected values: None
+   Attribute: URL_of_Anchor
+     Type: nominal
+     Allowed values in ARFF: ['-1', '0', '1']
+     Observed unique values: ['-1', '0', '1']
+     Unexpected values: None
+   Attribute: Links_in_tags
+     Type: nominal
+     Allowed values in ARFF: ['-1', '0', '1']
+     Observed unique values: ['-1', '0', '1']
+     Unexpected values: None
+   Attribute: SFH
+     Type: nominal
+     Allowed values in ARFF: ['-1', '0', '1']
+     Observed unique values: ['-1', '0', '1']
+     Unexpected values: None
+   Attribute: Submitting_to_email
+     Type: nominal
+     Allowed values in ARFF: ['-1', '1']
+     Observed unique values: ['-1', '1']
+     Unexpected values: None
+   Attribute: Abnormal_URL
+     Type: nominal
+     Allowed values in ARFF: ['-1', '1']
+     Observed unique values: ['-1', '1']
+     Unexpected values: None
+   Attribute: Redirect
+     Type: nominal
+     Allowed values in ARFF: ['0', '1']
+     Observed unique values: ['0', '1']
+     Unexpected values: None
+   Attribute: on_mouseover
+     Type: nominal
+     Allowed values in ARFF: ['-1', '1']
+     Observed unique values: ['-1', '1']
+     Unexpected values: None
+   Attribute: RightClick
+     Type: nominal
+     Allowed values in ARFF: ['-1', '1']
+     Observed unique values: ['-1', '1']
+     Unexpected values: None
+   Attribute: popUpWidnow
+     Type: nominal
+     Allowed values in ARFF: ['-1', '1']
+     Observed unique values: ['-1', '1']
+     Unexpected values: None
+   Attribute: Iframe
+     Type: nominal
+     Allowed values in ARFF: ['-1', '1']
+     Observed unique values: ['-1', '1']
+     Unexpected values: None
+   Attribute: age_of_domain
+     Type: nominal
+     Allowed values in ARFF: ['-1', '1']
+     Observed unique values: ['-1', '1']
+     Unexpected values: None
+   Attribute: DNSRecord
+     Type: nominal
+     Allowed values in ARFF: ['-1', '1']
+     Observed unique values: ['-1', '1']
+     Unexpected values: None
+   Attribute: web_traffic
+     Type: nominal
+     Allowed values in ARFF: ['-1', '0', '1']
+     Observed unique values: ['-1', '0', '1']
+     Unexpected values: None
+   Attribute: Page_Rank
+     Type: nominal
+     Allowed values in ARFF: ['-1', '1']
+     Observed unique values: ['-1', '1']
+     Unexpected values: None
+   Attribute: Google_Index
+     Type: nominal
+     Allowed values in ARFF: ['-1', '1']
+     Observed unique values: ['-1', '1']
+     Unexpected values: None
+   Attribute: Links_pointing_to_page
+     Type: nominal
+     Allowed values in ARFF: ['-1', '0', '1']
+     Observed unique values: ['-1', '0', '1']
+     Unexpected values: None
+   Attribute: Statistical_report
+     Type: nominal
+     Allowed values in ARFF: ['-1', '1']
+     Observed unique values: ['-1', '1']
+     Unexpected values: None
+   Attribute: Result
+     Type: nominal
+     Allowed values in ARFF: ['-1', '1']
+     Observed unique values: ['-1', '1']
+     Unexpected values: None
+
+10. Missing-value counts and 11. Missing-value percentages:
+   - having_IP_Address: count = 0, percentage = 0.00%
+   - URL_Length: count = 0, percentage = 0.00%
+   - Shortining_Service: count = 0, percentage = 0.00%
+   - having_At_Symbol: count = 0, percentage = 0.00%
+   - double_slash_redirecting: count = 0, percentage = 0.00%
+   - Prefix_Suffix: count = 0, percentage = 0.00%
+   - having_Sub_Domain: count = 0, percentage = 0.00%
+   - SSLfinal_State: count = 0, percentage = 0.00%
+   - Domain_registeration_length: count = 0, percentage = 0.00%
+   - Favicon: count = 0, percentage = 0.00%
+   - port: count = 0, percentage = 0.00%
+   - HTTPS_token: count = 0, percentage = 0.00%
+   - Request_URL: count = 0, percentage = 0.00%
+   - URL_of_Anchor: count = 0, percentage = 0.00%
+   - Links_in_tags: count = 0, percentage = 0.00%
+   - SFH: count = 0, percentage = 0.00%
+   - Submitting_to_email: count = 0, percentage = 0.00%
+   - Abnormal_URL: count = 0, percentage = 0.00%
+   - Redirect: count = 0, percentage = 0.00%
+   - on_mouseover: count = 0, percentage = 0.00%
+   - RightClick: count = 0, percentage = 0.00%
+   - popUpWidnow: count = 0, percentage = 0.00%
+   - Iframe: count = 0, percentage = 0.00%
+   - age_of_domain: count = 0, percentage = 0.00%
+   - DNSRecord: count = 0, percentage = 0.00%
+   - web_traffic: count = 0, percentage = 0.00%
+   - Page_Rank: count = 0, percentage = 0.00%
+   - Google_Index: count = 0, percentage = 0.00%
+   - Links_pointing_to_page: count = 0, percentage = 0.00%
+   - Statistical_report: count = 0, percentage = 0.00%
+   - Result: count = 0, percentage = 0.00%
+
+12. Malformed-row count:
+   Total malformed rows: 0
+   Rows with fewer than 31 values: 0
+   Rows with more than 31 values: 0
+
+13. Result class distribution:
+   Total rows: 11055
+   Result = -1: 4898 (44.31%)
+   Result =  1: 6157 (55.69%)
+
+14. Final validation status:
+   PASSED
