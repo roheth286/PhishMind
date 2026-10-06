@@ -1,9 +1,9 @@
 ==================================================
-RANDOM FOREST TRAINING & EVALUATION METRICS
+RANDOM FOREST TRAINING & EVALUATION METRICS (20 FEATURES)
 ==================================================
 
 Dataset row count: 11055
-Feature count: 19
+Feature count: 20
 Target column: Result
 Class distribution:
   Result = -1: 4898 (44.31%)
@@ -17,13 +17,13 @@ max_features: sqrt
 class_weight: balanced
 
 EVALUATION METRICS (Test Set, positive class = 1):
-Accuracy:  0.919946 (91.99%)
-Precision: 0.929153 (92.92%)
-Recall:    0.926889 (92.69%)
-F1 Score:  0.928020 (92.80%)
+Accuracy:  0.957033 (95.70%)
+Precision: 0.955128 (95.51%)
+Recall:    0.968318 (96.83%)
+F1 Score:  0.961678 (96.17%)
 
 CONFUSION MATRIX (True \ Pred: [-1, 1]):
-  TN (-1 as -1): 893
-  FP (-1 as  1): 87
-  FN ( 1 as -1): 90
-  TP ( 1 as  1): 1141
+  TN (-1 as -1): 924
+  FP (-1 as  1): 56
+  FN ( 1 as -1): 39
+  TP ( 1 as  1): 1192

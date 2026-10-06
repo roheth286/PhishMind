@@ -17,7 +17,7 @@ from sklearn.metrics import (
 )
 from sklearn.model_selection import train_test_split
 
-EXPECTED_19_FEATURES = [
+EXPECTED_20_FEATURES = [
     "having_IP_Address",
     "URL_Length",
     "Shortining_Service",
@@ -25,6 +25,7 @@ EXPECTED_19_FEATURES = [
     "double_slash_redirecting",
     "Prefix_Suffix",
     "having_Sub_Domain",
+    "SSLfinal_State",
     "port",
     "HTTPS_token",
     "Favicon",
@@ -39,11 +40,11 @@ EXPECTED_19_FEATURES = [
     "RightClick",
 ]
 
-REQUIRED_20_COLUMNS = EXPECTED_19_FEATURES + ["Result"]
+REQUIRED_21_COLUMNS = EXPECTED_20_FEATURES + ["Result"]
 
 
 def train_and_evaluate():
-    data_path = "data/phishing_19_features.csv"
+    data_path = "data/phishing_20_features.csv"
     models_dir = "models"
     os.makedirs(models_dir, exist_ok=True)
 
@@ -61,17 +62,17 @@ def train_and_evaluate():
     if total_rows != 11055:
         print(f"WARNING: Expected 11,055 rows, but found {total_rows} rows.")
 
-    if total_cols != 20:
-        raise ValueError(f"Expected 20 columns, found {total_cols}")
+    if total_cols != 21:
+        raise ValueError(f"Expected 21 columns, found {total_cols}")
 
-    if list(df.columns) != REQUIRED_20_COLUMNS:
-        raise ValueError("Column order does not match expected 20 columns.")
+    if list(df.columns) != REQUIRED_21_COLUMNS:
+        raise ValueError("Column order does not match expected 21 columns.")
 
     # Step 2: Separate X and y
     print("\n" * 0 + "=" * 60)
-    print("STEP 2: SEPARATING X AND y")
+    print("STEP 2: SEPARATING X AND y (20 Features)")
     print("=" * 60)
-    X = df[EXPECTED_19_FEATURES].copy()
+    X = df[EXPECTED_20_FEATURES].copy()
     y = df["Result"].astype(int).copy()
     print(f"X shape: {X.shape}, y shape: {y.shape}")
 
@@ -103,15 +104,13 @@ def train_and_evaluate():
     print(f"Training rows: {n_train}")
     print(f"Test rows: {n_test}")
 
-    # Step 5: Preprocessing
+    # Step 5 & 7: Preprocessing
     print("\n" * 0 + "=" * 60)
-    print("STEP 5: PREPROCESSING PIPELINE OBJECT")
+    print("STEP 5 & 7: PREPROCESSING PIPELINE OBJECT (20 Features)")
     print("=" * 60)
-    # Using standard sklearn ColumnTransformer as a pass-through selector to guarantee
-    # feature preservation, order preservation, and standard library pickling compatibility.
     preprocessor = ColumnTransformer(
         transformers=[
-            ("passthrough_features", "passthrough", EXPECTED_19_FEATURES)
+            ("passthrough_features", "passthrough", EXPECTED_20_FEATURES)
         ],
         remainder="drop"
     )
@@ -120,9 +119,9 @@ def train_and_evaluate():
     print(f"Preprocessed X_train shape: {X_train_proc.shape}")
     print(f"Preprocessed X_test shape: {X_test_proc.shape}")
 
-    # Step 6 & 7: Random Forest Model & Training
+    # Step 6, 9 & 10: Random Forest Model & Training
     print("\n" * 0 + "=" * 60)
-    print("STEP 6 & 7: RANDOM FOREST TRAINING")
+    print("STEP 6, 9 & 10: RANDOM FOREST TRAINING")
     print("=" * 60)
     rf = RandomForestClassifier(
         n_estimators=300,
@@ -137,9 +136,9 @@ def train_and_evaluate():
     print(f"Random state: {rf.random_state}")
     print(f"Feature count: {X_train.shape[1]}")
 
-    # Step 8: Evaluate on Test Set
+    # Step 11: Evaluate on Test Set
     print("\n" * 0 + "=" * 60)
-    print("STEP 8: TEST SET EVALUATION (Positive class = 1)")
+    print("STEP 11: TEST SET EVALUATION (Positive class = 1)")
     print("=" * 60)
     y_pred = rf.predict(X_test_proc)
     acc = accuracy_score(y_test, y_pred)
@@ -150,13 +149,13 @@ def train_and_evaluate():
 
     print(f"Accuracy:  {acc:.4f} ({acc*100:.2f}%)")
     print(f"Precision: {prec:.4f} ({prec*100:.2f}%)")
-    print(f"Recall:    {rec:.4f} ({rec*100:.2f}%)")
+    print(f"Recall:    {rec:.4f} ({rec*100:.2f}% )")
     print(f"F1 Score:  {f1:.4f} ({f1*100:.2f}%)")
     print(f"Confusion Matrix (labels: [-1, 1]):\n{cm}")
 
-    # Step 9: Probabilities
+    # Step 12: Probabilities
     print("\n" * 0 + "=" * 60)
-    print("STEP 9: PREDICT_PROBA VERIFICATION")
+    print("STEP 12: PREDICT_PROBA VERIFICATION")
     print("=" * 60)
     probs = rf.predict_proba(X_test_proc)
     print(f"Classes in model: {rf.classes_}")
@@ -165,13 +164,13 @@ def train_and_evaluate():
     if probs.shape == (n_test, 2):
         print("predict_proba() verified successfully: exactly 2 class probabilities per test row.")
 
-    # Step 10 & 12: Feature Importance
+    # Step 13: Feature Importance
     print("\n" * 0 + "=" * 60)
-    print("STEP 10 & 12: FEATURE IMPORTANCE")
+    print("STEP 13: FEATURE IMPORTANCE (20 Features)")
     print("=" * 60)
     importances = rf.feature_importances_
     feat_imp_df = pd.DataFrame({
-        "Feature": EXPECTED_19_FEATURES,
+        "Feature": EXPECTED_20_FEATURES,
         "Importance": importances
     }).sort_values(by="Importance", ascending=False).reset_index(drop=True)
 
@@ -181,9 +180,12 @@ def train_and_evaluate():
     print("\nTop 10 Features by Importance:")
     print(feat_imp_df.head(10).to_string(index=False))
 
-    # Step 11: Confusion Matrix Plot
+    ssl_importance_val = feat_imp_df.loc[feat_imp_df["Feature"] == "SSLfinal_State", "Importance"].values[0]
+    print(f"\nSSLfinal_State Importance: {ssl_importance_val:.6f}")
+
+    # Step 14: Confusion Matrix Plot
     print("\n" * 0 + "=" * 60)
-    print("STEP 11: SAVING CONFUSION MATRIX PLOT")
+    print("STEP 14: SAVING CONFUSION MATRIX PLOT")
     print("=" * 60)
     cm_path = os.path.join(models_dir, "confusion_matrix.png")
     fig, ax = plt.subplots(figsize=(6, 5))
@@ -200,32 +202,32 @@ def train_and_evaluate():
     ax.set_yticklabels(['Legitimate (-1)', 'Phishing (1)'])
     ax.set_xlabel('Predicted Label', fontsize=12)
     ax.set_ylabel('True Label', fontsize=12)
-    ax.set_title('Random Forest Confusion Matrix (Test Set)', fontsize=13, pad=20)
+    ax.set_title('Random Forest Confusion Matrix (20 Features, Test Set)', fontsize=12, pad=20)
     plt.tight_layout()
     plt.savefig(cm_path, dpi=300)
     plt.close()
     print(f"Saved confusion matrix plot to {cm_path}")
 
-    # Step 13: Save Model
+    # Step 15: Save Model
     rf_model_path = os.path.join(models_dir, "random_forest.pkl")
     joblib.dump(rf, rf_model_path)
     print(f"Saved model to {rf_model_path}")
 
-    # Step 14: Save Preprocessing Object
+    # Step 7 & 15: Save Preprocessing Object
     scaler_path = os.path.join(models_dir, "scaler.pkl")
     joblib.dump(preprocessor, scaler_path)
     print(f"Saved preprocessor to {scaler_path}")
 
-    # Step 15: Save Training Metrics
+    # Step 16: Save Training Metrics
     metrics_path = os.path.join(models_dir, "training_metrics.txt")
     with open(metrics_path, "w", encoding="utf-8") as f:
         f.write("==================================================\n")
-        f.write("RANDOM FOREST TRAINING & EVALUATION METRICS\n")
+        f.write("RANDOM FOREST TRAINING & EVALUATION METRICS (20 FEATURES)\n")
         f.write("==================================================\n\n")
         f.write(f"Dataset row count: {total_rows}\n")
-        f.write(f"Feature count: {len(EXPECTED_19_FEATURES)}\n")
+        f.write(f"Feature count: {len(EXPECTED_20_FEATURES)}\n")
         f.write("Target column: Result\n")
-        f.write("Class distribution:\n")
+        f.write(f"Class distribution:\n")
         f.write(f"  Result = -1: {count_neg1} ({pct_neg1:.2f}%)\n")
         f.write(f"  Result =  1: {count_pos1} ({pct_pos1:.2f}%)\n")
         f.write(f"Train row count: {n_train}\n")
@@ -247,9 +249,9 @@ def train_and_evaluate():
         f.write(f"  TP ( 1 as  1): {cm[1, 1]}\n")
     print(f"Saved training metrics to {metrics_path}")
 
-    # Step 19: Final Training Checks
+    # Step 18: Reload & Consistency Verification
     print("\n" * 0 + "=" * 60)
-    print("STEP 19: FINAL TRAINING CHECKS & MODEL RELOAD")
+    print("STEP 18: RELOAD & CONSISTENCY VERIFICATION")
     print("=" * 60)
     loaded_rf = joblib.load(rf_model_path)
     loaded_preprocessor = joblib.load(scaler_path)
@@ -260,18 +262,14 @@ def train_and_evaluate():
     reloaded_pred_match = np.array_equal(y_pred, reloaded_pred)
     reloaded_probs_match = np.allclose(probs, reloaded_probs)
 
-    print("1. Model object exists in memory: YES")
-    print(f"2. models/random_forest.pkl exists: {'YES' if os.path.exists(rf_model_path) else 'NO'}")
-    print(f"3. models/scaler.pkl exists: {'YES' if os.path.exists(scaler_path) else 'NO'}")
-    print(f"4. models/feature_importance.csv exists: {'YES' if os.path.exists(feat_imp_path) else 'NO'}")
-    print(f"5. models/confusion_matrix.png exists: {'YES' if os.path.exists(cm_path) else 'NO'}")
-    print(f"6. models/training_metrics.txt exists: {'YES' if os.path.exists(metrics_path) else 'NO'}")
-    print("7. Model can be loaded back using joblib: YES")
-    print(f"8. Loaded model can call predict(): YES (Matches: {'YES' if reloaded_pred_match else 'NO'})")
-    print(f"9. Loaded model can call predict_proba(): YES (Matches: {'YES' if reloaded_probs_match else 'NO'})")
-    print(f"10. Exactly one prediction per test row: {'YES' if len(reloaded_pred) == n_test else 'NO'} ({len(reloaded_pred)})")
-    print(f"11. predict_proba() returns probabilities for both classes: {'YES' if reloaded_probs.shape[1] == 2 else 'NO'}")
-    print(f"12. Exactly 19 feature importance values: {'YES' if len(rf.feature_importances_) == 19 else 'NO'}")
+    print(f"1. Model reloaded successfully: YES")
+    print(f"2. Preprocessor reloaded successfully: YES")
+    print(f"3. Reloaded model predict() works: YES (Matches: {'YES' if reloaded_pred_match else 'NO'})")
+    print(f"4. Reloaded model predict_proba() works: YES (Matches: {'YES' if reloaded_probs_match else 'NO'})")
+    print(f"5. CSV feature count: {X.shape[1]}")
+    print(f"6. Model feature count: {loaded_rf.n_features_in_}")
+    print(f"7. Feature importance count: {len(feat_imp_df)}")
+    print(f"8. SSLfinal_State in features: {'YES' if 'SSLfinal_State' in EXPECTED_20_FEATURES else 'NO'}")
     print("=" * 60)
 
     return True
