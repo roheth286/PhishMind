@@ -1006,3 +1006,789 @@ def fetch_webpage(url: str, timeout: float = 10.0) -> tuple[str, str]:
         # Fallback to static urllib retrieval if Playwright is unavailable,
         # browser launch fails, or rendering raises an exception.
         return fetch_webpage_static(url_to_open, timeout=min(timeout, 5.0))
+
+
+# ==============================================================================
+# SECTION 4 FEATURES (HTML, INLINE JS, AND EXTERNAL JS FILES)
+# ==============================================================================
+
+import requests
+from bs4 import BeautifulSoup
+from typing import List, Dict, Any, Optional
+
+MAX_SCRIPT_BYTES = 1024 * 1024  # 1 MB maximum download size per script
+MAX_EXTERNAL_SCRIPTS = 20       # Maximum external scripts per page
+EXTERNAL_SCRIPT_TIMEOUT = 5.0   # 5 seconds network timeout
+
+
+def _is_public_ip(ip_str: str) -> bool:
+    """Check whether an IP address is publicly routable (reject private/loopback/link-local/reserved)."""
+    try:
+        ip = ipaddress.ip_address(ip_str)
+        return not (ip.is_private or ip.is_loopback or ip.is_link_local or
+                    ip.is_reserved or ip.is_multicast or ip.is_unspecified)
+    except ValueError:
+        return False
+
+
+def _is_safe_url_destination(target_url: str, resolve_dns: bool = True) -> bool:
+    """
+    Validate that target_url uses http or https, and does not resolve to
+    localhost, loopback, private, link-local, or non-public IP destinations.
+    """
+    try:
+        parsed = urlparse(target_url)
+        if parsed.scheme.lower() not in ("http", "https"):
+            return False
+
+        hostname = parsed.hostname
+        if not hostname:
+            return False
+
+        hostname_lower = hostname.lower()
+        if hostname_lower in ("localhost", "127.0.0.1", "::1"):
+            return False
+
+        # If hostname is an IP literal
+        try:
+            ip = ipaddress.ip_address(hostname)
+            return _is_public_ip(str(ip))
+        except ValueError:
+            pass
+
+        # If hostname is a non-IP name
+        if resolve_dns:
+            try:
+                addrs = socket.getaddrinfo(hostname, None)
+                for addr in addrs:
+                    ip_str = addr[4][0]
+                    if not _is_public_ip(ip_str):
+                        return False
+            except (socket.gaierror, OSError):
+                # In environments where DNS resolution fails or offline mock tests,
+                # reject only if hostname clearly looks local/private.
+                # If hostname ends with known private domain labels:
+                if any(hostname_lower.endswith(sfx) for sfx in (".local", ".internal", ".localhost")):
+                    return False
+                # For offline testing/mocking, allow valid public-looking domain names
+                return True
+
+        return True
+    except Exception:
+        return False
+
+
+def extract_inline_javascript(html: str) -> Dict[str, Any]:
+    """
+    Parse HTML using BeautifulSoup and extract:
+    - Inline script blocks (<script> without src)
+    - Inline event handlers (onmouseover, onclick, onmousedown, etc.)
+    Does not execute any source.
+    """
+    result = {
+        "scripts": [],
+        "event_handlers": []  # List of dicts: {"tag": tag.name, "attr": attr, "code": value}
+    }
+    if not html:
+        return result
+
+    try:
+        soup = BeautifulSoup(html, "html.parser")
+    except Exception:
+        return result
+
+    # 1. Inline <script> blocks
+    for script in soup.find_all("script"):
+        if not script.get("src"):
+            code = script.string or script.get_text() or ""
+            if code.strip():
+                result["scripts"].append(code.strip())
+
+    # 2. Inline event handler attributes across all elements
+    handler_names = {"onmouseover", "onclick", "onmousedown", "oncontextmenu", "onload", "onsubmit"}
+    for tag in soup.find_all(True):
+        for attr, val in tag.attrs.items():
+            attr_lower = attr.lower()
+            if attr_lower in handler_names or attr_lower.startswith("on"):
+                if isinstance(val, list):
+                    val = " ".join(val)
+                if isinstance(val, str) and val.strip():
+                    result["event_handlers"].append({
+                        "tag": tag.name,
+                        "attr": attr_lower,
+                        "code": val.strip()
+                    })
+
+    return result
+
+
+def extract_external_script_urls(html: str, page_url: str) -> List[str]:
+    """
+    Find <script src="..."> elements, resolve relative URLs with urljoin,
+    and return unique valid HTTP(S) script URLs.
+    """
+    if not html:
+        return []
+
+    try:
+        soup = BeautifulSoup(html, "html.parser")
+    except Exception:
+        return []
+
+    urls = []
+    seen = set()
+
+    for script in soup.find_all("script"):
+        src = script.get("src")
+        if not src or not isinstance(src, str) or not src.strip():
+            continue
+
+        src_clean = src.strip()
+        resolved = urljoin(page_url, src_clean)
+        parsed = urlparse(resolved)
+
+        if parsed.scheme.lower() not in ("http", "https"):
+            continue
+
+        normalized = resolved
+        if normalized not in seen:
+            seen.add(normalized)
+            urls.append(normalized)
+
+    return urls
+
+
+def fetch_external_javascript(script_url: str, session: Optional[Any] = None) -> Optional[str]:
+    """
+    Fetch external JavaScript file as text using requests or an injected session.
+    Enforces network safety:
+    - Rejects non-HTTP(S) URLs
+    - Rejects localhost/private/loopback/non-public destinations (SSRF defense)
+    - Validates redirects iteratively to prevent open redirects to private IPs
+    - Enforces maximum size limit (1 MB) and timeout (5.0s)
+    - Never evaluates or executes downloaded code.
+    - Caches responses per session when cache dictionary is present.
+    """
+    if not _is_safe_url_destination(script_url):
+        return None
+
+    # Check cache if available on session
+    if session is not None and hasattr(session, "_script_cache") and isinstance(getattr(session, "_script_cache"), dict):
+        if script_url in session._script_cache:
+            return session._script_cache[script_url]
+
+    client = session or requests.Session()
+    current_url = script_url
+    max_redirects = 5
+
+    try:
+        for _ in range(max_redirects):
+            resp = client.get(
+                current_url,
+                timeout=EXTERNAL_SCRIPT_TIMEOUT,
+                allow_redirects=False,
+                stream=True,
+                headers={"User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64)"}
+            )
+
+            # Check for redirect status
+            if resp.status_code in (301, 302, 303, 307, 308):
+                location = resp.headers.get("Location")
+                if not location:
+                    if session is not None and hasattr(session, "_script_cache") and isinstance(getattr(session, "_script_cache"), dict):
+                        session._script_cache[script_url] = None
+                    return None
+                next_url = urljoin(current_url, location.strip())
+                if not _is_safe_url_destination(next_url):
+                    if session is not None and hasattr(session, "_script_cache") and isinstance(getattr(session, "_script_cache"), dict):
+                        session._script_cache[script_url] = None
+                    return None
+                current_url = next_url
+                continue
+
+            if resp.status_code != 200:
+                if session is not None and hasattr(session, "_script_cache") and isinstance(getattr(session, "_script_cache"), dict):
+                    session._script_cache[script_url] = None
+                return None
+
+            # Check Content-Type (reject binary)
+            content_type = resp.headers.get("Content-Type", "").lower()
+            if any(b in content_type for b in ("image/", "video/", "audio/", "application/zip", "application/pdf")):
+                if session is not None and hasattr(session, "_script_cache") and isinstance(getattr(session, "_script_cache"), dict):
+                    session._script_cache[script_url] = None
+                return None
+
+            # Stream response up to MAX_SCRIPT_BYTES
+            content_chunks = []
+            total_bytes = 0
+            for chunk in resp.iter_content(chunk_size=8192):
+                if chunk:
+                    total_bytes += len(chunk)
+                    if total_bytes > MAX_SCRIPT_BYTES:
+                        if session is not None and hasattr(session, "_script_cache") and isinstance(getattr(session, "_script_cache"), dict):
+                            session._script_cache[script_url] = None
+                        return None  # Exceeded limit
+                    content_chunks.append(chunk)
+
+            raw_bytes = b"".join(content_chunks)
+            encoding = resp.encoding or "utf-8"
+            try:
+                decoded = raw_bytes.decode(encoding, errors="replace")
+            except Exception:
+                decoded = raw_bytes.decode("utf-8", errors="replace")
+
+            if session is not None and hasattr(session, "_script_cache") and isinstance(getattr(session, "_script_cache"), dict):
+                session._script_cache[script_url] = decoded
+            return decoded
+
+        if session is not None and hasattr(session, "_script_cache") and isinstance(getattr(session, "_script_cache"), dict):
+            session._script_cache[script_url] = None
+        return None
+    except Exception:
+        if session is not None and hasattr(session, "_script_cache") and isinstance(getattr(session, "_script_cache"), dict):
+            session._script_cache[script_url] = None
+        return None
+
+
+def collect_javascript_sources(html: str, page_url: str, session: Optional[Any] = None) -> Dict[str, Any]:
+    """
+    Collect all JavaScript sources associated with a webpage:
+    - Inline scripts and event handlers
+    - External script URLs and fetched script text (up to MAX_EXTERNAL_SCRIPTS)
+    Returns structured dict with distinguishable inline and external sources.
+    """
+    inline_data = extract_inline_javascript(html)
+    script_urls = extract_external_script_urls(html, page_url)
+
+    client_session = session or requests.Session()
+    if isinstance(client_session, requests.Session) and not hasattr(client_session, "_script_cache"):
+        client_session._script_cache = {}
+
+    external_scripts = []
+    # Bounded fetch of external scripts
+    for url in script_urls[:MAX_EXTERNAL_SCRIPTS]:
+        code = fetch_external_javascript(url, session=client_session)
+        if code is not None:
+            external_scripts.append({
+                "url": url,
+                "code": code
+            })
+
+    return {
+        "inline_scripts": inline_data["scripts"],
+        "event_handlers": inline_data["event_handlers"],
+        "external_scripts": external_scripts
+    }
+
+
+def _strip_javascript_comments(code: str) -> str:
+    """
+    Remove single-line (//) and multi-line (/* */) comments from JavaScript code
+    while preserving string literals and template strings.
+    """
+    if not code:
+        return ""
+    pattern = r'("(?:\\.|[^"\\])*"|\'(?:\\.|[^\'\\])*\'|`(?:\\.|[^`\\])*`)|(/\*[\s\S]*?\*/)|(//[^\r\n]*)'
+    def replacer(match):
+        if match.group(1):
+            return match.group(1)
+        return " "
+    try:
+        return re.sub(pattern, replacer, code)
+    except Exception:
+        return code
+
+
+def _extract_balanced_block(code: str, open_brace_idx: int) -> Optional[str]:
+    """
+    Given code and the index of an opening brace '{', extract the substring
+    up to the matching closing brace '}', properly handling nested braces and string literals.
+    """
+    if open_brace_idx < 0 or open_brace_idx >= len(code) or code[open_brace_idx] != "{":
+        return None
+    depth = 0
+    in_single_quote = False
+    in_double_quote = False
+    in_template_quote = False
+    i = open_brace_idx
+    length = len(code)
+
+    while i < length:
+        ch = code[i]
+        prev_ch = code[i - 1] if i > 0 else ""
+
+        if prev_ch != "\\":
+            if ch == "'" and not in_double_quote and not in_template_quote:
+                in_single_quote = not in_single_quote
+            elif ch == '"' and not in_single_quote and not in_template_quote:
+                in_double_quote = not in_double_quote
+            elif ch == '`' and not in_single_quote and not in_double_quote:
+                in_template_quote = not in_template_quote
+
+        if not in_single_quote and not in_double_quote and not in_template_quote:
+            if ch == "{":
+                depth += 1
+            elif ch == "}":
+                depth -= 1
+                if depth == 0:
+                    return code[open_brace_idx : i + 1]
+        i += 1
+    return None
+
+
+# ==============================================================================
+# FEATURE IMPLEMENTATIONS (Section 4)
+# ==============================================================================
+
+def _has_js_mailto_submission(code: str) -> bool:
+    """
+    Check if JavaScript code contains a mechanism that submits user or form data
+    through a mailto: destination.
+    Excludes comments, static unreferenced strings, and ordinary contact links.
+    """
+    if not code:
+        return False
+    clean = _strip_javascript_comments(code)
+    if "mailto:" not in clean.lower():
+        return False
+
+    # 1. Dynamic form action assignment: form.action = 'mailto:...' or form.setAttribute('action', 'mailto:...')
+    action_assign = re.compile(r"(?i)\b(?:action|formaction)\s*=\s*['\"`]mailto:")
+    if action_assign.search(clean):
+        return True
+
+    set_attr = re.compile(r"(?i)\.setAttribute\s*\(\s*['\"](?:action|formaction)['\"]\s*,\s*['\"`]mailto:")
+    if set_attr.search(clean):
+        return True
+
+    # 2. Dynamic navigation forwarding data via mailto:
+    # location.href = "mailto:...?body=" + data or location.href = `mailto:...?body=${data}`
+    nav_forward = re.compile(
+        r"(?i)(?:location(?:\.href)?|window\.open)\s*(?:=|\()\s*['\"`]mailto:[^'\"`]*?(?:\?|&)(?:body|subject)=.*?(?:\+|concat|\$\{)"
+    )
+    if nav_forward.search(clean):
+        return True
+
+    # 3. Form submit trigger paired with mailto:
+    if re.search(r"(?i)mailto:[^'\"`\s]+", clean) and re.search(r"(?i)\b(?:submit|sendForm)\s*\(", clean):
+        return True
+
+    return False
+
+
+def extract_submitting_to_email(html: str, page_url: str, session: Optional[Any] = None) -> int:
+    """
+    Feature 1 (Position 16): Submitting_to_email
+    Allowed values: {1, -1}
+    Rule:
+      -1: source code provides evidence of a mailto-based form submission or a
+          JavaScript mechanism that submits user information through a mailto destination
+       1: otherwise
+
+    Inspects:
+    1. HTML <form action="mailto:..."> or input/button <... formaction="mailto:...">
+    2. Inline event handlers (onsubmit, onclick, etc.) setting mailto action or submitting
+    3. Inline JavaScript mechanisms submitting data to a mailto destination
+    4. Successfully fetched external JavaScript files submitting data to a mailto destination
+
+    False-positive prevention & notes:
+    - Standalone <a href="mailto:..."> contact links are NOT treated as submission mechanisms;
+      plain email contact links are expected on legitimate websites and return 1.
+    - Comments in JavaScript containing 'mailto:' are stripped and ignored.
+    - Note: Server-side PHP mail() calls cannot be detected from client HTML alone.
+    - JavaScript is never executed.
+    """
+    if not html:
+        return 1
+
+    try:
+        soup = BeautifulSoup(html, "html.parser")
+
+        # 1. Inspect form actions (<form action="mailto:...">)
+        for form in soup.find_all("form"):
+            action = form.get("action", "")
+            if isinstance(action, str) and action.strip().lower().startswith("mailto:"):
+                return -1
+
+        # Check submit buttons/inputs with formaction="mailto:..."
+        for tag in soup.find_all(["input", "button"]):
+            formaction = tag.get("formaction", "")
+            if isinstance(formaction, str) and formaction.strip().lower().startswith("mailto:"):
+                return -1
+
+    except Exception:
+        pass
+
+    # Collect JS sources (inline & external)
+    js_data = collect_javascript_sources(html, page_url, session=session)
+
+    # 2. Inspect event handler code
+    for handler in js_data["event_handlers"]:
+        if _has_js_mailto_submission(handler["code"]):
+            return -1
+
+    # 3. Inspect inline script blocks
+    for script_code in js_data["inline_scripts"]:
+        if _has_js_mailto_submission(script_code):
+            return -1
+
+    # 4. Inspect external script files
+    for ext in js_data["external_scripts"]:
+        if _has_js_mailto_submission(ext["code"]):
+            return -1
+
+    return 1
+
+
+def _has_status_bar_manipulation(code: str) -> bool:
+    """
+    Check if a code snippet modifies or fakes the browser status-bar display
+    via window.status = ... or status = '...'.
+    Excludes local variable declarations (var/let/const status =) and comparisons (==, ===).
+    """
+    if not code:
+        return False
+    clean = _strip_javascript_comments(code)
+
+    # 1. window.status = ... (with arbitrary whitespace)
+    if re.search(r"(?i)\bwindow\s*\.\s*status\s*=\s*(?!=)", clean):
+        return True
+
+    # 2. standalone status = '...' or status = "..."
+    # Ensure not preceded by var, let, const, or object property dot, and not comparison
+    status_standalone = r"(?i)(?<![\w.\$])(?<!var\s)(?<!let\s)(?<!const\s)status\s*=\s*(?!=)\s*['\"`]"
+    if re.search(status_standalone, clean):
+        return True
+
+    return False
+
+
+def _has_mouseover_status_manipulation(script_code: str) -> bool:
+    """
+    Check if JavaScript code links a mouseover event listener or handler
+    specifically to a status-bar manipulation statement.
+    Does not flag mouseover events that do not modify the status bar,
+    nor unrelated status assignments located elsewhere in the script.
+    """
+    if not script_code:
+        return False
+
+    clean = _strip_javascript_comments(script_code)
+    lower = clean.lower()
+    if ("mouseover" not in lower and "mouseenter" not in lower) or "status" not in lower:
+        return False
+
+    # 1. addEventListener('mouseover' | 'mouseenter', ...)
+    listener_pattern = re.compile(r"(?i)addEventListener\s*\(\s*['\"](?:mouseover|mouseenter)['\"]\s*,")
+    for match in listener_pattern.finditer(clean):
+        after_match = clean[match.end():]
+
+        # Arrow expression without braces: () => window.status = '...'
+        arrow_match = re.match(r"\s*(?:\([^)]*\)|[a-zA-Z0-9_$]+)\s*=>\s*([^;,\n\)]+)", after_match)
+        if arrow_match:
+            expr = arrow_match.group(1)
+            if _has_status_bar_manipulation(expr):
+                return True
+
+        # Callback block with braces: function(...) { ... } or () => { ... }
+        brace_idx = after_match.find("{")
+        if brace_idx != -1 and brace_idx < 150:
+            block = _extract_balanced_block(after_match, brace_idx)
+            if block and _has_status_bar_manipulation(block):
+                return True
+
+        # Named function reference: addEventListener('mouseover', handleHover)
+        fn_ref_match = re.match(r"\s*([a-zA-Z0-9_$]+)\s*[,)]", after_match)
+        if fn_ref_match:
+            fn_name = fn_ref_match.group(1)
+            fn_def_match = re.search(rf"(?i)\bfunction\s+{re.escape(fn_name)}\s*\([^)]*\)\s*\{{", clean)
+            if fn_def_match:
+                open_b = fn_def_match.end() - 1
+                fn_block = _extract_balanced_block(clean, open_b)
+                if fn_block and _has_status_bar_manipulation(fn_block):
+                    return True
+
+    # 2. Property assignment: element.onmouseover = function(...) { ... } or () => { ... }
+    prop_pattern = re.compile(r"(?i)\.\s*onmouseover\s*=\s*")
+    for match in prop_pattern.finditer(clean):
+        after_match = clean[match.end():]
+
+        arrow_match = re.match(r"\s*(?:\([^)]*\)|[a-zA-Z0-9_$]+)\s*=>\s*([^;,\n]+)", after_match)
+        if arrow_match:
+            expr = arrow_match.group(1)
+            if _has_status_bar_manipulation(expr):
+                return True
+
+        brace_idx = after_match.find("{")
+        if brace_idx != -1 and brace_idx < 150:
+            block = _extract_balanced_block(after_match, brace_idx)
+            if block and _has_status_bar_manipulation(block):
+                return True
+
+        fn_ref_match = re.match(r"\s*([a-zA-Z0-9_$]+)\s*[;\n]", after_match)
+        if fn_ref_match:
+            fn_name = fn_ref_match.group(1)
+            fn_def_match = re.search(rf"(?i)\bfunction\s+{re.escape(fn_name)}\s*\([^)]*\)\s*\{{", clean)
+            if fn_def_match:
+                open_b = fn_def_match.end() - 1
+                fn_block = _extract_balanced_block(clean, open_b)
+                if fn_block and _has_status_bar_manipulation(fn_block):
+                    return True
+
+    return False
+
+
+def extract_on_mouseover(html: str, page_url: str, session: Optional[Any] = None) -> int:
+    """
+    Feature 2 (Position 19): on_mouseover
+    Allowed values: {1, -1}
+    Rule:
+      -1: source code provides evidence that an onmouseover handler actually assigns
+          to window.status or status, modifying or faking the browser status-bar display
+       1: otherwise
+
+    Inspects:
+    1. Inline onmouseover attributes with status-bar assignment
+    2. Inline and external JS: mouseover event listeners or handlers linked to status assignments
+
+    False-positive prevention & notes:
+    - Mouseover handlers changing styles (e.g., this.style.color='red') or tooltips do NOT trigger -1.
+    - Scripts containing unrelated status assignments elsewhere do NOT trigger -1.
+    - JavaScript is never executed.
+    """
+    if not html:
+        return 1
+
+    js_data = collect_javascript_sources(html, page_url, session=session)
+
+    # 1. Inline onmouseover event handlers
+    for handler in js_data["event_handlers"]:
+        if handler["attr"] == "onmouseover":
+            if _has_status_bar_manipulation(handler["code"]):
+                return -1
+
+    # 2. Inline scripts and external scripts
+    all_scripts = js_data["inline_scripts"] + [ext["code"] for ext in js_data["external_scripts"]]
+    for script_code in all_scripts:
+        if _has_mouseover_status_manipulation(script_code):
+            return -1
+
+    return 1
+
+
+DISABLING_PATTERN = re.compile(
+    r"(?i)(?:return\s+false\b|preventDefault\s*\(|cancelBubble\s*=\s*true\b|returnValue\s*=\s*false\b)"
+)
+
+BUTTON_2_CONDITION_PATTERN = re.compile(
+    r"(?i)(?:\b[a-zA-Z0-9_$]+\s*\.\s*button\s*={2,3}\s*2\b|\b2\s*={2,3}\s*[a-zA-Z0-9_$]+\s*\.\s*button\b)"
+)
+
+
+def _has_right_click_disabling(code: str) -> bool:
+    """
+    Check if code links right-click detection (specifically event.button == 2 logic)
+    to behavior that disables or blocks the right-click (return false, preventDefault(),
+    cancelBubble = true, returnValue = false).
+
+    Unrelated disabling statements elsewhere in the code do not qualify.
+    Generic contextmenu handlers without button == 2 logic do not qualify.
+    """
+    if not code:
+        return False
+
+    clean = _strip_javascript_comments(code)
+    if not BUTTON_2_CONDITION_PATTERN.search(clean):
+        return False
+
+    # 1. Inspect 'if' statements with button == 2 condition
+    if_pattern = re.compile(r"(?i)\bif\s*\(([^)]*)\)")
+    for match in if_pattern.finditer(clean):
+        cond = match.group(1)
+        if BUTTON_2_CONDITION_PATTERN.search(cond):
+            end_pos = match.end()
+            idx = end_pos
+            while idx < len(clean) and clean[idx].isspace():
+                idx += 1
+            if idx < len(clean):
+                if clean[idx] == "{":
+                    block = _extract_balanced_block(clean, idx)
+                    if block and DISABLING_PATTERN.search(block):
+                        return True
+                else:
+                    stmt_match = re.match(r"[^;\n{}]+(?:;|\n|$)", clean[idx:])
+                    if stmt_match:
+                        stmt = stmt_match.group(0)
+                        if DISABLING_PATTERN.search(stmt):
+                            return True
+
+    # 2. Inspect ternary or short-circuit expressions: e.g. e.button == 2 ? e.preventDefault() : null
+    ternary_pattern = re.compile(
+        r"(?i)(?:[a-zA-Z0-9_$]+\s*\.\s*button\s*={2,3}\s*2\b|\b2\s*={2,3}\s*[a-zA-Z0-9_$]+\s*\.\s*button\b)\s*(?:\?|&&)\s*([^;,\n]+)"
+    )
+    for match in ternary_pattern.finditer(clean):
+        expr = match.group(1)
+        if DISABLING_PATTERN.search(expr) or re.search(r"(?i)\bfalse\b", expr):
+            return True
+
+    # 3. Compact inline event handlers where button == 2 condition is immediately followed by disabling
+    compact_pattern = re.compile(
+        r"(?i)(?:[a-zA-Z0-9_$]+\s*\.\s*button\s*={2,3}\s*2\b|\b2\s*={2,3}\s*[a-zA-Z0-9_$]+\s*\.\s*button\b)[^;{}\n]*[;{}][^;{}\n]*(?:return\s+false|preventDefault|cancelBubble|returnValue\s*=\s*false)"
+    )
+    if compact_pattern.search(clean):
+        return True
+
+    return False
+
+
+def extract_right_click(html: str, page_url: str, session: Optional[Any] = None) -> int:
+    """
+    Feature 3 (Position 20): RightClick
+    Allowed values: {1, -1}
+    Rule:
+      -1: source code links right-click detection (specifically event.button == 2 logic)
+          to behavior that disables or blocks the right-click
+       1: otherwise
+
+    Inspects:
+    1. Inline event-handler attributes (onmousedown, oncontextmenu, onclick, etc.)
+    2. Inline JavaScript blocks
+    3. External JavaScript files referenced by <script src>
+
+    False-positive prevention & notes:
+    - event.button == 2 checked without disabling behavior returns 1.
+    - Generic contextmenu handlers without button == 2 logic return 1.
+    - Unrelated return false or preventDefault() elsewhere in the script returns 1.
+    - JavaScript is never executed.
+    """
+    if not html:
+        return 1
+
+    js_data = collect_javascript_sources(html, page_url, session=session)
+
+    # 1. Inline event handlers
+    for handler in js_data["event_handlers"]:
+        if _has_right_click_disabling(handler["code"]):
+            return -1
+
+    # 2. Inline scripts and external scripts
+    all_scripts = js_data["inline_scripts"] + [ext["code"] for ext in js_data["external_scripts"]]
+    for script_code in all_scripts:
+        if _has_right_click_disabling(script_code):
+            return -1
+
+    return 1
+
+
+# ==============================================================================
+# SECTION 5: COMPLETE 20-FEATURE VECTOR ASSEMBLY
+# ==============================================================================
+
+try:
+    from src.feature_contract import validate_feature_vector, FEATURE_NAMES
+except ImportError:
+    from feature_contract import validate_feature_vector, FEATURE_NAMES
+
+
+def extract_features(url: str) -> List[int]:
+    """
+    Compute and assemble the complete, authoritative 20-feature vector for a given URL.
+
+    Requirements:
+    1. Receive a URL and validate non-empty string.
+    2. Compute all 20 features using the existing Section 1–4 feature functions.
+    3. Retrieve webpage HTML via existing fetch_webpage() helper for HTML/content features.
+    4. Assemble feature values in the exact authoritative order (Positions 1 to 20):
+       1. having_IP_Address
+       2. URL_Length
+       3. Shortining_Service
+       4. having_At_Symbol
+       5. double_slash_redirecting
+       6. Prefix_Suffix
+       7. having_Sub_Domain
+       8. SSLfinal_State
+       9. port
+       10. HTTPS_token
+       11. Favicon
+       12. Request_URL
+       13. URL_of_Anchor
+       14. Links_in_tags
+       15. SFH
+       16. Submitting_to_email
+       17. Iframe
+       18. Redirect
+       19. on_mouseover
+       20. RightClick
+    5. Validate the completed vector with validate_feature_vector().
+    6. Return the validated 20-value vector.
+    """
+    if not isinstance(url, str) or not url.strip():
+        raise ValueError("URL must be a non-empty string.")
+
+    cleaned_url = url.strip()
+
+    # Fetch webpage once for HTML-dependent features (Sections 3 & 4)
+    # If network fetching fails, fallback gracefully to empty HTML and input URL
+    try:
+        html, final_url = fetch_webpage(cleaned_url)
+    except Exception:
+        html, final_url = "", cleaned_url
+
+    # Shared session with caching for Section 4 script inspections
+    session = requests.Session()
+    session._script_cache = {}
+
+    # Section 1: URL String Features
+    f1_ip = extract_having_ip_address(cleaned_url)
+    f2_len = extract_url_length(cleaned_url)
+    f3_short = extract_shortining_service(cleaned_url)
+    f4_at = extract_having_at_symbol(cleaned_url)
+    f5_double_slash = extract_double_slash_redirecting(cleaned_url)
+    f6_prefix_suffix = extract_prefix_suffix(cleaned_url)
+    f7_subdomain = extract_having_sub_domain(cleaned_url)
+    f10_https_token = extract_https_token(cleaned_url)
+
+    # Section 2: HTTPS / Network Features
+    f8_ssl = extract_ssl_final_state(cleaned_url)
+    f9_port = extract_port(cleaned_url)
+    f18_redirect = extract_redirect(cleaned_url)
+
+    # Section 3: HTML / Page-Content Features
+    f11_favicon = extract_favicon(html, final_url)
+    f12_request_url = extract_request_url(html, final_url)
+    f13_anchor = extract_url_of_anchor(html, final_url)
+    f14_links_tags = extract_links_in_tags(html, final_url)
+    f15_sfh = extract_sfh(html, final_url)
+    f17_iframe = extract_iframe(html)
+
+    # Section 4: JavaScript / Event / Submission Features
+    f16_email = extract_submitting_to_email(html, final_url, session=session)
+    f19_mouseover = extract_on_mouseover(html, final_url, session=session)
+    f20_right_click = extract_right_click(html, final_url, session=session)
+
+    # Assemble in exact authoritative 1-20 order
+    vector = [
+        f1_ip,             # 1. having_IP_Address
+        f2_len,            # 2. URL_Length
+        f3_short,          # 3. Shortining_Service
+        f4_at,             # 4. having_At_Symbol
+        f5_double_slash,   # 5. double_slash_redirecting
+        f6_prefix_suffix,  # 6. Prefix_Suffix
+        f7_subdomain,      # 7. having_Sub_Domain
+        f8_ssl,            # 8. SSLfinal_State
+        f9_port,           # 9. port
+        f10_https_token,   # 10. HTTPS_token
+        f11_favicon,       # 11. Favicon
+        f12_request_url,   # 12. Request_URL
+        f13_anchor,        # 13. URL_of_Anchor
+        f14_links_tags,    # 14. Links_in_tags
+        f15_sfh,           # 15. SFH
+        f16_email,         # 16. Submitting_to_email
+        f17_iframe,        # 17. Iframe
+        f18_redirect,      # 18. Redirect
+        f19_mouseover,     # 19. on_mouseover
+        f20_right_click,   # 20. RightClick
+    ]
+
+    validate_feature_vector(vector)
+    return vector
