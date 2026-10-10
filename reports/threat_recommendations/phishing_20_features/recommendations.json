@@ -1,0 +1,1252 @@
+{
+  "model_type": "20_features",
+  "collection_name": "phishing_20_features",
+  "generated_at": "2026-10-10T22:50:21.080836+00:00",
+  "config_version": "1.0.0",
+  "evidence_validation": {
+    "is_valid": true,
+    "issues": [],
+    "loaded_files_count": 9,
+    "missing_files_count": 0
+  },
+  "evaluation_summary": {
+    "total_rules_evaluated": 20,
+    "triggered_count": 19,
+    "not_triggered_count": 0,
+    "insufficient_evidence_count": 1,
+    "active_recommendations_count": 19
+  },
+  "active_recommendations": [
+    {
+      "recommendation_id": "RULE_02_IP_ADDRESS_LINKS_20_features",
+      "rule_id": "RULE_02_IP_ADDRESS_LINKS",
+      "model_type": "20_features",
+      "title": "Suspicious IP-address links",
+      "category": "Web security",
+      "recommendation": "Consider configuring web gateways and email filters to flag links that use raw IP addresses where legitimate business traffic normally uses approved domain names.",
+      "status": "triggered",
+      "priority": "high",
+      "priority_reason": "Substantial proportion of phishing samples utilize raw IP addresses instead of domains.",
+      "trigger_reason": "Raw IP address links ('having_IP_Address == -1') observed in 1926 of 4898 cases (39.32%), exceeding thresholds.",
+      "evidence": {
+        "feature": "having_IP_Address",
+        "feature_value": -1,
+        "count": 1926,
+        "denominator": 4898,
+        "percentage": 39.3222,
+        "collection": "20_features"
+      },
+      "thresholds": {
+        "minimum_count": 50,
+        "minimum_percentage": 10.0
+      },
+      "limitations": [
+        "Describes historical phishing feature distributions in the stored dataset.",
+        "Does not claim that all IP-address URLs are malicious.",
+        "Does not inspect live organizational gateway configurations."
+      ]
+    },
+    {
+      "recommendation_id": "RULE_03_LOOKALIKE_DOMAIN_20_features",
+      "rule_id": "RULE_03_LOOKALIKE_DOMAIN",
+      "model_type": "20_features",
+      "title": "Lookalike domain protection",
+      "category": "Domain security",
+      "recommendation": "Consider deploying domain-impersonation checks that compare external domains with your organization's domains and trusted business partners.",
+      "status": "triggered",
+      "priority": "high",
+      "priority_reason": "Extremely prevalent hyphenated domain structure observed across phishing cases.",
+      "trigger_reason": "Prefix/suffix hyphenation ('Prefix_Suffix == -1') observed in 4898 of 4898 cases (100.00%), exceeding thresholds.",
+      "evidence": {
+        "feature": "Prefix_Suffix",
+        "feature_value": -1,
+        "count": 4898,
+        "denominator": 4898,
+        "percentage": 100.0,
+        "collection": "20_features"
+      },
+      "thresholds": {
+        "minimum_count": 100,
+        "minimum_percentage": 20.0
+      },
+      "limitations": [
+        "The prefix/suffix feature indicates hyphenation syntax; it is not proof that a domain impersonates a specific brand.",
+        "Phrase findings as a signal worth reviewing rather than confirmed impersonation."
+      ]
+    },
+    {
+      "recommendation_id": "RULE_04_SUBDOMAIN_REVIEW_20_features",
+      "rule_id": "RULE_04_SUBDOMAIN_REVIEW",
+      "model_type": "20_features",
+      "title": "Suspicious subdomain review",
+      "category": "Domain security",
+      "recommendation": "Consider reviewing URL inspection policies for unusually nested subdomains and destinations designed to make untrusted websites appear legitimate.",
+      "status": "triggered",
+      "priority": "high",
+      "priority_reason": "High prevalence of complex/multi-level subdomain nesting in phishing samples.",
+      "trigger_reason": "Suspicious subdomain nesting observed in 4088 of 4898 cases (83.46%), exceeding thresholds.",
+      "evidence": {
+        "feature": "having_Sub_Domain",
+        "evaluated_values": [
+          -1,
+          0
+        ],
+        "count": 4088,
+        "denominator": 4898,
+        "percentage": 83.4626,
+        "collection": "20_features"
+      },
+      "thresholds": {
+        "minimum_count": 100,
+        "minimum_percentage": 20.0
+      },
+      "limitations": [
+        "Subdomain feature encoding reflects dot count in host portion.",
+        "Does not claim that the feature alone identifies malicious subdomains."
+      ]
+    },
+    {
+      "recommendation_id": "RULE_05_HTTPS_VALIDATION_20_features",
+      "rule_id": "RULE_05_HTTPS_VALIDATION",
+      "model_type": "20_features",
+      "title": "HTTPS and certificate validation",
+      "category": "Web security",
+      "recommendation": "Consider ensuring that web security controls validate TLS certificates and the actual destination hostname, rather than treating the presence of HTTPS as proof that a website is trustworthy.",
+      "status": "triggered",
+      "priority": "high",
+      "priority_reason": "Untrusted or invalid TLS certificates are prominent in phishing data.",
+      "trigger_reason": "Untrusted TLS state ('SSLfinal_State == -1') observed in 3051 of 4898 cases (62.29%), exceeding thresholds.",
+      "evidence": {
+        "feature_primary": "SSLfinal_State",
+        "feature_primary_value": -1,
+        "ssl_untrusted_count": 3051,
+        "denominator": 4898,
+        "ssl_untrusted_percentage": 62.2907,
+        "https_token_legitimate_syntax_percentage": 85.4022,
+        "collection": "20_features"
+      },
+      "thresholds": {
+        "minimum_count": 100,
+        "minimum_percentage": 20.0
+      },
+      "limitations": [
+        "The HTTPS_token feature (URL token) and SSLfinal_State feature (certificate trust) are not interchangeable.",
+        "Does not infer real certificate validity from a URL string token alone."
+      ]
+    },
+    {
+      "recommendation_id": "RULE_06_URL_NORMALIZATION_20_features",
+      "rule_id": "RULE_06_URL_NORMALIZATION",
+      "model_type": "20_features",
+      "title": "URL parsing and normalization",
+      "category": "Email & web security",
+      "recommendation": "Consider strengthening URL parsing and normalization in email and web filters so that unusually long or obfuscated links receive additional inspection.",
+      "status": "triggered",
+      "priority": "high",
+      "priority_reason": "A heavy majority of phishing samples exhibit long, complex URL strings (>75 chars).",
+      "trigger_reason": "Long URL indicator ('URL_Length == -1') observed in 4079 of 4898 cases (83.28%), exceeding thresholds.",
+      "evidence": {
+        "feature": "URL_Length",
+        "feature_value": -1,
+        "count": 4079,
+        "denominator": 4898,
+        "percentage": 83.2789,
+        "collection": "20_features"
+      },
+      "thresholds": {
+        "minimum_count": 100,
+        "minimum_percentage": 20.0
+      },
+      "limitations": [
+        "URL length categorization is based on static character count thresholds.",
+        "Does not label a URL as obfuscated solely because it is long."
+      ]
+    },
+    {
+      "recommendation_id": "RULE_07_EXTERNAL_LINK_INSPECTION_20_features",
+      "rule_id": "RULE_07_EXTERNAL_LINK_INSPECTION",
+      "model_type": "20_features",
+      "title": "External link inspection",
+      "category": "Email security",
+      "recommendation": "Consider requiring security inspection of links in incoming emails before users visit external destinations, especially when the destination is unfamiliar.",
+      "status": "triggered",
+      "priority": "high",
+      "priority_reason": "High prevalence of deceptive external link structural indicators.",
+      "trigger_reason": "Suspicious external link feature ('URL_of_Anchor == -1') observed in 3246 of 4898 cases (66.27%), exceeding thresholds.",
+      "evidence": {
+        "evaluated_feature": "URL_of_Anchor",
+        "feature_value": -1,
+        "count": 3246,
+        "denominator": 4898,
+        "percentage": 66.2719,
+        "collection": "20_features"
+      },
+      "thresholds": {
+        "minimum_count": 100,
+        "minimum_percentage": 20.0
+      },
+      "limitations": [
+        "Does not claim that the database contains email messages or sender identities.",
+        "Reflects recurring external link structural features identified in historical phishing data."
+      ]
+    },
+    {
+      "recommendation_id": "RULE_10_DOMAIN_REPUTATION_20_features",
+      "rule_id": "RULE_10_DOMAIN_REPUTATION",
+      "model_type": "20_features",
+      "title": "Domain reputation checks",
+      "category": "Threat intelligence",
+      "recommendation": "Consider integrating domain reputation and threat-intelligence checks into email and web gateways, with safeguards to minimize false positives.",
+      "status": "triggered",
+      "priority": "high",
+      "priority_reason": "Ubiquitous domain structure manipulation in phishing vectors.",
+      "trigger_reason": "Suspicious domain structure observed in 4898 of 4898 cases (100.00%), supporting deployment of reputation verification layers.",
+      "evidence": {
+        "feature": "Prefix_Suffix",
+        "feature_value": -1,
+        "count": 4898,
+        "denominator": 4898,
+        "percentage": 100.0,
+        "collection": "20_features"
+      },
+      "thresholds": {
+        "minimum_count": 100,
+        "minimum_percentage": 20.0
+      },
+      "limitations": [
+        "Based on observed recurring domain-level signals in historical phishing vectors.",
+        "Does not make external queries to third-party domain reputation APIs."
+      ]
+    },
+    {
+      "recommendation_id": "RULE_12_SECURITY_AWARENESS_20_features",
+      "rule_id": "RULE_12_SECURITY_AWARENESS",
+      "model_type": "20_features",
+      "title": "Security awareness training",
+      "category": "People & process",
+      "recommendation": "Consider providing employees with practical training on recognizing deceptive links, checking destination domains, and reporting suspicious messages.",
+      "status": "triggered",
+      "priority": "high",
+      "priority_reason": "Extensive volume of historical phishing examples demonstrates need for continuous human sensor awareness.",
+      "trigger_reason": "Dataset comprises 4898 validated phishing vectors with 1336 distinct archetypes, justifying continuous user education on deceptive links.",
+      "evidence": {
+        "total_phishing_records": 4898,
+        "distinct_vector_patterns": 1336,
+        "collection": "20_features"
+      },
+      "thresholds": {
+        "minimum_dataset_size": 500
+      },
+      "limitations": [
+        "Dataset evidence demonstrates high diversity of deceptive link patterns.",
+        "Does not claim the dataset proves that employees have failed to recognize phishing."
+      ]
+    },
+    {
+      "recommendation_id": "RULE_13_LOOKALIKE_MONITORING_20_features",
+      "rule_id": "RULE_13_LOOKALIKE_MONITORING",
+      "model_type": "20_features",
+      "title": "Lookalike-domain monitoring",
+      "category": "Domain security",
+      "recommendation": "Consider monitoring for newly registered domains resembling your organization's brand and creating a process for triaging likely impersonation attempts.",
+      "status": "triggered",
+      "priority": "high",
+      "priority_reason": "Near-universal adoption of domain manipulation tactics in phishing population.",
+      "trigger_reason": "Domain manipulation signal ('Prefix_Suffix == -1') observed in 4898 of 4898 cases (100.00%), supporting brand impersonation monitoring.",
+      "evidence": {
+        "feature": "Prefix_Suffix",
+        "feature_value": -1,
+        "count": 4898,
+        "denominator": 4898,
+        "percentage": 100.0,
+        "collection": "20_features"
+      },
+      "thresholds": {
+        "minimum_count": 100,
+        "minimum_percentage": 25.0
+      },
+      "limitations": [
+        "Does not claim that the project has discovered newly registered domains or performed external domain monitoring.",
+        "Reflects measured prevalence of domain syntax patterns associated with impersonation."
+      ]
+    },
+    {
+      "recommendation_id": "RULE_14_SAFE_URL_DETONATION_20_features",
+      "rule_id": "RULE_14_SAFE_URL_DETONATION",
+      "model_type": "20_features",
+      "title": "Safe URL detonation",
+      "category": "Incident response",
+      "recommendation": "Consider opening suspicious links only in an isolated analysis environment with controlled network access, rather than on employee workstations.",
+      "status": "triggered",
+      "priority": "high",
+      "priority_reason": "Dominant threat clusters represent high-density risk patterns requiring contained handling.",
+      "trigger_reason": "Dominant threat archetype cluster 2 encompasses 2099 samples (42.85% of population).",
+      "evidence": {
+        "dominant_cluster_id": 2,
+        "cluster_member_count": 2099,
+        "cluster_share_percentage": 42.8542,
+        "denominator": 4898,
+        "collection": "20_features"
+      },
+      "thresholds": {
+        "minimum_cluster_share_percentage": 20.0
+      },
+      "limitations": [
+        "The engine must not fetch, open, or detonate any URLs.",
+        "Reflects high concentrations of deceptive technical signals that warrant contained analysis."
+      ]
+    },
+    {
+      "recommendation_id": "RULE_15_WEB_GATEWAY_REVIEW_20_features",
+      "rule_id": "RULE_15_WEB_GATEWAY_REVIEW",
+      "model_type": "20_features",
+      "title": "Web gateway policy review",
+      "category": "Web security",
+      "recommendation": "Consider reviewing secure web gateway policies to ensure suspicious destinations are inspected, blocked when justified, and logged for later investigation.",
+      "status": "triggered",
+      "priority": "high",
+      "priority_reason": "Multiple independent URL risk signals demonstrate pervasive circumvention tactics.",
+      "trigger_reason": "Identified 9 independently measured URL risk signals exceeding 20.0% prevalence in the phishing population.",
+      "evidence": {
+        "qualifying_signals_count": 9,
+        "qualifying_signals": [
+          {
+            "feature": "having_IP_Address",
+            "percentage": 39.3222
+          },
+          {
+            "feature": "URL_Length",
+            "percentage": 83.2789
+          },
+          {
+            "feature": "Prefix_Suffix",
+            "percentage": 100.0
+          },
+          {
+            "feature": "having_Sub_Domain",
+            "percentage": 37.4847
+          },
+          {
+            "feature": "SSLfinal_State",
+            "percentage": 62.2907
+          },
+          {
+            "feature": "Request_URL",
+            "percentage": 54.6141
+          },
+          {
+            "feature": "URL_of_Anchor",
+            "percentage": 66.2719
+          },
+          {
+            "feature": "Links_in_tags",
+            "percentage": 48.7342
+          },
+          {
+            "feature": "SFH",
+            "percentage": 86.5251
+          }
+        ],
+        "denominator": 4898,
+        "collection": "20_features"
+      },
+      "thresholds": {
+        "minimum_qualifying_signals": 2,
+        "signal_minimum_percentage": 20.0
+      },
+      "limitations": [
+        "Does not claim that an existing gateway is missing controls; the project does not inspect organizational infrastructure."
+      ]
+    },
+    {
+      "recommendation_id": "RULE_16_CLUSTER_DETECTION_RULES_20_features",
+      "rule_id": "RULE_16_CLUSTER_DETECTION_RULES",
+      "model_type": "20_features",
+      "title": "Cluster-driven detection rules",
+      "category": "Detection engineering",
+      "recommendation": "Consider reviewing the recurring feature combination and, if validated against real examples, creating a targeted detection rule in your existing email or web security controls.",
+      "status": "triggered",
+      "priority": "high",
+      "priority_reason": "Clustering identified robust, recurring archetypes representing large proportions of phishing cases.",
+      "trigger_reason": "Cluster 0 comprises 1751 records (35.75% of population), exceeding support thresholds.",
+      "evidence": {
+        "qualifying_clusters_count": 3,
+        "qualifying_clusters_summary": [
+          {
+            "cluster_id": 0,
+            "member_count": 1751,
+            "percentage": 35.7493,
+            "noise_count": 0,
+            "distinct_vector_patterns_count": 378
+          },
+          {
+            "cluster_id": 2,
+            "member_count": 2099,
+            "percentage": 42.8542,
+            "noise_count": 0,
+            "distinct_vector_patterns_count": 452
+          },
+          {
+            "cluster_id": 3,
+            "member_count": 710,
+            "percentage": 14.4957,
+            "noise_count": 0,
+            "distinct_vector_patterns_count": 329
+          }
+        ],
+        "clustering_algorithm": "KMeans",
+        "total_clusters": 4,
+        "denominator": 4898,
+        "collection": "20_features"
+      },
+      "thresholds": {
+        "minimum_cluster_size": 200,
+        "minimum_cluster_share_percentage": 10.0
+      },
+      "limitations": [
+        "Do not recommend a hard blocking rule solely because a cluster exists.",
+        "Clusters are descriptive groups, not proof of a specific coordinated campaign or attacker."
+      ]
+    },
+    {
+      "recommendation_id": "RULE_18_LAYERED_DEFENSES_20_features",
+      "rule_id": "RULE_18_LAYERED_DEFENSES",
+      "model_type": "20_features",
+      "title": "Layered phishing defenses",
+      "category": "Security strategy",
+      "recommendation": "Consider using layered controls across email filtering, web reputation, domain validation, endpoint protection, and employee reporting rather than relying on a single detection signal.",
+      "status": "triggered",
+      "priority": "high",
+      "priority_reason": "Observed threat patterns simultaneously span multiple distinct security layers.",
+      "trigger_reason": "Observed robust threat signals across 3 distinct layers (domain_structure, network_transport, content_application), demonstrating need for defense-in-depth.",
+      "evidence": {
+        "qualifying_layers_count": 3,
+        "qualifying_layers": [
+          "domain_structure",
+          "network_transport",
+          "content_application"
+        ],
+        "layer_counts": {
+          "domain_structure": 3,
+          "network_transport": 2,
+          "content_application": 3
+        },
+        "denominator": 4898,
+        "collection": "20_features"
+      },
+      "thresholds": {
+        "minimum_distinct_categories": 2,
+        "category_minimum_percentage": 20.0
+      },
+      "limitations": [
+        "Do not count several correlated features as independent evidence without acknowledging their relationship.",
+        "Reflects diverse technical layers represented in observed threat patterns."
+      ]
+    },
+    {
+      "recommendation_id": "RULE_20_PRIORITIZE_STRONGEST_EVIDENCE_20_features",
+      "rule_id": "RULE_20_PRIORITIZE_STRONGEST_EVIDENCE",
+      "model_type": "20_features",
+      "title": "Prioritize the strongest evidence",
+      "category": "Risk prioritization",
+      "recommendation": "Consider prioritizing a review of controls related to the most consistently observed phishing patterns, using the measured counts, prevalence, and validation status to guide effort.",
+      "status": "triggered",
+      "priority": "high",
+      "priority_reason": "Dominant signal observed with extreme prevalence across phishing population.",
+      "trigger_reason": "Rank 1 signal 'Prefix_Suffix == -1' observed in 4898 cases (100.00% of population), providing strong empirical grounding for focus.",
+      "evidence": {
+        "top_signal": "Prefix_Suffix == -1",
+        "top_signal_count": 4898,
+        "top_signal_percentage": 100.0,
+        "top_3_signals": [
+          "Prefix_Suffix == -1",
+          "RightClick == 1",
+          "Iframe == 1"
+        ],
+        "denominator": 4898,
+        "collection": "20_features"
+      },
+      "thresholds": {
+        "minimum_top_signal_percentage": 50.0
+      },
+      "limitations": [
+        "Ranking is based on observed prevalence in historical phishing vectors.",
+        "Do not equate frequency with severity or assume the most frequent signal represents the highest business risk."
+      ]
+    },
+    {
+      "recommendation_id": "RULE_01_SHORTENED_URL_20_features",
+      "rule_id": "RULE_01_SHORTENED_URL",
+      "model_type": "20_features",
+      "title": "Shortened URL protection",
+      "category": "Email & web security",
+      "recommendation": "Consider strengthening email and web security controls to expand shortened links safely, inspect their final destinations, and flag suspicious redirects.",
+      "status": "triggered",
+      "priority": "medium",
+      "priority_reason": "Measured prevalence of shortened URLs in phishing dataset meets review threshold.",
+      "trigger_reason": "Shortened URL indicator ('Shortining_Service == -1') observed in 514 of 4898 phishing cases (10.49%), exceeding thresholds (50 count, 5.0%).",
+      "evidence": {
+        "feature": "Shortining_Service",
+        "feature_value": -1,
+        "count": 514,
+        "denominator": 4898,
+        "percentage": 10.4941,
+        "collection": "20_features"
+      },
+      "thresholds": {
+        "minimum_count": 50,
+        "minimum_percentage": 5.0
+      },
+      "limitations": [
+        "Describes historical phishing feature distributions in the stored dataset.",
+        "Does not assume every shortened URL is malicious.",
+        "Does not establish causation or confirm a particular attack campaign."
+      ]
+    },
+    {
+      "recommendation_id": "RULE_08_ATTACHMENT_LINK_DEFENSE_20_features",
+      "rule_id": "RULE_08_ATTACHMENT_LINK_DEFENSE",
+      "model_type": "20_features",
+      "title": "Attachment and link defense",
+      "category": "Email security",
+      "recommendation": "Consider combining email link inspection with attachment scanning, sender authentication checks, and clear reporting procedures for suspicious messages.",
+      "status": "triggered",
+      "priority": "medium",
+      "priority_reason": "High variety and frequency of persistent link attack patterns.",
+      "trigger_reason": "Identified 15 distinct feature signals exceeding 25.0% support across 4898 phishing records.",
+      "evidence": {
+        "qualifying_signals_count": 15,
+        "qualifying_signals_sample": [
+          "Prefix_Suffix == -1",
+          "RightClick == 1",
+          "Iframe == 1",
+          "Shortining_Service == 1",
+          "double_slash_redirecting == 1"
+        ],
+        "denominator": 4898,
+        "collection": "20_features"
+      },
+      "thresholds": {
+        "minimum_composite_count": 100,
+        "minimum_composite_percentage": 25.0
+      },
+      "limitations": [
+        "This is a general defensive recommendation.",
+        "URL feature vectors do not establish that malicious attachments were present."
+      ]
+    },
+    {
+      "recommendation_id": "RULE_09_SENDER_AUTHENTICATION_20_features",
+      "rule_id": "RULE_09_SENDER_AUTHENTICATION",
+      "model_type": "20_features",
+      "title": "Sender authentication",
+      "category": "Email security",
+      "recommendation": "Consider reviewing SPF, DKIM, and DMARC configurations for your organization's domains and monitoring failures that could indicate spoofing attempts.",
+      "status": "triggered",
+      "priority": "medium",
+      "priority_reason": "Substantial domain and email-related threat indicators motivate authentication hardening.",
+      "trigger_reason": "Motivating signal 'Submitting_to_email == -1' observed in 931 of 4898 cases (19.01%), indicating widespread spoofing/impersonation tactics.",
+      "evidence": {
+        "motivating_feature": "Submitting_to_email",
+        "feature_value": -1,
+        "count": 931,
+        "denominator": 4898,
+        "percentage": 19.0078,
+        "collection": "20_features"
+      },
+      "thresholds": {
+        "minimum_count": 100,
+        "minimum_percentage": 15.0
+      },
+      "limitations": [
+        "Dataset evidence motivates a control review rather than proving a sender-authentication failure.",
+        "The engine does not inspect an organization's SPF, DKIM, or DMARC records."
+      ]
+    },
+    {
+      "recommendation_id": "RULE_11_OUTBOUND_WEB_ACCESS_20_features",
+      "rule_id": "RULE_11_OUTBOUND_WEB_ACCESS",
+      "model_type": "20_features",
+      "title": "Outbound web access controls",
+      "category": "Network security",
+      "recommendation": "Consider reviewing outbound web access policies, allowing only business-required services and ports, and logging policy violations for investigation.",
+      "status": "triggered",
+      "priority": "medium",
+      "priority_reason": "Non-standard or restricted port usage detected in significant phishing cohort.",
+      "trigger_reason": "Non-preferred port indicator ('port == -1') observed in 734 of 4898 cases (14.99%), exceeding thresholds.",
+      "evidence": {
+        "feature": "port",
+        "feature_value": -1,
+        "count": 734,
+        "denominator": 4898,
+        "percentage": 14.9857,
+        "collection": "20_features"
+      },
+      "thresholds": {
+        "minimum_count": 50,
+        "minimum_percentage": 5.0
+      },
+      "limitations": [
+        "Port feature reflects non-preferred port usage in historical data.",
+        "Does not infer an actual destination port or a confirmed network-policy violation from the encoded feature alone."
+      ]
+    },
+    {
+      "recommendation_id": "RULE_17_RARE_PATTERN_INVESTIGATION_20_features",
+      "rule_id": "RULE_17_RARE_PATTERN_INVESTIGATION",
+      "model_type": "20_features",
+      "title": "Rare-pattern investigation",
+      "category": "Threat hunting",
+      "recommendation": "Consider routing rare URL-feature patterns for additional inspection and analyst review instead of automatically blocking them solely because they are uncommon.",
+      "status": "triggered",
+      "priority": "medium",
+      "priority_reason": "Significant catalog of rare/unusual feature combinations identified for threat hunting triage.",
+      "trigger_reason": "Identified 881 distinct rare feature patterns encompassing 1131 records (23.09% of dataset), exceeding minimum (5).",
+      "evidence": {
+        "rare_pattern_count": 881,
+        "rare_sample_count": 1131,
+        "rare_sample_percentage": 23.0911,
+        "rarity_count_threshold": 2,
+        "denominator": 4898,
+        "collection": "20_features"
+      },
+      "thresholds": {
+        "minimum_rare_patterns": 5,
+        "maximum_rarity_count": 2
+      },
+      "limitations": [
+        "Do not automatically block or classify a record as malicious because its pattern is rare.",
+        "Describes infrequent combinations in historical phishing vectors."
+      ]
+    }
+  ],
+  "rule_evaluation_audit": [
+    {
+      "recommendation_id": "RULE_01_SHORTENED_URL_20_features",
+      "rule_id": "RULE_01_SHORTENED_URL",
+      "model_type": "20_features",
+      "title": "Shortened URL protection",
+      "category": "Email & web security",
+      "recommendation": "Consider strengthening email and web security controls to expand shortened links safely, inspect their final destinations, and flag suspicious redirects.",
+      "status": "triggered",
+      "priority": "medium",
+      "priority_reason": "Measured prevalence of shortened URLs in phishing dataset meets review threshold.",
+      "trigger_reason": "Shortened URL indicator ('Shortining_Service == -1') observed in 514 of 4898 phishing cases (10.49%), exceeding thresholds (50 count, 5.0%).",
+      "evidence": {
+        "feature": "Shortining_Service",
+        "feature_value": -1,
+        "count": 514,
+        "denominator": 4898,
+        "percentage": 10.4941,
+        "collection": "20_features"
+      },
+      "thresholds": {
+        "minimum_count": 50,
+        "minimum_percentage": 5.0
+      },
+      "limitations": [
+        "Describes historical phishing feature distributions in the stored dataset.",
+        "Does not assume every shortened URL is malicious.",
+        "Does not establish causation or confirm a particular attack campaign."
+      ]
+    },
+    {
+      "recommendation_id": "RULE_02_IP_ADDRESS_LINKS_20_features",
+      "rule_id": "RULE_02_IP_ADDRESS_LINKS",
+      "model_type": "20_features",
+      "title": "Suspicious IP-address links",
+      "category": "Web security",
+      "recommendation": "Consider configuring web gateways and email filters to flag links that use raw IP addresses where legitimate business traffic normally uses approved domain names.",
+      "status": "triggered",
+      "priority": "high",
+      "priority_reason": "Substantial proportion of phishing samples utilize raw IP addresses instead of domains.",
+      "trigger_reason": "Raw IP address links ('having_IP_Address == -1') observed in 1926 of 4898 cases (39.32%), exceeding thresholds.",
+      "evidence": {
+        "feature": "having_IP_Address",
+        "feature_value": -1,
+        "count": 1926,
+        "denominator": 4898,
+        "percentage": 39.3222,
+        "collection": "20_features"
+      },
+      "thresholds": {
+        "minimum_count": 50,
+        "minimum_percentage": 10.0
+      },
+      "limitations": [
+        "Describes historical phishing feature distributions in the stored dataset.",
+        "Does not claim that all IP-address URLs are malicious.",
+        "Does not inspect live organizational gateway configurations."
+      ]
+    },
+    {
+      "recommendation_id": "RULE_03_LOOKALIKE_DOMAIN_20_features",
+      "rule_id": "RULE_03_LOOKALIKE_DOMAIN",
+      "model_type": "20_features",
+      "title": "Lookalike domain protection",
+      "category": "Domain security",
+      "recommendation": "Consider deploying domain-impersonation checks that compare external domains with your organization's domains and trusted business partners.",
+      "status": "triggered",
+      "priority": "high",
+      "priority_reason": "Extremely prevalent hyphenated domain structure observed across phishing cases.",
+      "trigger_reason": "Prefix/suffix hyphenation ('Prefix_Suffix == -1') observed in 4898 of 4898 cases (100.00%), exceeding thresholds.",
+      "evidence": {
+        "feature": "Prefix_Suffix",
+        "feature_value": -1,
+        "count": 4898,
+        "denominator": 4898,
+        "percentage": 100.0,
+        "collection": "20_features"
+      },
+      "thresholds": {
+        "minimum_count": 100,
+        "minimum_percentage": 20.0
+      },
+      "limitations": [
+        "The prefix/suffix feature indicates hyphenation syntax; it is not proof that a domain impersonates a specific brand.",
+        "Phrase findings as a signal worth reviewing rather than confirmed impersonation."
+      ]
+    },
+    {
+      "recommendation_id": "RULE_04_SUBDOMAIN_REVIEW_20_features",
+      "rule_id": "RULE_04_SUBDOMAIN_REVIEW",
+      "model_type": "20_features",
+      "title": "Suspicious subdomain review",
+      "category": "Domain security",
+      "recommendation": "Consider reviewing URL inspection policies for unusually nested subdomains and destinations designed to make untrusted websites appear legitimate.",
+      "status": "triggered",
+      "priority": "high",
+      "priority_reason": "High prevalence of complex/multi-level subdomain nesting in phishing samples.",
+      "trigger_reason": "Suspicious subdomain nesting observed in 4088 of 4898 cases (83.46%), exceeding thresholds.",
+      "evidence": {
+        "feature": "having_Sub_Domain",
+        "evaluated_values": [
+          -1,
+          0
+        ],
+        "count": 4088,
+        "denominator": 4898,
+        "percentage": 83.4626,
+        "collection": "20_features"
+      },
+      "thresholds": {
+        "minimum_count": 100,
+        "minimum_percentage": 20.0
+      },
+      "limitations": [
+        "Subdomain feature encoding reflects dot count in host portion.",
+        "Does not claim that the feature alone identifies malicious subdomains."
+      ]
+    },
+    {
+      "recommendation_id": "RULE_05_HTTPS_VALIDATION_20_features",
+      "rule_id": "RULE_05_HTTPS_VALIDATION",
+      "model_type": "20_features",
+      "title": "HTTPS and certificate validation",
+      "category": "Web security",
+      "recommendation": "Consider ensuring that web security controls validate TLS certificates and the actual destination hostname, rather than treating the presence of HTTPS as proof that a website is trustworthy.",
+      "status": "triggered",
+      "priority": "high",
+      "priority_reason": "Untrusted or invalid TLS certificates are prominent in phishing data.",
+      "trigger_reason": "Untrusted TLS state ('SSLfinal_State == -1') observed in 3051 of 4898 cases (62.29%), exceeding thresholds.",
+      "evidence": {
+        "feature_primary": "SSLfinal_State",
+        "feature_primary_value": -1,
+        "ssl_untrusted_count": 3051,
+        "denominator": 4898,
+        "ssl_untrusted_percentage": 62.2907,
+        "https_token_legitimate_syntax_percentage": 85.4022,
+        "collection": "20_features"
+      },
+      "thresholds": {
+        "minimum_count": 100,
+        "minimum_percentage": 20.0
+      },
+      "limitations": [
+        "The HTTPS_token feature (URL token) and SSLfinal_State feature (certificate trust) are not interchangeable.",
+        "Does not infer real certificate validity from a URL string token alone."
+      ]
+    },
+    {
+      "recommendation_id": "RULE_06_URL_NORMALIZATION_20_features",
+      "rule_id": "RULE_06_URL_NORMALIZATION",
+      "model_type": "20_features",
+      "title": "URL parsing and normalization",
+      "category": "Email & web security",
+      "recommendation": "Consider strengthening URL parsing and normalization in email and web filters so that unusually long or obfuscated links receive additional inspection.",
+      "status": "triggered",
+      "priority": "high",
+      "priority_reason": "A heavy majority of phishing samples exhibit long, complex URL strings (>75 chars).",
+      "trigger_reason": "Long URL indicator ('URL_Length == -1') observed in 4079 of 4898 cases (83.28%), exceeding thresholds.",
+      "evidence": {
+        "feature": "URL_Length",
+        "feature_value": -1,
+        "count": 4079,
+        "denominator": 4898,
+        "percentage": 83.2789,
+        "collection": "20_features"
+      },
+      "thresholds": {
+        "minimum_count": 100,
+        "minimum_percentage": 20.0
+      },
+      "limitations": [
+        "URL length categorization is based on static character count thresholds.",
+        "Does not label a URL as obfuscated solely because it is long."
+      ]
+    },
+    {
+      "recommendation_id": "RULE_07_EXTERNAL_LINK_INSPECTION_20_features",
+      "rule_id": "RULE_07_EXTERNAL_LINK_INSPECTION",
+      "model_type": "20_features",
+      "title": "External link inspection",
+      "category": "Email security",
+      "recommendation": "Consider requiring security inspection of links in incoming emails before users visit external destinations, especially when the destination is unfamiliar.",
+      "status": "triggered",
+      "priority": "high",
+      "priority_reason": "High prevalence of deceptive external link structural indicators.",
+      "trigger_reason": "Suspicious external link feature ('URL_of_Anchor == -1') observed in 3246 of 4898 cases (66.27%), exceeding thresholds.",
+      "evidence": {
+        "evaluated_feature": "URL_of_Anchor",
+        "feature_value": -1,
+        "count": 3246,
+        "denominator": 4898,
+        "percentage": 66.2719,
+        "collection": "20_features"
+      },
+      "thresholds": {
+        "minimum_count": 100,
+        "minimum_percentage": 20.0
+      },
+      "limitations": [
+        "Does not claim that the database contains email messages or sender identities.",
+        "Reflects recurring external link structural features identified in historical phishing data."
+      ]
+    },
+    {
+      "recommendation_id": "RULE_08_ATTACHMENT_LINK_DEFENSE_20_features",
+      "rule_id": "RULE_08_ATTACHMENT_LINK_DEFENSE",
+      "model_type": "20_features",
+      "title": "Attachment and link defense",
+      "category": "Email security",
+      "recommendation": "Consider combining email link inspection with attachment scanning, sender authentication checks, and clear reporting procedures for suspicious messages.",
+      "status": "triggered",
+      "priority": "medium",
+      "priority_reason": "High variety and frequency of persistent link attack patterns.",
+      "trigger_reason": "Identified 15 distinct feature signals exceeding 25.0% support across 4898 phishing records.",
+      "evidence": {
+        "qualifying_signals_count": 15,
+        "qualifying_signals_sample": [
+          "Prefix_Suffix == -1",
+          "RightClick == 1",
+          "Iframe == 1",
+          "Shortining_Service == 1",
+          "double_slash_redirecting == 1"
+        ],
+        "denominator": 4898,
+        "collection": "20_features"
+      },
+      "thresholds": {
+        "minimum_composite_count": 100,
+        "minimum_composite_percentage": 25.0
+      },
+      "limitations": [
+        "This is a general defensive recommendation.",
+        "URL feature vectors do not establish that malicious attachments were present."
+      ]
+    },
+    {
+      "recommendation_id": "RULE_09_SENDER_AUTHENTICATION_20_features",
+      "rule_id": "RULE_09_SENDER_AUTHENTICATION",
+      "model_type": "20_features",
+      "title": "Sender authentication",
+      "category": "Email security",
+      "recommendation": "Consider reviewing SPF, DKIM, and DMARC configurations for your organization's domains and monitoring failures that could indicate spoofing attempts.",
+      "status": "triggered",
+      "priority": "medium",
+      "priority_reason": "Substantial domain and email-related threat indicators motivate authentication hardening.",
+      "trigger_reason": "Motivating signal 'Submitting_to_email == -1' observed in 931 of 4898 cases (19.01%), indicating widespread spoofing/impersonation tactics.",
+      "evidence": {
+        "motivating_feature": "Submitting_to_email",
+        "feature_value": -1,
+        "count": 931,
+        "denominator": 4898,
+        "percentage": 19.0078,
+        "collection": "20_features"
+      },
+      "thresholds": {
+        "minimum_count": 100,
+        "minimum_percentage": 15.0
+      },
+      "limitations": [
+        "Dataset evidence motivates a control review rather than proving a sender-authentication failure.",
+        "The engine does not inspect an organization's SPF, DKIM, or DMARC records."
+      ]
+    },
+    {
+      "recommendation_id": "RULE_10_DOMAIN_REPUTATION_20_features",
+      "rule_id": "RULE_10_DOMAIN_REPUTATION",
+      "model_type": "20_features",
+      "title": "Domain reputation checks",
+      "category": "Threat intelligence",
+      "recommendation": "Consider integrating domain reputation and threat-intelligence checks into email and web gateways, with safeguards to minimize false positives.",
+      "status": "triggered",
+      "priority": "high",
+      "priority_reason": "Ubiquitous domain structure manipulation in phishing vectors.",
+      "trigger_reason": "Suspicious domain structure observed in 4898 of 4898 cases (100.00%), supporting deployment of reputation verification layers.",
+      "evidence": {
+        "feature": "Prefix_Suffix",
+        "feature_value": -1,
+        "count": 4898,
+        "denominator": 4898,
+        "percentage": 100.0,
+        "collection": "20_features"
+      },
+      "thresholds": {
+        "minimum_count": 100,
+        "minimum_percentage": 20.0
+      },
+      "limitations": [
+        "Based on observed recurring domain-level signals in historical phishing vectors.",
+        "Does not make external queries to third-party domain reputation APIs."
+      ]
+    },
+    {
+      "recommendation_id": "RULE_11_OUTBOUND_WEB_ACCESS_20_features",
+      "rule_id": "RULE_11_OUTBOUND_WEB_ACCESS",
+      "model_type": "20_features",
+      "title": "Outbound web access controls",
+      "category": "Network security",
+      "recommendation": "Consider reviewing outbound web access policies, allowing only business-required services and ports, and logging policy violations for investigation.",
+      "status": "triggered",
+      "priority": "medium",
+      "priority_reason": "Non-standard or restricted port usage detected in significant phishing cohort.",
+      "trigger_reason": "Non-preferred port indicator ('port == -1') observed in 734 of 4898 cases (14.99%), exceeding thresholds.",
+      "evidence": {
+        "feature": "port",
+        "feature_value": -1,
+        "count": 734,
+        "denominator": 4898,
+        "percentage": 14.9857,
+        "collection": "20_features"
+      },
+      "thresholds": {
+        "minimum_count": 50,
+        "minimum_percentage": 5.0
+      },
+      "limitations": [
+        "Port feature reflects non-preferred port usage in historical data.",
+        "Does not infer an actual destination port or a confirmed network-policy violation from the encoded feature alone."
+      ]
+    },
+    {
+      "recommendation_id": "RULE_12_SECURITY_AWARENESS_20_features",
+      "rule_id": "RULE_12_SECURITY_AWARENESS",
+      "model_type": "20_features",
+      "title": "Security awareness training",
+      "category": "People & process",
+      "recommendation": "Consider providing employees with practical training on recognizing deceptive links, checking destination domains, and reporting suspicious messages.",
+      "status": "triggered",
+      "priority": "high",
+      "priority_reason": "Extensive volume of historical phishing examples demonstrates need for continuous human sensor awareness.",
+      "trigger_reason": "Dataset comprises 4898 validated phishing vectors with 1336 distinct archetypes, justifying continuous user education on deceptive links.",
+      "evidence": {
+        "total_phishing_records": 4898,
+        "distinct_vector_patterns": 1336,
+        "collection": "20_features"
+      },
+      "thresholds": {
+        "minimum_dataset_size": 500
+      },
+      "limitations": [
+        "Dataset evidence demonstrates high diversity of deceptive link patterns.",
+        "Does not claim the dataset proves that employees have failed to recognize phishing."
+      ]
+    },
+    {
+      "recommendation_id": "RULE_13_LOOKALIKE_MONITORING_20_features",
+      "rule_id": "RULE_13_LOOKALIKE_MONITORING",
+      "model_type": "20_features",
+      "title": "Lookalike-domain monitoring",
+      "category": "Domain security",
+      "recommendation": "Consider monitoring for newly registered domains resembling your organization's brand and creating a process for triaging likely impersonation attempts.",
+      "status": "triggered",
+      "priority": "high",
+      "priority_reason": "Near-universal adoption of domain manipulation tactics in phishing population.",
+      "trigger_reason": "Domain manipulation signal ('Prefix_Suffix == -1') observed in 4898 of 4898 cases (100.00%), supporting brand impersonation monitoring.",
+      "evidence": {
+        "feature": "Prefix_Suffix",
+        "feature_value": -1,
+        "count": 4898,
+        "denominator": 4898,
+        "percentage": 100.0,
+        "collection": "20_features"
+      },
+      "thresholds": {
+        "minimum_count": 100,
+        "minimum_percentage": 25.0
+      },
+      "limitations": [
+        "Does not claim that the project has discovered newly registered domains or performed external domain monitoring.",
+        "Reflects measured prevalence of domain syntax patterns associated with impersonation."
+      ]
+    },
+    {
+      "recommendation_id": "RULE_14_SAFE_URL_DETONATION_20_features",
+      "rule_id": "RULE_14_SAFE_URL_DETONATION",
+      "model_type": "20_features",
+      "title": "Safe URL detonation",
+      "category": "Incident response",
+      "recommendation": "Consider opening suspicious links only in an isolated analysis environment with controlled network access, rather than on employee workstations.",
+      "status": "triggered",
+      "priority": "high",
+      "priority_reason": "Dominant threat clusters represent high-density risk patterns requiring contained handling.",
+      "trigger_reason": "Dominant threat archetype cluster 2 encompasses 2099 samples (42.85% of population).",
+      "evidence": {
+        "dominant_cluster_id": 2,
+        "cluster_member_count": 2099,
+        "cluster_share_percentage": 42.8542,
+        "denominator": 4898,
+        "collection": "20_features"
+      },
+      "thresholds": {
+        "minimum_cluster_share_percentage": 20.0
+      },
+      "limitations": [
+        "The engine must not fetch, open, or detonate any URLs.",
+        "Reflects high concentrations of deceptive technical signals that warrant contained analysis."
+      ]
+    },
+    {
+      "recommendation_id": "RULE_15_WEB_GATEWAY_REVIEW_20_features",
+      "rule_id": "RULE_15_WEB_GATEWAY_REVIEW",
+      "model_type": "20_features",
+      "title": "Web gateway policy review",
+      "category": "Web security",
+      "recommendation": "Consider reviewing secure web gateway policies to ensure suspicious destinations are inspected, blocked when justified, and logged for later investigation.",
+      "status": "triggered",
+      "priority": "high",
+      "priority_reason": "Multiple independent URL risk signals demonstrate pervasive circumvention tactics.",
+      "trigger_reason": "Identified 9 independently measured URL risk signals exceeding 20.0% prevalence in the phishing population.",
+      "evidence": {
+        "qualifying_signals_count": 9,
+        "qualifying_signals": [
+          {
+            "feature": "having_IP_Address",
+            "percentage": 39.3222
+          },
+          {
+            "feature": "URL_Length",
+            "percentage": 83.2789
+          },
+          {
+            "feature": "Prefix_Suffix",
+            "percentage": 100.0
+          },
+          {
+            "feature": "having_Sub_Domain",
+            "percentage": 37.4847
+          },
+          {
+            "feature": "SSLfinal_State",
+            "percentage": 62.2907
+          },
+          {
+            "feature": "Request_URL",
+            "percentage": 54.6141
+          },
+          {
+            "feature": "URL_of_Anchor",
+            "percentage": 66.2719
+          },
+          {
+            "feature": "Links_in_tags",
+            "percentage": 48.7342
+          },
+          {
+            "feature": "SFH",
+            "percentage": 86.5251
+          }
+        ],
+        "denominator": 4898,
+        "collection": "20_features"
+      },
+      "thresholds": {
+        "minimum_qualifying_signals": 2,
+        "signal_minimum_percentage": 20.0
+      },
+      "limitations": [
+        "Does not claim that an existing gateway is missing controls; the project does not inspect organizational infrastructure."
+      ]
+    },
+    {
+      "recommendation_id": "RULE_16_CLUSTER_DETECTION_RULES_20_features",
+      "rule_id": "RULE_16_CLUSTER_DETECTION_RULES",
+      "model_type": "20_features",
+      "title": "Cluster-driven detection rules",
+      "category": "Detection engineering",
+      "recommendation": "Consider reviewing the recurring feature combination and, if validated against real examples, creating a targeted detection rule in your existing email or web security controls.",
+      "status": "triggered",
+      "priority": "high",
+      "priority_reason": "Clustering identified robust, recurring archetypes representing large proportions of phishing cases.",
+      "trigger_reason": "Cluster 0 comprises 1751 records (35.75% of population), exceeding support thresholds.",
+      "evidence": {
+        "qualifying_clusters_count": 3,
+        "qualifying_clusters_summary": [
+          {
+            "cluster_id": 0,
+            "member_count": 1751,
+            "percentage": 35.7493,
+            "noise_count": 0,
+            "distinct_vector_patterns_count": 378
+          },
+          {
+            "cluster_id": 2,
+            "member_count": 2099,
+            "percentage": 42.8542,
+            "noise_count": 0,
+            "distinct_vector_patterns_count": 452
+          },
+          {
+            "cluster_id": 3,
+            "member_count": 710,
+            "percentage": 14.4957,
+            "noise_count": 0,
+            "distinct_vector_patterns_count": 329
+          }
+        ],
+        "clustering_algorithm": "KMeans",
+        "total_clusters": 4,
+        "denominator": 4898,
+        "collection": "20_features"
+      },
+      "thresholds": {
+        "minimum_cluster_size": 200,
+        "minimum_cluster_share_percentage": 10.0
+      },
+      "limitations": [
+        "Do not recommend a hard blocking rule solely because a cluster exists.",
+        "Clusters are descriptive groups, not proof of a specific coordinated campaign or attacker."
+      ]
+    },
+    {
+      "recommendation_id": "RULE_17_RARE_PATTERN_INVESTIGATION_20_features",
+      "rule_id": "RULE_17_RARE_PATTERN_INVESTIGATION",
+      "model_type": "20_features",
+      "title": "Rare-pattern investigation",
+      "category": "Threat hunting",
+      "recommendation": "Consider routing rare URL-feature patterns for additional inspection and analyst review instead of automatically blocking them solely because they are uncommon.",
+      "status": "triggered",
+      "priority": "medium",
+      "priority_reason": "Significant catalog of rare/unusual feature combinations identified for threat hunting triage.",
+      "trigger_reason": "Identified 881 distinct rare feature patterns encompassing 1131 records (23.09% of dataset), exceeding minimum (5).",
+      "evidence": {
+        "rare_pattern_count": 881,
+        "rare_sample_count": 1131,
+        "rare_sample_percentage": 23.0911,
+        "rarity_count_threshold": 2,
+        "denominator": 4898,
+        "collection": "20_features"
+      },
+      "thresholds": {
+        "minimum_rare_patterns": 5,
+        "maximum_rarity_count": 2
+      },
+      "limitations": [
+        "Do not automatically block or classify a record as malicious because its pattern is rare.",
+        "Describes infrequent combinations in historical phishing vectors."
+      ]
+    },
+    {
+      "recommendation_id": "RULE_18_LAYERED_DEFENSES_20_features",
+      "rule_id": "RULE_18_LAYERED_DEFENSES",
+      "model_type": "20_features",
+      "title": "Layered phishing defenses",
+      "category": "Security strategy",
+      "recommendation": "Consider using layered controls across email filtering, web reputation, domain validation, endpoint protection, and employee reporting rather than relying on a single detection signal.",
+      "status": "triggered",
+      "priority": "high",
+      "priority_reason": "Observed threat patterns simultaneously span multiple distinct security layers.",
+      "trigger_reason": "Observed robust threat signals across 3 distinct layers (domain_structure, network_transport, content_application), demonstrating need for defense-in-depth.",
+      "evidence": {
+        "qualifying_layers_count": 3,
+        "qualifying_layers": [
+          "domain_structure",
+          "network_transport",
+          "content_application"
+        ],
+        "layer_counts": {
+          "domain_structure": 3,
+          "network_transport": 2,
+          "content_application": 3
+        },
+        "denominator": 4898,
+        "collection": "20_features"
+      },
+      "thresholds": {
+        "minimum_distinct_categories": 2,
+        "category_minimum_percentage": 20.0
+      },
+      "limitations": [
+        "Do not count several correlated features as independent evidence without acknowledging their relationship.",
+        "Reflects diverse technical layers represented in observed threat patterns."
+      ]
+    },
+    {
+      "recommendation_id": "RULE_19_CONTROL_EFFECTIVENESS_20_features",
+      "rule_id": "RULE_19_CONTROL_EFFECTIVENESS",
+      "model_type": "20_features",
+      "title": "Security control effectiveness review",
+      "category": "Security operations",
+      "recommendation": "Consider reviewing whether current email and web controls are detecting and blocking the observed patterns, and track confirmed incidents and false positives to identify gaps.",
+      "status": "insufficient_evidence",
+      "priority": "low",
+      "priority_reason": "Trustworthy event-level historical timestamps unavailable in dataset.",
+      "trigger_reason": "Historical detection event timestamps are not present in source dataset (observed_at reflects database ingestion). Time-series trend evaluation is not supported without fabricated dates.",
+      "evidence": {
+        "historical_time_trends_available": false,
+        "disclosure_notes": "The 'observed_at' metadata field records database batch import timestamp. The source phishing dataset does not contain historical incident event dates. Time trend analytics are accurately reported as unavailable without fabricating temporal distributions.",
+        "collection": "20_features"
+      },
+      "thresholds": {
+        "minimum_time_windows": 2,
+        "minimum_trend_records": 100
+      },
+      "limitations": [
+        "If trustworthy detection timestamps are unavailable, this rule must not claim that threats are growing over time.",
+        "The engine does not have access to live organizational incident outcomes."
+      ]
+    },
+    {
+      "recommendation_id": "RULE_20_PRIORITIZE_STRONGEST_EVIDENCE_20_features",
+      "rule_id": "RULE_20_PRIORITIZE_STRONGEST_EVIDENCE",
+      "model_type": "20_features",
+      "title": "Prioritize the strongest evidence",
+      "category": "Risk prioritization",
+      "recommendation": "Consider prioritizing a review of controls related to the most consistently observed phishing patterns, using the measured counts, prevalence, and validation status to guide effort.",
+      "status": "triggered",
+      "priority": "high",
+      "priority_reason": "Dominant signal observed with extreme prevalence across phishing population.",
+      "trigger_reason": "Rank 1 signal 'Prefix_Suffix == -1' observed in 4898 cases (100.00% of population), providing strong empirical grounding for focus.",
+      "evidence": {
+        "top_signal": "Prefix_Suffix == -1",
+        "top_signal_count": 4898,
+        "top_signal_percentage": 100.0,
+        "top_3_signals": [
+          "Prefix_Suffix == -1",
+          "RightClick == 1",
+          "Iframe == 1"
+        ],
+        "denominator": 4898,
+        "collection": "20_features"
+      },
+      "thresholds": {
+        "minimum_top_signal_percentage": 50.0
+      },
+      "limitations": [
+        "Ranking is based on observed prevalence in historical phishing vectors.",
+        "Do not equate frequency with severity or assume the most frequent signal represents the highest business risk."
+      ]
+    }
+  ]
+}
