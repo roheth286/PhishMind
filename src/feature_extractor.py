@@ -1685,9 +1685,19 @@ def extract_right_click(html: str, page_url: str, session: Optional[Any] = None)
 # ==============================================================================
 
 try:
-    from src.feature_contract import validate_feature_vector, FEATURE_NAMES
+    from src.feature_contract import (
+        validate_feature_vector,
+        FEATURE_NAMES,
+        validate_10_feature_vector,
+        FEATURE_NAMES_10,
+    )
 except ImportError:
-    from feature_contract import validate_feature_vector, FEATURE_NAMES
+    from feature_contract import (
+        validate_feature_vector,
+        FEATURE_NAMES,
+        validate_10_feature_vector,
+        FEATURE_NAMES_10,
+    )
 
 
 def extract_features(url: str) -> List[int]:
@@ -1792,3 +1802,67 @@ def extract_features(url: str) -> List[int]:
 
     validate_feature_vector(vector)
     return vector
+
+
+# ==============================================================================
+# SECTION 6: 10-FEATURE VECTOR ASSEMBLY (FAST CONNECTION / URL-LEVEL PIPELINE)
+# ==============================================================================
+
+def extract_10_features(url: str) -> List[int]:
+    """
+    Compute and assemble the authoritative 10-feature vector for the fast
+    connection/URL-level model (models/random_forest_10_features.pkl).
+
+    Features (in exact training order):
+    1. having_IP_Address
+    2. URL_Length
+    3. Shortining_Service
+    4. having_At_Symbol
+    5. double_slash_redirecting
+    6. Prefix_Suffix
+    7. having_Sub_Domain
+    8. HTTPS_token
+    9. SSLfinal_State
+    10. port
+
+    Note:
+    - Does NOT download or parse HTML, JavaScript, CSS, or DOM elements.
+    - Result target is strictly excluded.
+    - Exactly 10 integer feature values are returned in exact training order.
+    """
+    if not isinstance(url, str) or not url.strip():
+        raise ValueError("URL must be a non-empty string.")
+
+    cleaned_url = url.strip()
+
+    # Section 1: URL String Features (Positions 1 to 7, and 8)
+    f1_ip = extract_having_ip_address(cleaned_url)
+    f2_len = extract_url_length(cleaned_url)
+    f3_short = extract_shortining_service(cleaned_url)
+    f4_at = extract_having_at_symbol(cleaned_url)
+    f5_double_slash = extract_double_slash_redirecting(cleaned_url)
+    f6_prefix_suffix = extract_prefix_suffix(cleaned_url)
+    f7_subdomain = extract_having_sub_domain(cleaned_url)
+    f8_https_token = extract_https_token(cleaned_url)
+
+    # Section 2: HTTPS / Network Features (Positions 9 and 10)
+    f9_ssl = extract_ssl_final_state(cleaned_url)
+    f10_port = extract_port(cleaned_url)
+
+    # Assemble in exact authoritative 1-10 order
+    vector = [
+        f1_ip,             # 1. having_IP_Address
+        f2_len,            # 2. URL_Length
+        f3_short,          # 3. Shortining_Service
+        f4_at,             # 4. having_At_Symbol
+        f5_double_slash,   # 5. double_slash_redirecting
+        f6_prefix_suffix,  # 6. Prefix_Suffix
+        f7_subdomain,      # 7. having_Sub_Domain
+        f8_https_token,    # 8. HTTPS_token
+        f9_ssl,            # 9. SSLfinal_State
+        f10_port,          # 10. port
+    ]
+
+    validate_10_feature_vector(vector)
+    return vector
+

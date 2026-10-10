@@ -14,15 +14,28 @@ from typing import Tuple, List, Optional, Any
 import numpy as np
 
 try:
-    from src.feature_contract import validate_feature_vector, FEATURE_NAMES
-    from src.feature_extractor import extract_features
+    from src.feature_contract import (
+        validate_feature_vector,
+        FEATURE_NAMES,
+        validate_10_feature_vector,
+        FEATURE_NAMES_10,
+    )
+    from src.feature_extractor import extract_features, extract_10_features
 except ImportError:
-    from feature_contract import validate_feature_vector, FEATURE_NAMES
-    from feature_extractor import extract_features
+    from feature_contract import (
+        validate_feature_vector,
+        FEATURE_NAMES,
+        validate_10_feature_vector,
+        FEATURE_NAMES_10,
+    )
+    from feature_extractor import extract_features, extract_10_features
 
-# Standard project-relative path to trained model
+# Standard project-relative paths to trained models
 DEFAULT_MODEL_PATH = os.path.abspath(
     os.path.join(os.path.dirname(__file__), "..", "models", "random_forest.pkl")
+)
+DEFAULT_MODEL_10_PATH = os.path.abspath(
+    os.path.join(os.path.dirname(__file__), "..", "models", "random_forest_10_features.pkl")
 )
 
 LABEL_DESCRIPTIONS = {
@@ -31,6 +44,7 @@ LABEL_DESCRIPTIONS = {
 }
 
 _CACHED_MODEL: Optional[Any] = None
+_CACHED_MODEL_10: Optional[Any] = None
 
 
 def load_model(model_path: Optional[str] = None) -> Any:
@@ -65,10 +79,43 @@ def load_model(model_path: Optional[str] = None) -> Any:
     return model
 
 
+def load_10_feature_model(model_path: Optional[str] = None) -> Any:
+    """
+    Load the trained 10-feature Random Forest classifier from models/random_forest_10_features.pkl.
+    Caches the loaded model instance in memory to avoid repeated disk reads.
+
+    Raises:
+        FileNotFoundError: If the model file does not exist.
+        RuntimeError: If model loading fails.
+    """
+    global _CACHED_MODEL_10
+
+    target_path = os.path.abspath(model_path) if model_path else DEFAULT_MODEL_10_PATH
+
+    # Return cached model if default path is requested and already loaded
+    if model_path is None and _CACHED_MODEL_10 is not None:
+        return _CACHED_MODEL_10
+
+    if not os.path.exists(target_path):
+        raise FileNotFoundError(f"10-feature model file not found at: {target_path}")
+
+    try:
+        model = joblib.load(target_path)
+    except Exception as e:
+        raise RuntimeError(f"Failed to load 10-feature model from {target_path}: {e}") from e
+
+    # Cache if loading default model
+    if model_path is None:
+        _CACHED_MODEL_10 = model
+
+    return model
+
+
 def clear_model_cache() -> None:
-    """Reset the in-memory cached model instance."""
-    global _CACHED_MODEL
+    """Reset all in-memory cached model instances."""
+    global _CACHED_MODEL, _CACHED_MODEL_10
     _CACHED_MODEL = None
+    _CACHED_MODEL_10 = None
 
 
 def predict_url(url: str, model_path: Optional[str] = None) -> Tuple[int, List[int]]:
@@ -114,3 +161,71 @@ def predict_url(url: str, model_path: Optional[str] = None) -> Tuple[int, List[i
         raise ValueError(f"Model returned unexpected class label: {pred_label}")
 
     return pred_label, vector
+
+
+def predict_url_10(
+    url: str,
+    model_path: Optional[str] = None,
+    return_proba: bool = True
+) -> Tuple[Any, ...]:
+    """
+    Predict whether a given URL is legitimate (1) or phishing (-1) using the 10-feature model.
+
+    Workflow:
+    1. Validates URL input.
+    2. Calls extract_10_features(url) to compute the 10 features.
+    3. Validates the feature vector against the 10-feature contract.
+    4. Loads the trained 10-feature model (models/random_forest_10_features.pkl).
+    5. Formats the sample into a 2D array of shape (1, 10) preserving exact FEATURE_NAMES_10 order.
+    6. Predicts class label and extracts phishing probability using model.classes_.
+    7. If return_proba is True:
+         Returns (predicted_label, phishing_probability, feature_vector)
+       If return_proba is False:
+         Returns (predicted_label, feature_vector)
+
+    Raises:
+        ValueError: If url is invalid, feature vector fails contract validation, or model returns invalid label.
+        FileNotFoundError: If model file cannot be found.
+        RuntimeError: If feature extraction or model prediction fails.
+    """
+    if not isinstance(url, str) or not url.strip():
+        raise ValueError("URL must be a non-empty string.")
+
+    # 1. Extract 10 features using the 10-feature extractor
+    vector = extract_10_features(url)
+
+    # 2. Validate feature vector against contract
+    validate_10_feature_vector(vector)
+
+    # 3. Load 10-feature model
+    model = load_10_feature_model(model_path=model_path)
+
+    # 4. Predict
+    try:
+        sample = np.array([vector], dtype=int)
+        prediction = model.predict(sample)
+        pred_label = int(prediction[0])
+
+        probs = model.predict_proba(sample)
+        classes_list = list(model.classes_)
+        if 1 in classes_list:
+            pos_idx = classes_list.index(1)
+            phishing_prob = float(probs[0][pos_idx])
+        else:
+            phishing_prob = 0.0
+    except Exception as e:
+        raise RuntimeError(f"10-feature model prediction failed: {e}") from e
+
+    if pred_label not in (1, -1):
+        raise ValueError(f"10-feature model returned unexpected class label: {pred_label}")
+
+    if return_proba:
+        return pred_label, phishing_prob, vector
+    return pred_label, vector
+
+
+def predict_proba_url_10(url: str, model_path: Optional[str] = None) -> float:
+    """Return only the phishing probability (class 1) for the given URL using the 10-feature model."""
+    res = predict_url_10(url, model_path=model_path, return_proba=True)
+    return res[1]
+

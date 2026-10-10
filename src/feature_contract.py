@@ -34,6 +34,20 @@ FEATURE_NAMES: Tuple[str, ...] = (
     "RightClick",
 )
 
+# Exact authoritative feature names for the 10-feature model (Positions 1 to 10)
+FEATURE_NAMES_10: Tuple[str, ...] = (
+    "having_IP_Address",
+    "URL_Length",
+    "Shortining_Service",
+    "having_At_Symbol",
+    "double_slash_redirecting",
+    "Prefix_Suffix",
+    "having_Sub_Domain",
+    "HTTPS_token",
+    "SSLfinal_State",
+    "port",
+)
+
 # Exact authoritative mapping of allowed values per feature
 ALLOWED_VALUES: Dict[str, Set[int]] = {
     "having_IP_Address": {1, -1},
@@ -115,3 +129,36 @@ def validate_feature_vector(vector: Sequence[Any]) -> bool:
             )
 
     return True
+
+
+def validate_10_feature_vector(vector: Sequence[Any]) -> bool:
+    """
+    Validate a live 10-dimensional feature vector.
+
+    Requirements:
+    - vector must contain exactly 10 values.
+    - values must be validated according to their corresponding feature position.
+    - reject invalid values or lengths.
+
+    Returns:
+        True: if the vector is valid.
+
+    Raises:
+        ValueError: if the vector has invalid length or contains invalid values.
+    """
+    if len(vector) != len(FEATURE_NAMES_10):
+        raise ValueError(
+            f"Expected exactly {len(FEATURE_NAMES_10)} features in vector, got {len(vector)}"
+        )
+
+    for idx, (feature_name, val) in enumerate(zip(FEATURE_NAMES_10, vector)):
+        allowed = ALLOWED_VALUES[feature_name]
+        # Reject booleans (since in Python bool is a subclass of int: isinstance(True, int) is True)
+        if isinstance(val, bool) or val not in allowed:
+            raise ValueError(
+                f"Invalid value {val!r} for feature {feature_name!r} at position {idx + 1}. "
+                f"Allowed values: {sorted(list(allowed))}"
+            )
+
+    return True
+
