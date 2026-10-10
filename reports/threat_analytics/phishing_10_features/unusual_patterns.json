@@ -1,0 +1,4320 @@
+{
+  "model_type": "10_features",
+  "total_samples": 4898,
+  "total_distinct_patterns": 327,
+  "rarity_count_threshold": 2,
+  "rarity_percentage_threshold": null,
+  "rare_pattern_count": 137,
+  "rare_sample_count": 198,
+  "rare_sample_percentage": 4.0425,
+  "rare_patterns": [
+    {
+      "vector": [
+        -1,
+        -1,
+        -1,
+        -1,
+        -1,
+        -1,
+        -1,
+        1,
+        0,
+        -1
+      ],
+      "pattern_dict": {
+        "having_IP_Address": -1,
+        "URL_Length": -1,
+        "Shortining_Service": -1,
+        "having_At_Symbol": -1,
+        "double_slash_redirecting": -1,
+        "Prefix_Suffix": -1,
+        "having_Sub_Domain": -1,
+        "HTTPS_token": 1,
+        "SSLfinal_State": 0,
+        "port": -1
+      },
+      "count": 1,
+      "percentage": 0.0204,
+      "sample_ids": [
+        "phish_10_features_row_08397"
+      ]
+    },
+    {
+      "vector": [
+        -1,
+        -1,
+        -1,
+        -1,
+        -1,
+        -1,
+        -1,
+        1,
+        1,
+        1
+      ],
+      "pattern_dict": {
+        "having_IP_Address": -1,
+        "URL_Length": -1,
+        "Shortining_Service": -1,
+        "having_At_Symbol": -1,
+        "double_slash_redirecting": -1,
+        "Prefix_Suffix": -1,
+        "having_Sub_Domain": -1,
+        "HTTPS_token": 1,
+        "SSLfinal_State": 1,
+        "port": 1
+      },
+      "count": 1,
+      "percentage": 0.0204,
+      "sample_ids": [
+        "phish_10_features_row_08237"
+      ]
+    },
+    {
+      "vector": [
+        -1,
+        -1,
+        -1,
+        -1,
+        -1,
+        -1,
+        0,
+        1,
+        -1,
+        -1
+      ],
+      "pattern_dict": {
+        "having_IP_Address": -1,
+        "URL_Length": -1,
+        "Shortining_Service": -1,
+        "having_At_Symbol": -1,
+        "double_slash_redirecting": -1,
+        "Prefix_Suffix": -1,
+        "having_Sub_Domain": 0,
+        "HTTPS_token": 1,
+        "SSLfinal_State": -1,
+        "port": -1
+      },
+      "count": 1,
+      "percentage": 0.0204,
+      "sample_ids": [
+        "phish_10_features_row_05356"
+      ]
+    },
+    {
+      "vector": [
+        -1,
+        -1,
+        -1,
+        -1,
+        -1,
+        -1,
+        1,
+        1,
+        1,
+        1
+      ],
+      "pattern_dict": {
+        "having_IP_Address": -1,
+        "URL_Length": -1,
+        "Shortining_Service": -1,
+        "having_At_Symbol": -1,
+        "double_slash_redirecting": -1,
+        "Prefix_Suffix": -1,
+        "having_Sub_Domain": 1,
+        "HTTPS_token": 1,
+        "SSLfinal_State": 1,
+        "port": 1
+      },
+      "count": 1,
+      "percentage": 0.0204,
+      "sample_ids": [
+        "phish_10_features_row_05196"
+      ]
+    },
+    {
+      "vector": [
+        -1,
+        -1,
+        -1,
+        1,
+        -1,
+        -1,
+        -1,
+        1,
+        -1,
+        1
+      ],
+      "pattern_dict": {
+        "having_IP_Address": -1,
+        "URL_Length": -1,
+        "Shortining_Service": -1,
+        "having_At_Symbol": 1,
+        "double_slash_redirecting": -1,
+        "Prefix_Suffix": -1,
+        "having_Sub_Domain": -1,
+        "HTTPS_token": 1,
+        "SSLfinal_State": -1,
+        "port": 1
+      },
+      "count": 1,
+      "percentage": 0.0204,
+      "sample_ids": [
+        "phish_10_features_row_05149"
+      ]
+    },
+    {
+      "vector": [
+        -1,
+        -1,
+        -1,
+        1,
+        -1,
+        -1,
+        1,
+        -1,
+        1,
+        1
+      ],
+      "pattern_dict": {
+        "having_IP_Address": -1,
+        "URL_Length": -1,
+        "Shortining_Service": -1,
+        "having_At_Symbol": 1,
+        "double_slash_redirecting": -1,
+        "Prefix_Suffix": -1,
+        "having_Sub_Domain": 1,
+        "HTTPS_token": -1,
+        "SSLfinal_State": 1,
+        "port": 1
+      },
+      "count": 1,
+      "percentage": 0.0204,
+      "sample_ids": [
+        "phish_10_features_row_08456"
+      ]
+    },
+    {
+      "vector": [
+        -1,
+        -1,
+        -1,
+        1,
+        1,
+        -1,
+        -1,
+        1,
+        -1,
+        1
+      ],
+      "pattern_dict": {
+        "having_IP_Address": -1,
+        "URL_Length": -1,
+        "Shortining_Service": -1,
+        "having_At_Symbol": 1,
+        "double_slash_redirecting": 1,
+        "Prefix_Suffix": -1,
+        "having_Sub_Domain": -1,
+        "HTTPS_token": 1,
+        "SSLfinal_State": -1,
+        "port": 1
+      },
+      "count": 1,
+      "percentage": 0.0204,
+      "sample_ids": [
+        "phish_10_features_row_08223"
+      ]
+    },
+    {
+      "vector": [
+        -1,
+        -1,
+        -1,
+        1,
+        1,
+        -1,
+        0,
+        1,
+        0,
+        1
+      ],
+      "pattern_dict": {
+        "having_IP_Address": -1,
+        "URL_Length": -1,
+        "Shortining_Service": -1,
+        "having_At_Symbol": 1,
+        "double_slash_redirecting": 1,
+        "Prefix_Suffix": -1,
+        "having_Sub_Domain": 0,
+        "HTTPS_token": 1,
+        "SSLfinal_State": 0,
+        "port": 1
+      },
+      "count": 1,
+      "percentage": 0.0204,
+      "sample_ids": [
+        "phish_10_features_row_06108"
+      ]
+    },
+    {
+      "vector": [
+        -1,
+        -1,
+        -1,
+        1,
+        1,
+        -1,
+        0,
+        1,
+        1,
+        1
+      ],
+      "pattern_dict": {
+        "having_IP_Address": -1,
+        "URL_Length": -1,
+        "Shortining_Service": -1,
+        "having_At_Symbol": 1,
+        "double_slash_redirecting": 1,
+        "Prefix_Suffix": -1,
+        "having_Sub_Domain": 0,
+        "HTTPS_token": 1,
+        "SSLfinal_State": 1,
+        "port": 1
+      },
+      "count": 1,
+      "percentage": 0.0204,
+      "sample_ids": [
+        "phish_10_features_row_02526"
+      ]
+    },
+    {
+      "vector": [
+        -1,
+        -1,
+        -1,
+        1,
+        1,
+        -1,
+        1,
+        1,
+        0,
+        1
+      ],
+      "pattern_dict": {
+        "having_IP_Address": -1,
+        "URL_Length": -1,
+        "Shortining_Service": -1,
+        "having_At_Symbol": 1,
+        "double_slash_redirecting": 1,
+        "Prefix_Suffix": -1,
+        "having_Sub_Domain": 1,
+        "HTTPS_token": 1,
+        "SSLfinal_State": 0,
+        "port": 1
+      },
+      "count": 1,
+      "percentage": 0.0204,
+      "sample_ids": [
+        "phish_10_features_row_06607"
+      ]
+    },
+    {
+      "vector": [
+        -1,
+        -1,
+        -1,
+        1,
+        1,
+        -1,
+        1,
+        1,
+        1,
+        1
+      ],
+      "pattern_dict": {
+        "having_IP_Address": -1,
+        "URL_Length": -1,
+        "Shortining_Service": -1,
+        "having_At_Symbol": 1,
+        "double_slash_redirecting": 1,
+        "Prefix_Suffix": -1,
+        "having_Sub_Domain": 1,
+        "HTTPS_token": 1,
+        "SSLfinal_State": 1,
+        "port": 1
+      },
+      "count": 1,
+      "percentage": 0.0204,
+      "sample_ids": [
+        "phish_10_features_row_08207"
+      ]
+    },
+    {
+      "vector": [
+        -1,
+        -1,
+        1,
+        -1,
+        -1,
+        -1,
+        -1,
+        -1,
+        1,
+        1
+      ],
+      "pattern_dict": {
+        "having_IP_Address": -1,
+        "URL_Length": -1,
+        "Shortining_Service": 1,
+        "having_At_Symbol": -1,
+        "double_slash_redirecting": -1,
+        "Prefix_Suffix": -1,
+        "having_Sub_Domain": -1,
+        "HTTPS_token": -1,
+        "SSLfinal_State": 1,
+        "port": 1
+      },
+      "count": 1,
+      "percentage": 0.0204,
+      "sample_ids": [
+        "phish_10_features_row_10507"
+      ]
+    },
+    {
+      "vector": [
+        -1,
+        -1,
+        1,
+        -1,
+        -1,
+        -1,
+        -1,
+        1,
+        -1,
+        -1
+      ],
+      "pattern_dict": {
+        "having_IP_Address": -1,
+        "URL_Length": -1,
+        "Shortining_Service": 1,
+        "having_At_Symbol": -1,
+        "double_slash_redirecting": -1,
+        "Prefix_Suffix": -1,
+        "having_Sub_Domain": -1,
+        "HTTPS_token": 1,
+        "SSLfinal_State": -1,
+        "port": -1
+      },
+      "count": 1,
+      "percentage": 0.0204,
+      "sample_ids": [
+        "phish_10_features_row_08249"
+      ]
+    },
+    {
+      "vector": [
+        -1,
+        -1,
+        1,
+        -1,
+        -1,
+        -1,
+        -1,
+        1,
+        1,
+        -1
+      ],
+      "pattern_dict": {
+        "having_IP_Address": -1,
+        "URL_Length": -1,
+        "Shortining_Service": 1,
+        "having_At_Symbol": -1,
+        "double_slash_redirecting": -1,
+        "Prefix_Suffix": -1,
+        "having_Sub_Domain": -1,
+        "HTTPS_token": 1,
+        "SSLfinal_State": 1,
+        "port": -1
+      },
+      "count": 1,
+      "percentage": 0.0204,
+      "sample_ids": [
+        "phish_10_features_row_08170"
+      ]
+    },
+    {
+      "vector": [
+        -1,
+        -1,
+        1,
+        -1,
+        -1,
+        -1,
+        0,
+        -1,
+        1,
+        1
+      ],
+      "pattern_dict": {
+        "having_IP_Address": -1,
+        "URL_Length": -1,
+        "Shortining_Service": 1,
+        "having_At_Symbol": -1,
+        "double_slash_redirecting": -1,
+        "Prefix_Suffix": -1,
+        "having_Sub_Domain": 0,
+        "HTTPS_token": -1,
+        "SSLfinal_State": 1,
+        "port": 1
+      },
+      "count": 1,
+      "percentage": 0.0204,
+      "sample_ids": [
+        "phish_10_features_row_07582"
+      ]
+    },
+    {
+      "vector": [
+        -1,
+        -1,
+        1,
+        -1,
+        -1,
+        -1,
+        0,
+        1,
+        1,
+        1
+      ],
+      "pattern_dict": {
+        "having_IP_Address": -1,
+        "URL_Length": -1,
+        "Shortining_Service": 1,
+        "having_At_Symbol": -1,
+        "double_slash_redirecting": -1,
+        "Prefix_Suffix": -1,
+        "having_Sub_Domain": 0,
+        "HTTPS_token": 1,
+        "SSLfinal_State": 1,
+        "port": 1
+      },
+      "count": 1,
+      "percentage": 0.0204,
+      "sample_ids": [
+        "phish_10_features_row_05819"
+      ]
+    },
+    {
+      "vector": [
+        -1,
+        -1,
+        1,
+        -1,
+        -1,
+        -1,
+        1,
+        1,
+        -1,
+        1
+      ],
+      "pattern_dict": {
+        "having_IP_Address": -1,
+        "URL_Length": -1,
+        "Shortining_Service": 1,
+        "having_At_Symbol": -1,
+        "double_slash_redirecting": -1,
+        "Prefix_Suffix": -1,
+        "having_Sub_Domain": 1,
+        "HTTPS_token": 1,
+        "SSLfinal_State": -1,
+        "port": 1
+      },
+      "count": 1,
+      "percentage": 0.0204,
+      "sample_ids": [
+        "phish_10_features_row_05319"
+      ]
+    },
+    {
+      "vector": [
+        -1,
+        -1,
+        1,
+        -1,
+        1,
+        -1,
+        -1,
+        -1,
+        0,
+        1
+      ],
+      "pattern_dict": {
+        "having_IP_Address": -1,
+        "URL_Length": -1,
+        "Shortining_Service": 1,
+        "having_At_Symbol": -1,
+        "double_slash_redirecting": 1,
+        "Prefix_Suffix": -1,
+        "having_Sub_Domain": -1,
+        "HTTPS_token": -1,
+        "SSLfinal_State": 0,
+        "port": 1
+      },
+      "count": 1,
+      "percentage": 0.0204,
+      "sample_ids": [
+        "phish_10_features_row_08727"
+      ]
+    },
+    {
+      "vector": [
+        -1,
+        -1,
+        1,
+        -1,
+        1,
+        -1,
+        0,
+        -1,
+        0,
+        -1
+      ],
+      "pattern_dict": {
+        "having_IP_Address": -1,
+        "URL_Length": -1,
+        "Shortining_Service": 1,
+        "having_At_Symbol": -1,
+        "double_slash_redirecting": 1,
+        "Prefix_Suffix": -1,
+        "having_Sub_Domain": 0,
+        "HTTPS_token": -1,
+        "SSLfinal_State": 0,
+        "port": -1
+      },
+      "count": 1,
+      "percentage": 0.0204,
+      "sample_ids": [
+        "phish_10_features_row_08304"
+      ]
+    },
+    {
+      "vector": [
+        -1,
+        -1,
+        1,
+        -1,
+        1,
+        -1,
+        1,
+        -1,
+        0,
+        -1
+      ],
+      "pattern_dict": {
+        "having_IP_Address": -1,
+        "URL_Length": -1,
+        "Shortining_Service": 1,
+        "having_At_Symbol": -1,
+        "double_slash_redirecting": 1,
+        "Prefix_Suffix": -1,
+        "having_Sub_Domain": 1,
+        "HTTPS_token": -1,
+        "SSLfinal_State": 0,
+        "port": -1
+      },
+      "count": 1,
+      "percentage": 0.0204,
+      "sample_ids": [
+        "phish_10_features_row_05263"
+      ]
+    },
+    {
+      "vector": [
+        -1,
+        -1,
+        1,
+        -1,
+        1,
+        -1,
+        1,
+        -1,
+        0,
+        1
+      ],
+      "pattern_dict": {
+        "having_IP_Address": -1,
+        "URL_Length": -1,
+        "Shortining_Service": 1,
+        "having_At_Symbol": -1,
+        "double_slash_redirecting": 1,
+        "Prefix_Suffix": -1,
+        "having_Sub_Domain": 1,
+        "HTTPS_token": -1,
+        "SSLfinal_State": 0,
+        "port": 1
+      },
+      "count": 1,
+      "percentage": 0.0204,
+      "sample_ids": [
+        "phish_10_features_row_05708"
+      ]
+    },
+    {
+      "vector": [
+        -1,
+        -1,
+        1,
+        1,
+        -1,
+        -1,
+        -1,
+        -1,
+        -1,
+        1
+      ],
+      "pattern_dict": {
+        "having_IP_Address": -1,
+        "URL_Length": -1,
+        "Shortining_Service": 1,
+        "having_At_Symbol": 1,
+        "double_slash_redirecting": -1,
+        "Prefix_Suffix": -1,
+        "having_Sub_Domain": -1,
+        "HTTPS_token": -1,
+        "SSLfinal_State": -1,
+        "port": 1
+      },
+      "count": 1,
+      "percentage": 0.0204,
+      "sample_ids": [
+        "phish_10_features_row_08161"
+      ]
+    },
+    {
+      "vector": [
+        -1,
+        -1,
+        1,
+        1,
+        -1,
+        -1,
+        -1,
+        -1,
+        1,
+        1
+      ],
+      "pattern_dict": {
+        "having_IP_Address": -1,
+        "URL_Length": -1,
+        "Shortining_Service": 1,
+        "having_At_Symbol": 1,
+        "double_slash_redirecting": -1,
+        "Prefix_Suffix": -1,
+        "having_Sub_Domain": -1,
+        "HTTPS_token": -1,
+        "SSLfinal_State": 1,
+        "port": 1
+      },
+      "count": 1,
+      "percentage": 0.0204,
+      "sample_ids": [
+        "phish_10_features_row_08619"
+      ]
+    },
+    {
+      "vector": [
+        -1,
+        -1,
+        1,
+        1,
+        -1,
+        -1,
+        -1,
+        1,
+        0,
+        1
+      ],
+      "pattern_dict": {
+        "having_IP_Address": -1,
+        "URL_Length": -1,
+        "Shortining_Service": 1,
+        "having_At_Symbol": 1,
+        "double_slash_redirecting": -1,
+        "Prefix_Suffix": -1,
+        "having_Sub_Domain": -1,
+        "HTTPS_token": 1,
+        "SSLfinal_State": 0,
+        "port": 1
+      },
+      "count": 1,
+      "percentage": 0.0204,
+      "sample_ids": [
+        "phish_10_features_row_08510"
+      ]
+    },
+    {
+      "vector": [
+        -1,
+        -1,
+        1,
+        1,
+        -1,
+        -1,
+        -1,
+        1,
+        1,
+        1
+      ],
+      "pattern_dict": {
+        "having_IP_Address": -1,
+        "URL_Length": -1,
+        "Shortining_Service": 1,
+        "having_At_Symbol": 1,
+        "double_slash_redirecting": -1,
+        "Prefix_Suffix": -1,
+        "having_Sub_Domain": -1,
+        "HTTPS_token": 1,
+        "SSLfinal_State": 1,
+        "port": 1
+      },
+      "count": 1,
+      "percentage": 0.0204,
+      "sample_ids": [
+        "phish_10_features_row_09765"
+      ]
+    },
+    {
+      "vector": [
+        -1,
+        -1,
+        1,
+        1,
+        -1,
+        -1,
+        0,
+        -1,
+        0,
+        1
+      ],
+      "pattern_dict": {
+        "having_IP_Address": -1,
+        "URL_Length": -1,
+        "Shortining_Service": 1,
+        "having_At_Symbol": 1,
+        "double_slash_redirecting": -1,
+        "Prefix_Suffix": -1,
+        "having_Sub_Domain": 0,
+        "HTTPS_token": -1,
+        "SSLfinal_State": 0,
+        "port": 1
+      },
+      "count": 1,
+      "percentage": 0.0204,
+      "sample_ids": [
+        "phish_10_features_row_06124"
+      ]
+    },
+    {
+      "vector": [
+        -1,
+        -1,
+        1,
+        1,
+        -1,
+        -1,
+        0,
+        -1,
+        1,
+        1
+      ],
+      "pattern_dict": {
+        "having_IP_Address": -1,
+        "URL_Length": -1,
+        "Shortining_Service": 1,
+        "having_At_Symbol": 1,
+        "double_slash_redirecting": -1,
+        "Prefix_Suffix": -1,
+        "having_Sub_Domain": 0,
+        "HTTPS_token": -1,
+        "SSLfinal_State": 1,
+        "port": 1
+      },
+      "count": 1,
+      "percentage": 0.0204,
+      "sample_ids": [
+        "phish_10_features_row_07134"
+      ]
+    },
+    {
+      "vector": [
+        -1,
+        -1,
+        1,
+        1,
+        -1,
+        -1,
+        0,
+        1,
+        1,
+        1
+      ],
+      "pattern_dict": {
+        "having_IP_Address": -1,
+        "URL_Length": -1,
+        "Shortining_Service": 1,
+        "having_At_Symbol": 1,
+        "double_slash_redirecting": -1,
+        "Prefix_Suffix": -1,
+        "having_Sub_Domain": 0,
+        "HTTPS_token": 1,
+        "SSLfinal_State": 1,
+        "port": 1
+      },
+      "count": 1,
+      "percentage": 0.0204,
+      "sample_ids": [
+        "phish_10_features_row_06746"
+      ]
+    },
+    {
+      "vector": [
+        -1,
+        -1,
+        1,
+        1,
+        -1,
+        -1,
+        1,
+        -1,
+        0,
+        1
+      ],
+      "pattern_dict": {
+        "having_IP_Address": -1,
+        "URL_Length": -1,
+        "Shortining_Service": 1,
+        "having_At_Symbol": 1,
+        "double_slash_redirecting": -1,
+        "Prefix_Suffix": -1,
+        "having_Sub_Domain": 1,
+        "HTTPS_token": -1,
+        "SSLfinal_State": 0,
+        "port": 1
+      },
+      "count": 1,
+      "percentage": 0.0204,
+      "sample_ids": [
+        "phish_10_features_row_09143"
+      ]
+    },
+    {
+      "vector": [
+        -1,
+        -1,
+        1,
+        1,
+        -1,
+        -1,
+        1,
+        -1,
+        1,
+        1
+      ],
+      "pattern_dict": {
+        "having_IP_Address": -1,
+        "URL_Length": -1,
+        "Shortining_Service": 1,
+        "having_At_Symbol": 1,
+        "double_slash_redirecting": -1,
+        "Prefix_Suffix": -1,
+        "having_Sub_Domain": 1,
+        "HTTPS_token": -1,
+        "SSLfinal_State": 1,
+        "port": 1
+      },
+      "count": 1,
+      "percentage": 0.0204,
+      "sample_ids": [
+        "phish_10_features_row_05578"
+      ]
+    },
+    {
+      "vector": [
+        -1,
+        -1,
+        1,
+        1,
+        1,
+        -1,
+        -1,
+        1,
+        -1,
+        -1
+      ],
+      "pattern_dict": {
+        "having_IP_Address": -1,
+        "URL_Length": -1,
+        "Shortining_Service": 1,
+        "having_At_Symbol": 1,
+        "double_slash_redirecting": 1,
+        "Prefix_Suffix": -1,
+        "having_Sub_Domain": -1,
+        "HTTPS_token": 1,
+        "SSLfinal_State": -1,
+        "port": -1
+      },
+      "count": 1,
+      "percentage": 0.0204,
+      "sample_ids": [
+        "phish_10_features_row_10148"
+      ]
+    },
+    {
+      "vector": [
+        -1,
+        0,
+        -1,
+        -1,
+        -1,
+        -1,
+        -1,
+        1,
+        1,
+        -1
+      ],
+      "pattern_dict": {
+        "having_IP_Address": -1,
+        "URL_Length": 0,
+        "Shortining_Service": -1,
+        "having_At_Symbol": -1,
+        "double_slash_redirecting": -1,
+        "Prefix_Suffix": -1,
+        "having_Sub_Domain": -1,
+        "HTTPS_token": 1,
+        "SSLfinal_State": 1,
+        "port": -1
+      },
+      "count": 1,
+      "percentage": 0.0204,
+      "sample_ids": [
+        "phish_10_features_row_08188"
+      ]
+    },
+    {
+      "vector": [
+        -1,
+        0,
+        -1,
+        -1,
+        -1,
+        -1,
+        0,
+        1,
+        -1,
+        -1
+      ],
+      "pattern_dict": {
+        "having_IP_Address": -1,
+        "URL_Length": 0,
+        "Shortining_Service": -1,
+        "having_At_Symbol": -1,
+        "double_slash_redirecting": -1,
+        "Prefix_Suffix": -1,
+        "having_Sub_Domain": 0,
+        "HTTPS_token": 1,
+        "SSLfinal_State": -1,
+        "port": -1
+      },
+      "count": 1,
+      "percentage": 0.0204,
+      "sample_ids": [
+        "phish_10_features_row_05147"
+      ]
+    },
+    {
+      "vector": [
+        -1,
+        0,
+        -1,
+        -1,
+        1,
+        -1,
+        -1,
+        1,
+        1,
+        1
+      ],
+      "pattern_dict": {
+        "having_IP_Address": -1,
+        "URL_Length": 0,
+        "Shortining_Service": -1,
+        "having_At_Symbol": -1,
+        "double_slash_redirecting": 1,
+        "Prefix_Suffix": -1,
+        "having_Sub_Domain": -1,
+        "HTTPS_token": 1,
+        "SSLfinal_State": 1,
+        "port": 1
+      },
+      "count": 1,
+      "percentage": 0.0204,
+      "sample_ids": [
+        "phish_10_features_row_08361"
+      ]
+    },
+    {
+      "vector": [
+        -1,
+        0,
+        1,
+        1,
+        1,
+        -1,
+        1,
+        -1,
+        -1,
+        1
+      ],
+      "pattern_dict": {
+        "having_IP_Address": -1,
+        "URL_Length": 0,
+        "Shortining_Service": 1,
+        "having_At_Symbol": 1,
+        "double_slash_redirecting": 1,
+        "Prefix_Suffix": -1,
+        "having_Sub_Domain": 1,
+        "HTTPS_token": -1,
+        "SSLfinal_State": -1,
+        "port": 1
+      },
+      "count": 1,
+      "percentage": 0.0204,
+      "sample_ids": [
+        "phish_10_features_row_08753"
+      ]
+    },
+    {
+      "vector": [
+        -1,
+        1,
+        -1,
+        -1,
+        -1,
+        -1,
+        -1,
+        -1,
+        0,
+        1
+      ],
+      "pattern_dict": {
+        "having_IP_Address": -1,
+        "URL_Length": 1,
+        "Shortining_Service": -1,
+        "having_At_Symbol": -1,
+        "double_slash_redirecting": -1,
+        "Prefix_Suffix": -1,
+        "having_Sub_Domain": -1,
+        "HTTPS_token": -1,
+        "SSLfinal_State": 0,
+        "port": 1
+      },
+      "count": 1,
+      "percentage": 0.0204,
+      "sample_ids": [
+        "phish_10_features_row_09752"
+      ]
+    },
+    {
+      "vector": [
+        -1,
+        1,
+        -1,
+        -1,
+        -1,
+        -1,
+        -1,
+        1,
+        1,
+        1
+      ],
+      "pattern_dict": {
+        "having_IP_Address": -1,
+        "URL_Length": 1,
+        "Shortining_Service": -1,
+        "having_At_Symbol": -1,
+        "double_slash_redirecting": -1,
+        "Prefix_Suffix": -1,
+        "having_Sub_Domain": -1,
+        "HTTPS_token": 1,
+        "SSLfinal_State": 1,
+        "port": 1
+      },
+      "count": 1,
+      "percentage": 0.0204,
+      "sample_ids": [
+        "phish_10_features_row_08172"
+      ]
+    },
+    {
+      "vector": [
+        -1,
+        1,
+        -1,
+        -1,
+        -1,
+        -1,
+        0,
+        -1,
+        0,
+        1
+      ],
+      "pattern_dict": {
+        "having_IP_Address": -1,
+        "URL_Length": 1,
+        "Shortining_Service": -1,
+        "having_At_Symbol": -1,
+        "double_slash_redirecting": -1,
+        "Prefix_Suffix": -1,
+        "having_Sub_Domain": 0,
+        "HTTPS_token": -1,
+        "SSLfinal_State": 0,
+        "port": 1
+      },
+      "count": 1,
+      "percentage": 0.0204,
+      "sample_ids": [
+        "phish_10_features_row_06096"
+      ]
+    },
+    {
+      "vector": [
+        -1,
+        1,
+        -1,
+        -1,
+        -1,
+        -1,
+        0,
+        1,
+        1,
+        -1
+      ],
+      "pattern_dict": {
+        "having_IP_Address": -1,
+        "URL_Length": 1,
+        "Shortining_Service": -1,
+        "having_At_Symbol": -1,
+        "double_slash_redirecting": -1,
+        "Prefix_Suffix": -1,
+        "having_Sub_Domain": 0,
+        "HTTPS_token": 1,
+        "SSLfinal_State": 1,
+        "port": -1
+      },
+      "count": 1,
+      "percentage": 0.0204,
+      "sample_ids": [
+        "phish_10_features_row_08211"
+      ]
+    },
+    {
+      "vector": [
+        -1,
+        1,
+        -1,
+        -1,
+        -1,
+        -1,
+        1,
+        -1,
+        1,
+        1
+      ],
+      "pattern_dict": {
+        "having_IP_Address": -1,
+        "URL_Length": 1,
+        "Shortining_Service": -1,
+        "having_At_Symbol": -1,
+        "double_slash_redirecting": -1,
+        "Prefix_Suffix": -1,
+        "having_Sub_Domain": 1,
+        "HTTPS_token": -1,
+        "SSLfinal_State": 1,
+        "port": 1
+      },
+      "count": 1,
+      "percentage": 0.0204,
+      "sample_ids": [
+        "phish_10_features_row_06042"
+      ]
+    },
+    {
+      "vector": [
+        -1,
+        1,
+        -1,
+        -1,
+        -1,
+        -1,
+        1,
+        1,
+        -1,
+        -1
+      ],
+      "pattern_dict": {
+        "having_IP_Address": -1,
+        "URL_Length": 1,
+        "Shortining_Service": -1,
+        "having_At_Symbol": -1,
+        "double_slash_redirecting": -1,
+        "Prefix_Suffix": -1,
+        "having_Sub_Domain": 1,
+        "HTTPS_token": 1,
+        "SSLfinal_State": -1,
+        "port": -1
+      },
+      "count": 1,
+      "percentage": 0.0204,
+      "sample_ids": [
+        "phish_10_features_row_05170"
+      ]
+    },
+    {
+      "vector": [
+        -1,
+        1,
+        -1,
+        1,
+        -1,
+        -1,
+        -1,
+        1,
+        0,
+        1
+      ],
+      "pattern_dict": {
+        "having_IP_Address": -1,
+        "URL_Length": 1,
+        "Shortining_Service": -1,
+        "having_At_Symbol": 1,
+        "double_slash_redirecting": -1,
+        "Prefix_Suffix": -1,
+        "having_Sub_Domain": -1,
+        "HTTPS_token": 1,
+        "SSLfinal_State": 0,
+        "port": 1
+      },
+      "count": 1,
+      "percentage": 0.0204,
+      "sample_ids": [
+        "phish_10_features_row_08210"
+      ]
+    },
+    {
+      "vector": [
+        -1,
+        1,
+        -1,
+        1,
+        -1,
+        -1,
+        0,
+        1,
+        0,
+        1
+      ],
+      "pattern_dict": {
+        "having_IP_Address": -1,
+        "URL_Length": 1,
+        "Shortining_Service": -1,
+        "having_At_Symbol": 1,
+        "double_slash_redirecting": -1,
+        "Prefix_Suffix": -1,
+        "having_Sub_Domain": 0,
+        "HTTPS_token": 1,
+        "SSLfinal_State": 0,
+        "port": 1
+      },
+      "count": 1,
+      "percentage": 0.0204,
+      "sample_ids": [
+        "phish_10_features_row_05169"
+      ]
+    },
+    {
+      "vector": [
+        -1,
+        1,
+        -1,
+        1,
+        1,
+        -1,
+        0,
+        1,
+        0,
+        1
+      ],
+      "pattern_dict": {
+        "having_IP_Address": -1,
+        "URL_Length": 1,
+        "Shortining_Service": -1,
+        "having_At_Symbol": 1,
+        "double_slash_redirecting": 1,
+        "Prefix_Suffix": -1,
+        "having_Sub_Domain": 0,
+        "HTTPS_token": 1,
+        "SSLfinal_State": 0,
+        "port": 1
+      },
+      "count": 1,
+      "percentage": 0.0204,
+      "sample_ids": [
+        "phish_10_features_row_05636"
+      ]
+    },
+    {
+      "vector": [
+        -1,
+        1,
+        -1,
+        1,
+        1,
+        -1,
+        0,
+        1,
+        1,
+        1
+      ],
+      "pattern_dict": {
+        "having_IP_Address": -1,
+        "URL_Length": 1,
+        "Shortining_Service": -1,
+        "having_At_Symbol": 1,
+        "double_slash_redirecting": 1,
+        "Prefix_Suffix": -1,
+        "having_Sub_Domain": 0,
+        "HTTPS_token": 1,
+        "SSLfinal_State": 1,
+        "port": 1
+      },
+      "count": 1,
+      "percentage": 0.0204,
+      "sample_ids": [
+        "phish_10_features_row_10204"
+      ]
+    },
+    {
+      "vector": [
+        -1,
+        1,
+        -1,
+        1,
+        1,
+        -1,
+        1,
+        1,
+        1,
+        1
+      ],
+      "pattern_dict": {
+        "having_IP_Address": -1,
+        "URL_Length": 1,
+        "Shortining_Service": -1,
+        "having_At_Symbol": 1,
+        "double_slash_redirecting": 1,
+        "Prefix_Suffix": -1,
+        "having_Sub_Domain": 1,
+        "HTTPS_token": 1,
+        "SSLfinal_State": 1,
+        "port": 1
+      },
+      "count": 1,
+      "percentage": 0.0204,
+      "sample_ids": [
+        "phish_10_features_row_07279"
+      ]
+    },
+    {
+      "vector": [
+        -1,
+        1,
+        1,
+        -1,
+        -1,
+        -1,
+        -1,
+        1,
+        -1,
+        1
+      ],
+      "pattern_dict": {
+        "having_IP_Address": -1,
+        "URL_Length": 1,
+        "Shortining_Service": 1,
+        "having_At_Symbol": -1,
+        "double_slash_redirecting": -1,
+        "Prefix_Suffix": -1,
+        "having_Sub_Domain": -1,
+        "HTTPS_token": 1,
+        "SSLfinal_State": -1,
+        "port": 1
+      },
+      "count": 1,
+      "percentage": 0.0204,
+      "sample_ids": [
+        "phish_10_features_row_05318"
+      ]
+    },
+    {
+      "vector": [
+        -1,
+        1,
+        1,
+        -1,
+        -1,
+        -1,
+        -1,
+        1,
+        1,
+        1
+      ],
+      "pattern_dict": {
+        "having_IP_Address": -1,
+        "URL_Length": 1,
+        "Shortining_Service": 1,
+        "having_At_Symbol": -1,
+        "double_slash_redirecting": -1,
+        "Prefix_Suffix": -1,
+        "having_Sub_Domain": -1,
+        "HTTPS_token": 1,
+        "SSLfinal_State": 1,
+        "port": 1
+      },
+      "count": 1,
+      "percentage": 0.0204,
+      "sample_ids": [
+        "phish_10_features_row_08359"
+      ]
+    },
+    {
+      "vector": [
+        -1,
+        1,
+        1,
+        -1,
+        1,
+        -1,
+        0,
+        1,
+        0,
+        1
+      ],
+      "pattern_dict": {
+        "having_IP_Address": -1,
+        "URL_Length": 1,
+        "Shortining_Service": 1,
+        "having_At_Symbol": -1,
+        "double_slash_redirecting": 1,
+        "Prefix_Suffix": -1,
+        "having_Sub_Domain": 0,
+        "HTTPS_token": 1,
+        "SSLfinal_State": 0,
+        "port": 1
+      },
+      "count": 1,
+      "percentage": 0.0204,
+      "sample_ids": [
+        "phish_10_features_row_08765"
+      ]
+    },
+    {
+      "vector": [
+        -1,
+        1,
+        1,
+        -1,
+        1,
+        -1,
+        1,
+        1,
+        -1,
+        -1
+      ],
+      "pattern_dict": {
+        "having_IP_Address": -1,
+        "URL_Length": 1,
+        "Shortining_Service": 1,
+        "having_At_Symbol": -1,
+        "double_slash_redirecting": 1,
+        "Prefix_Suffix": -1,
+        "having_Sub_Domain": 1,
+        "HTTPS_token": 1,
+        "SSLfinal_State": -1,
+        "port": -1
+      },
+      "count": 1,
+      "percentage": 0.0204,
+      "sample_ids": [
+        "phish_10_features_row_10216"
+      ]
+    },
+    {
+      "vector": [
+        -1,
+        1,
+        1,
+        1,
+        1,
+        -1,
+        -1,
+        1,
+        1,
+        1
+      ],
+      "pattern_dict": {
+        "having_IP_Address": -1,
+        "URL_Length": 1,
+        "Shortining_Service": 1,
+        "having_At_Symbol": 1,
+        "double_slash_redirecting": 1,
+        "Prefix_Suffix": -1,
+        "having_Sub_Domain": -1,
+        "HTTPS_token": 1,
+        "SSLfinal_State": 1,
+        "port": 1
+      },
+      "count": 1,
+      "percentage": 0.0204,
+      "sample_ids": [
+        "phish_10_features_row_08480"
+      ]
+    },
+    {
+      "vector": [
+        1,
+        -1,
+        -1,
+        1,
+        -1,
+        -1,
+        -1,
+        1,
+        -1,
+        1
+      ],
+      "pattern_dict": {
+        "having_IP_Address": 1,
+        "URL_Length": -1,
+        "Shortining_Service": -1,
+        "having_At_Symbol": 1,
+        "double_slash_redirecting": -1,
+        "Prefix_Suffix": -1,
+        "having_Sub_Domain": -1,
+        "HTTPS_token": 1,
+        "SSLfinal_State": -1,
+        "port": 1
+      },
+      "count": 1,
+      "percentage": 0.0204,
+      "sample_ids": [
+        "phish_10_features_row_08192"
+      ]
+    },
+    {
+      "vector": [
+        1,
+        -1,
+        -1,
+        1,
+        -1,
+        -1,
+        -1,
+        1,
+        1,
+        1
+      ],
+      "pattern_dict": {
+        "having_IP_Address": 1,
+        "URL_Length": -1,
+        "Shortining_Service": -1,
+        "having_At_Symbol": 1,
+        "double_slash_redirecting": -1,
+        "Prefix_Suffix": -1,
+        "having_Sub_Domain": -1,
+        "HTTPS_token": 1,
+        "SSLfinal_State": 1,
+        "port": 1
+      },
+      "count": 1,
+      "percentage": 0.0204,
+      "sample_ids": [
+        "phish_10_features_row_08190"
+      ]
+    },
+    {
+      "vector": [
+        1,
+        -1,
+        -1,
+        1,
+        -1,
+        -1,
+        0,
+        1,
+        -1,
+        1
+      ],
+      "pattern_dict": {
+        "having_IP_Address": 1,
+        "URL_Length": -1,
+        "Shortining_Service": -1,
+        "having_At_Symbol": 1,
+        "double_slash_redirecting": -1,
+        "Prefix_Suffix": -1,
+        "having_Sub_Domain": 0,
+        "HTTPS_token": 1,
+        "SSLfinal_State": -1,
+        "port": 1
+      },
+      "count": 1,
+      "percentage": 0.0204,
+      "sample_ids": [
+        "phish_10_features_row_05151"
+      ]
+    },
+    {
+      "vector": [
+        1,
+        -1,
+        -1,
+        1,
+        -1,
+        -1,
+        1,
+        -1,
+        0,
+        1
+      ],
+      "pattern_dict": {
+        "having_IP_Address": 1,
+        "URL_Length": -1,
+        "Shortining_Service": -1,
+        "having_At_Symbol": 1,
+        "double_slash_redirecting": -1,
+        "Prefix_Suffix": -1,
+        "having_Sub_Domain": 1,
+        "HTTPS_token": -1,
+        "SSLfinal_State": 0,
+        "port": 1
+      },
+      "count": 1,
+      "percentage": 0.0204,
+      "sample_ids": [
+        "phish_10_features_row_05910"
+      ]
+    },
+    {
+      "vector": [
+        1,
+        -1,
+        -1,
+        1,
+        1,
+        -1,
+        0,
+        1,
+        -1,
+        1
+      ],
+      "pattern_dict": {
+        "having_IP_Address": 1,
+        "URL_Length": -1,
+        "Shortining_Service": -1,
+        "having_At_Symbol": 1,
+        "double_slash_redirecting": 1,
+        "Prefix_Suffix": -1,
+        "having_Sub_Domain": 0,
+        "HTTPS_token": 1,
+        "SSLfinal_State": -1,
+        "port": 1
+      },
+      "count": 1,
+      "percentage": 0.0204,
+      "sample_ids": [
+        "phish_10_features_row_08174"
+      ]
+    },
+    {
+      "vector": [
+        1,
+        -1,
+        1,
+        -1,
+        -1,
+        -1,
+        -1,
+        1,
+        1,
+        -1
+      ],
+      "pattern_dict": {
+        "having_IP_Address": 1,
+        "URL_Length": -1,
+        "Shortining_Service": 1,
+        "having_At_Symbol": -1,
+        "double_slash_redirecting": -1,
+        "Prefix_Suffix": -1,
+        "having_Sub_Domain": -1,
+        "HTTPS_token": 1,
+        "SSLfinal_State": 1,
+        "port": -1
+      },
+      "count": 1,
+      "percentage": 0.0204,
+      "sample_ids": [
+        "phish_10_features_row_08167"
+      ]
+    },
+    {
+      "vector": [
+        1,
+        -1,
+        1,
+        -1,
+        -1,
+        -1,
+        0,
+        1,
+        -1,
+        -1
+      ],
+      "pattern_dict": {
+        "having_IP_Address": 1,
+        "URL_Length": -1,
+        "Shortining_Service": 1,
+        "having_At_Symbol": -1,
+        "double_slash_redirecting": -1,
+        "Prefix_Suffix": -1,
+        "having_Sub_Domain": 0,
+        "HTTPS_token": 1,
+        "SSLfinal_State": -1,
+        "port": -1
+      },
+      "count": 1,
+      "percentage": 0.0204,
+      "sample_ids": [
+        "phish_10_features_row_05129"
+      ]
+    },
+    {
+      "vector": [
+        1,
+        -1,
+        1,
+        -1,
+        1,
+        -1,
+        -1,
+        1,
+        0,
+        1
+      ],
+      "pattern_dict": {
+        "having_IP_Address": 1,
+        "URL_Length": -1,
+        "Shortining_Service": 1,
+        "having_At_Symbol": -1,
+        "double_slash_redirecting": 1,
+        "Prefix_Suffix": -1,
+        "having_Sub_Domain": -1,
+        "HTTPS_token": 1,
+        "SSLfinal_State": 0,
+        "port": 1
+      },
+      "count": 1,
+      "percentage": 0.0204,
+      "sample_ids": [
+        "phish_10_features_row_08439"
+      ]
+    },
+    {
+      "vector": [
+        1,
+        -1,
+        1,
+        -1,
+        1,
+        -1,
+        -1,
+        1,
+        1,
+        -1
+      ],
+      "pattern_dict": {
+        "having_IP_Address": 1,
+        "URL_Length": -1,
+        "Shortining_Service": 1,
+        "having_At_Symbol": -1,
+        "double_slash_redirecting": 1,
+        "Prefix_Suffix": -1,
+        "having_Sub_Domain": -1,
+        "HTTPS_token": 1,
+        "SSLfinal_State": 1,
+        "port": -1
+      },
+      "count": 1,
+      "percentage": 0.0204,
+      "sample_ids": [
+        "phish_10_features_row_02935"
+      ]
+    },
+    {
+      "vector": [
+        1,
+        -1,
+        1,
+        -1,
+        1,
+        -1,
+        0,
+        -1,
+        -1,
+        1
+      ],
+      "pattern_dict": {
+        "having_IP_Address": 1,
+        "URL_Length": -1,
+        "Shortining_Service": 1,
+        "having_At_Symbol": -1,
+        "double_slash_redirecting": 1,
+        "Prefix_Suffix": -1,
+        "having_Sub_Domain": 0,
+        "HTTPS_token": -1,
+        "SSLfinal_State": -1,
+        "port": 1
+      },
+      "count": 1,
+      "percentage": 0.0204,
+      "sample_ids": [
+        "phish_10_features_row_08601"
+      ]
+    },
+    {
+      "vector": [
+        1,
+        -1,
+        1,
+        1,
+        -1,
+        -1,
+        -1,
+        1,
+        1,
+        -1
+      ],
+      "pattern_dict": {
+        "having_IP_Address": 1,
+        "URL_Length": -1,
+        "Shortining_Service": 1,
+        "having_At_Symbol": 1,
+        "double_slash_redirecting": -1,
+        "Prefix_Suffix": -1,
+        "having_Sub_Domain": -1,
+        "HTTPS_token": 1,
+        "SSLfinal_State": 1,
+        "port": -1
+      },
+      "count": 1,
+      "percentage": 0.0204,
+      "sample_ids": [
+        "phish_10_features_row_08189"
+      ]
+    },
+    {
+      "vector": [
+        1,
+        -1,
+        1,
+        1,
+        -1,
+        -1,
+        0,
+        -1,
+        1,
+        1
+      ],
+      "pattern_dict": {
+        "having_IP_Address": 1,
+        "URL_Length": -1,
+        "Shortining_Service": 1,
+        "having_At_Symbol": 1,
+        "double_slash_redirecting": -1,
+        "Prefix_Suffix": -1,
+        "having_Sub_Domain": 0,
+        "HTTPS_token": -1,
+        "SSLfinal_State": 1,
+        "port": 1
+      },
+      "count": 1,
+      "percentage": 0.0204,
+      "sample_ids": [
+        "phish_10_features_row_02908"
+      ]
+    },
+    {
+      "vector": [
+        1,
+        -1,
+        1,
+        1,
+        -1,
+        -1,
+        0,
+        1,
+        -1,
+        -1
+      ],
+      "pattern_dict": {
+        "having_IP_Address": 1,
+        "URL_Length": -1,
+        "Shortining_Service": 1,
+        "having_At_Symbol": 1,
+        "double_slash_redirecting": -1,
+        "Prefix_Suffix": -1,
+        "having_Sub_Domain": 0,
+        "HTTPS_token": 1,
+        "SSLfinal_State": -1,
+        "port": -1
+      },
+      "count": 1,
+      "percentage": 0.0204,
+      "sample_ids": [
+        "phish_10_features_row_05148"
+      ]
+    },
+    {
+      "vector": [
+        1,
+        -1,
+        1,
+        1,
+        1,
+        -1,
+        0,
+        -1,
+        0,
+        -1
+      ],
+      "pattern_dict": {
+        "having_IP_Address": 1,
+        "URL_Length": -1,
+        "Shortining_Service": 1,
+        "having_At_Symbol": 1,
+        "double_slash_redirecting": 1,
+        "Prefix_Suffix": -1,
+        "having_Sub_Domain": 0,
+        "HTTPS_token": -1,
+        "SSLfinal_State": 0,
+        "port": -1
+      },
+      "count": 1,
+      "percentage": 0.0204,
+      "sample_ids": [
+        "phish_10_features_row_02593"
+      ]
+    },
+    {
+      "vector": [
+        1,
+        -1,
+        1,
+        1,
+        1,
+        -1,
+        0,
+        1,
+        1,
+        -1
+      ],
+      "pattern_dict": {
+        "having_IP_Address": 1,
+        "URL_Length": -1,
+        "Shortining_Service": 1,
+        "having_At_Symbol": 1,
+        "double_slash_redirecting": 1,
+        "Prefix_Suffix": -1,
+        "having_Sub_Domain": 0,
+        "HTTPS_token": 1,
+        "SSLfinal_State": 1,
+        "port": -1
+      },
+      "count": 1,
+      "percentage": 0.0204,
+      "sample_ids": [
+        "phish_10_features_row_02912"
+      ]
+    },
+    {
+      "vector": [
+        1,
+        0,
+        1,
+        -1,
+        1,
+        -1,
+        -1,
+        -1,
+        -1,
+        1
+      ],
+      "pattern_dict": {
+        "having_IP_Address": 1,
+        "URL_Length": 0,
+        "Shortining_Service": 1,
+        "having_At_Symbol": -1,
+        "double_slash_redirecting": 1,
+        "Prefix_Suffix": -1,
+        "having_Sub_Domain": -1,
+        "HTTPS_token": -1,
+        "SSLfinal_State": -1,
+        "port": 1
+      },
+      "count": 1,
+      "percentage": 0.0204,
+      "sample_ids": [
+        "phish_10_features_row_03586"
+      ]
+    },
+    {
+      "vector": [
+        1,
+        1,
+        -1,
+        -1,
+        -1,
+        -1,
+        0,
+        1,
+        -1,
+        1
+      ],
+      "pattern_dict": {
+        "having_IP_Address": 1,
+        "URL_Length": 1,
+        "Shortining_Service": -1,
+        "having_At_Symbol": -1,
+        "double_slash_redirecting": -1,
+        "Prefix_Suffix": -1,
+        "having_Sub_Domain": 0,
+        "HTTPS_token": 1,
+        "SSLfinal_State": -1,
+        "port": 1
+      },
+      "count": 1,
+      "percentage": 0.0204,
+      "sample_ids": [
+        "phish_10_features_row_05131"
+      ]
+    },
+    {
+      "vector": [
+        1,
+        1,
+        -1,
+        1,
+        -1,
+        -1,
+        -1,
+        -1,
+        0,
+        1
+      ],
+      "pattern_dict": {
+        "having_IP_Address": 1,
+        "URL_Length": 1,
+        "Shortining_Service": -1,
+        "having_At_Symbol": 1,
+        "double_slash_redirecting": -1,
+        "Prefix_Suffix": -1,
+        "having_Sub_Domain": -1,
+        "HTTPS_token": -1,
+        "SSLfinal_State": 0,
+        "port": 1
+      },
+      "count": 1,
+      "percentage": 0.0204,
+      "sample_ids": [
+        "phish_10_features_row_08828"
+      ]
+    },
+    {
+      "vector": [
+        1,
+        1,
+        -1,
+        1,
+        -1,
+        -1,
+        -1,
+        -1,
+        1,
+        1
+      ],
+      "pattern_dict": {
+        "having_IP_Address": 1,
+        "URL_Length": 1,
+        "Shortining_Service": -1,
+        "having_At_Symbol": 1,
+        "double_slash_redirecting": -1,
+        "Prefix_Suffix": -1,
+        "having_Sub_Domain": -1,
+        "HTTPS_token": -1,
+        "SSLfinal_State": 1,
+        "port": 1
+      },
+      "count": 1,
+      "percentage": 0.0204,
+      "sample_ids": [
+        "phish_10_features_row_08175"
+      ]
+    },
+    {
+      "vector": [
+        1,
+        1,
+        -1,
+        1,
+        -1,
+        -1,
+        0,
+        -1,
+        0,
+        1
+      ],
+      "pattern_dict": {
+        "having_IP_Address": 1,
+        "URL_Length": 1,
+        "Shortining_Service": -1,
+        "having_At_Symbol": 1,
+        "double_slash_redirecting": -1,
+        "Prefix_Suffix": -1,
+        "having_Sub_Domain": 0,
+        "HTTPS_token": -1,
+        "SSLfinal_State": 0,
+        "port": 1
+      },
+      "count": 1,
+      "percentage": 0.0204,
+      "sample_ids": [
+        "phish_10_features_row_05809"
+      ]
+    },
+    {
+      "vector": [
+        1,
+        1,
+        1,
+        -1,
+        1,
+        -1,
+        -1,
+        1,
+        0,
+        -1
+      ],
+      "pattern_dict": {
+        "having_IP_Address": 1,
+        "URL_Length": 1,
+        "Shortining_Service": 1,
+        "having_At_Symbol": -1,
+        "double_slash_redirecting": 1,
+        "Prefix_Suffix": -1,
+        "having_Sub_Domain": -1,
+        "HTTPS_token": 1,
+        "SSLfinal_State": 0,
+        "port": -1
+      },
+      "count": 1,
+      "percentage": 0.0204,
+      "sample_ids": [
+        "phish_10_features_row_09089"
+      ]
+    },
+    {
+      "vector": [
+        1,
+        1,
+        1,
+        -1,
+        1,
+        -1,
+        -1,
+        1,
+        0,
+        1
+      ],
+      "pattern_dict": {
+        "having_IP_Address": 1,
+        "URL_Length": 1,
+        "Shortining_Service": 1,
+        "having_At_Symbol": -1,
+        "double_slash_redirecting": 1,
+        "Prefix_Suffix": -1,
+        "having_Sub_Domain": -1,
+        "HTTPS_token": 1,
+        "SSLfinal_State": 0,
+        "port": 1
+      },
+      "count": 1,
+      "percentage": 0.0204,
+      "sample_ids": [
+        "phish_10_features_row_08507"
+      ]
+    },
+    {
+      "vector": [
+        1,
+        1,
+        1,
+        -1,
+        1,
+        -1,
+        0,
+        1,
+        -1,
+        -1
+      ],
+      "pattern_dict": {
+        "having_IP_Address": 1,
+        "URL_Length": 1,
+        "Shortining_Service": 1,
+        "having_At_Symbol": -1,
+        "double_slash_redirecting": 1,
+        "Prefix_Suffix": -1,
+        "having_Sub_Domain": 0,
+        "HTTPS_token": 1,
+        "SSLfinal_State": -1,
+        "port": -1
+      },
+      "count": 1,
+      "percentage": 0.0204,
+      "sample_ids": [
+        "phish_10_features_row_07148"
+      ]
+    },
+    {
+      "vector": [
+        1,
+        1,
+        1,
+        -1,
+        1,
+        -1,
+        0,
+        1,
+        1,
+        1
+      ],
+      "pattern_dict": {
+        "having_IP_Address": 1,
+        "URL_Length": 1,
+        "Shortining_Service": 1,
+        "having_At_Symbol": -1,
+        "double_slash_redirecting": 1,
+        "Prefix_Suffix": -1,
+        "having_Sub_Domain": 0,
+        "HTTPS_token": 1,
+        "SSLfinal_State": 1,
+        "port": 1
+      },
+      "count": 1,
+      "percentage": 0.0204,
+      "sample_ids": [
+        "phish_10_features_row_02621"
+      ]
+    },
+    {
+      "vector": [
+        1,
+        1,
+        1,
+        1,
+        1,
+        -1,
+        -1,
+        1,
+        0,
+        -1
+      ],
+      "pattern_dict": {
+        "having_IP_Address": 1,
+        "URL_Length": 1,
+        "Shortining_Service": 1,
+        "having_At_Symbol": 1,
+        "double_slash_redirecting": 1,
+        "Prefix_Suffix": -1,
+        "having_Sub_Domain": -1,
+        "HTTPS_token": 1,
+        "SSLfinal_State": 0,
+        "port": -1
+      },
+      "count": 1,
+      "percentage": 0.0204,
+      "sample_ids": [
+        "phish_10_features_row_08197"
+      ]
+    },
+    {
+      "vector": [
+        -1,
+        -1,
+        -1,
+        -1,
+        -1,
+        -1,
+        1,
+        -1,
+        0,
+        1
+      ],
+      "pattern_dict": {
+        "having_IP_Address": -1,
+        "URL_Length": -1,
+        "Shortining_Service": -1,
+        "having_At_Symbol": -1,
+        "double_slash_redirecting": -1,
+        "Prefix_Suffix": -1,
+        "having_Sub_Domain": 1,
+        "HTTPS_token": -1,
+        "SSLfinal_State": 0,
+        "port": 1
+      },
+      "count": 2,
+      "percentage": 0.0408,
+      "sample_ids": [
+        "phish_10_features_row_09869",
+        "phish_10_features_row_10090"
+      ]
+    },
+    {
+      "vector": [
+        -1,
+        -1,
+        -1,
+        -1,
+        1,
+        -1,
+        0,
+        -1,
+        1,
+        1
+      ],
+      "pattern_dict": {
+        "having_IP_Address": -1,
+        "URL_Length": -1,
+        "Shortining_Service": -1,
+        "having_At_Symbol": -1,
+        "double_slash_redirecting": 1,
+        "Prefix_Suffix": -1,
+        "having_Sub_Domain": 0,
+        "HTTPS_token": -1,
+        "SSLfinal_State": 1,
+        "port": 1
+      },
+      "count": 2,
+      "percentage": 0.0408,
+      "sample_ids": [
+        "phish_10_features_row_06864",
+        "phish_10_features_row_09883"
+      ]
+    },
+    {
+      "vector": [
+        -1,
+        -1,
+        -1,
+        1,
+        -1,
+        -1,
+        1,
+        -1,
+        0,
+        1
+      ],
+      "pattern_dict": {
+        "having_IP_Address": -1,
+        "URL_Length": -1,
+        "Shortining_Service": -1,
+        "having_At_Symbol": 1,
+        "double_slash_redirecting": -1,
+        "Prefix_Suffix": -1,
+        "having_Sub_Domain": 1,
+        "HTTPS_token": -1,
+        "SSLfinal_State": 0,
+        "port": 1
+      },
+      "count": 2,
+      "percentage": 0.0408,
+      "sample_ids": [
+        "phish_10_features_row_07826",
+        "phish_10_features_row_07841"
+      ]
+    },
+    {
+      "vector": [
+        -1,
+        -1,
+        -1,
+        1,
+        1,
+        -1,
+        -1,
+        1,
+        0,
+        1
+      ],
+      "pattern_dict": {
+        "having_IP_Address": -1,
+        "URL_Length": -1,
+        "Shortining_Service": -1,
+        "having_At_Symbol": 1,
+        "double_slash_redirecting": 1,
+        "Prefix_Suffix": -1,
+        "having_Sub_Domain": -1,
+        "HTTPS_token": 1,
+        "SSLfinal_State": 0,
+        "port": 1
+      },
+      "count": 2,
+      "percentage": 0.0408,
+      "sample_ids": [
+        "phish_10_features_row_09127",
+        "phish_10_features_row_09626"
+      ]
+    },
+    {
+      "vector": [
+        -1,
+        -1,
+        -1,
+        1,
+        1,
+        -1,
+        0,
+        1,
+        -1,
+        1
+      ],
+      "pattern_dict": {
+        "having_IP_Address": -1,
+        "URL_Length": -1,
+        "Shortining_Service": -1,
+        "having_At_Symbol": 1,
+        "double_slash_redirecting": 1,
+        "Prefix_Suffix": -1,
+        "having_Sub_Domain": 0,
+        "HTTPS_token": 1,
+        "SSLfinal_State": -1,
+        "port": 1
+      },
+      "count": 2,
+      "percentage": 0.0408,
+      "sample_ids": [
+        "phish_10_features_row_05133",
+        "phish_10_features_row_05166"
+      ]
+    },
+    {
+      "vector": [
+        -1,
+        -1,
+        -1,
+        1,
+        1,
+        -1,
+        1,
+        1,
+        -1,
+        1
+      ],
+      "pattern_dict": {
+        "having_IP_Address": -1,
+        "URL_Length": -1,
+        "Shortining_Service": -1,
+        "having_At_Symbol": 1,
+        "double_slash_redirecting": 1,
+        "Prefix_Suffix": -1,
+        "having_Sub_Domain": 1,
+        "HTTPS_token": 1,
+        "SSLfinal_State": -1,
+        "port": 1
+      },
+      "count": 2,
+      "percentage": 0.0408,
+      "sample_ids": [
+        "phish_10_features_row_05182",
+        "phish_10_features_row_07638"
+      ]
+    },
+    {
+      "vector": [
+        -1,
+        -1,
+        1,
+        -1,
+        -1,
+        -1,
+        0,
+        -1,
+        -1,
+        -1
+      ],
+      "pattern_dict": {
+        "having_IP_Address": -1,
+        "URL_Length": -1,
+        "Shortining_Service": 1,
+        "having_At_Symbol": -1,
+        "double_slash_redirecting": -1,
+        "Prefix_Suffix": -1,
+        "having_Sub_Domain": 0,
+        "HTTPS_token": -1,
+        "SSLfinal_State": -1,
+        "port": -1
+      },
+      "count": 2,
+      "percentage": 0.0408,
+      "sample_ids": [
+        "phish_10_features_row_06646",
+        "phish_10_features_row_09665"
+      ]
+    },
+    {
+      "vector": [
+        -1,
+        -1,
+        1,
+        -1,
+        -1,
+        -1,
+        0,
+        1,
+        -1,
+        -1
+      ],
+      "pattern_dict": {
+        "having_IP_Address": -1,
+        "URL_Length": -1,
+        "Shortining_Service": 1,
+        "having_At_Symbol": -1,
+        "double_slash_redirecting": -1,
+        "Prefix_Suffix": -1,
+        "having_Sub_Domain": 0,
+        "HTTPS_token": 1,
+        "SSLfinal_State": -1,
+        "port": -1
+      },
+      "count": 2,
+      "percentage": 0.0408,
+      "sample_ids": [
+        "phish_10_features_row_05126",
+        "phish_10_features_row_05208"
+      ]
+    },
+    {
+      "vector": [
+        -1,
+        -1,
+        1,
+        -1,
+        -1,
+        -1,
+        1,
+        1,
+        1,
+        1
+      ],
+      "pattern_dict": {
+        "having_IP_Address": -1,
+        "URL_Length": -1,
+        "Shortining_Service": 1,
+        "having_At_Symbol": -1,
+        "double_slash_redirecting": -1,
+        "Prefix_Suffix": -1,
+        "having_Sub_Domain": 1,
+        "HTTPS_token": 1,
+        "SSLfinal_State": 1,
+        "port": 1
+      },
+      "count": 2,
+      "percentage": 0.0408,
+      "sample_ids": [
+        "phish_10_features_row_08360",
+        "phish_10_features_row_08838"
+      ]
+    },
+    {
+      "vector": [
+        -1,
+        -1,
+        1,
+        -1,
+        1,
+        -1,
+        -1,
+        -1,
+        -1,
+        1
+      ],
+      "pattern_dict": {
+        "having_IP_Address": -1,
+        "URL_Length": -1,
+        "Shortining_Service": 1,
+        "having_At_Symbol": -1,
+        "double_slash_redirecting": 1,
+        "Prefix_Suffix": -1,
+        "having_Sub_Domain": -1,
+        "HTTPS_token": -1,
+        "SSLfinal_State": -1,
+        "port": 1
+      },
+      "count": 2,
+      "percentage": 0.0408,
+      "sample_ids": [
+        "phish_10_features_row_09183",
+        "phish_10_features_row_10503"
+      ]
+    },
+    {
+      "vector": [
+        -1,
+        -1,
+        1,
+        -1,
+        1,
+        -1,
+        -1,
+        1,
+        1,
+        1
+      ],
+      "pattern_dict": {
+        "having_IP_Address": -1,
+        "URL_Length": -1,
+        "Shortining_Service": 1,
+        "having_At_Symbol": -1,
+        "double_slash_redirecting": 1,
+        "Prefix_Suffix": -1,
+        "having_Sub_Domain": -1,
+        "HTTPS_token": 1,
+        "SSLfinal_State": 1,
+        "port": 1
+      },
+      "count": 2,
+      "percentage": 0.0408,
+      "sample_ids": [
+        "phish_10_features_row_08423",
+        "phish_10_features_row_08746"
+      ]
+    },
+    {
+      "vector": [
+        -1,
+        -1,
+        1,
+        -1,
+        1,
+        -1,
+        0,
+        -1,
+        0,
+        1
+      ],
+      "pattern_dict": {
+        "having_IP_Address": -1,
+        "URL_Length": -1,
+        "Shortining_Service": 1,
+        "having_At_Symbol": -1,
+        "double_slash_redirecting": 1,
+        "Prefix_Suffix": -1,
+        "having_Sub_Domain": 0,
+        "HTTPS_token": -1,
+        "SSLfinal_State": 0,
+        "port": 1
+      },
+      "count": 2,
+      "percentage": 0.0408,
+      "sample_ids": [
+        "phish_10_features_row_06005",
+        "phish_10_features_row_09024"
+      ]
+    },
+    {
+      "vector": [
+        -1,
+        -1,
+        1,
+        -1,
+        1,
+        -1,
+        1,
+        1,
+        0,
+        1
+      ],
+      "pattern_dict": {
+        "having_IP_Address": -1,
+        "URL_Length": -1,
+        "Shortining_Service": 1,
+        "having_At_Symbol": -1,
+        "double_slash_redirecting": 1,
+        "Prefix_Suffix": -1,
+        "having_Sub_Domain": 1,
+        "HTTPS_token": 1,
+        "SSLfinal_State": 0,
+        "port": 1
+      },
+      "count": 2,
+      "percentage": 0.0408,
+      "sample_ids": [
+        "phish_10_features_row_05286",
+        "phish_10_features_row_05287"
+      ]
+    },
+    {
+      "vector": [
+        -1,
+        -1,
+        1,
+        -1,
+        1,
+        -1,
+        1,
+        1,
+        1,
+        1
+      ],
+      "pattern_dict": {
+        "having_IP_Address": -1,
+        "URL_Length": -1,
+        "Shortining_Service": 1,
+        "having_At_Symbol": -1,
+        "double_slash_redirecting": 1,
+        "Prefix_Suffix": -1,
+        "having_Sub_Domain": 1,
+        "HTTPS_token": 1,
+        "SSLfinal_State": 1,
+        "port": 1
+      },
+      "count": 2,
+      "percentage": 0.0408,
+      "sample_ids": [
+        "phish_10_features_row_08287",
+        "phish_10_features_row_08295"
+      ]
+    },
+    {
+      "vector": [
+        -1,
+        -1,
+        1,
+        1,
+        -1,
+        -1,
+        0,
+        -1,
+        -1,
+        1
+      ],
+      "pattern_dict": {
+        "having_IP_Address": -1,
+        "URL_Length": -1,
+        "Shortining_Service": 1,
+        "having_At_Symbol": 1,
+        "double_slash_redirecting": -1,
+        "Prefix_Suffix": -1,
+        "having_Sub_Domain": 0,
+        "HTTPS_token": -1,
+        "SSLfinal_State": -1,
+        "port": 1
+      },
+      "count": 2,
+      "percentage": 0.0408,
+      "sample_ids": [
+        "phish_10_features_row_06064",
+        "phish_10_features_row_06538"
+      ]
+    },
+    {
+      "vector": [
+        -1,
+        -1,
+        1,
+        1,
+        -1,
+        -1,
+        0,
+        1,
+        0,
+        1
+      ],
+      "pattern_dict": {
+        "having_IP_Address": -1,
+        "URL_Length": -1,
+        "Shortining_Service": 1,
+        "having_At_Symbol": 1,
+        "double_slash_redirecting": -1,
+        "Prefix_Suffix": -1,
+        "having_Sub_Domain": 0,
+        "HTTPS_token": 1,
+        "SSLfinal_State": 0,
+        "port": 1
+      },
+      "count": 2,
+      "percentage": 0.0408,
+      "sample_ids": [
+        "phish_10_features_row_06833",
+        "phish_10_features_row_09852"
+      ]
+    },
+    {
+      "vector": [
+        -1,
+        -1,
+        1,
+        1,
+        -1,
+        -1,
+        1,
+        1,
+        -1,
+        1
+      ],
+      "pattern_dict": {
+        "having_IP_Address": -1,
+        "URL_Length": -1,
+        "Shortining_Service": 1,
+        "having_At_Symbol": 1,
+        "double_slash_redirecting": -1,
+        "Prefix_Suffix": -1,
+        "having_Sub_Domain": 1,
+        "HTTPS_token": 1,
+        "SSLfinal_State": -1,
+        "port": 1
+      },
+      "count": 2,
+      "percentage": 0.0408,
+      "sample_ids": [
+        "phish_10_features_row_05997",
+        "phish_10_features_row_09016"
+      ]
+    },
+    {
+      "vector": [
+        -1,
+        -1,
+        1,
+        1,
+        1,
+        -1,
+        -1,
+        -1,
+        0,
+        1
+      ],
+      "pattern_dict": {
+        "having_IP_Address": -1,
+        "URL_Length": -1,
+        "Shortining_Service": 1,
+        "having_At_Symbol": 1,
+        "double_slash_redirecting": 1,
+        "Prefix_Suffix": -1,
+        "having_Sub_Domain": -1,
+        "HTTPS_token": -1,
+        "SSLfinal_State": 0,
+        "port": 1
+      },
+      "count": 2,
+      "percentage": 0.0408,
+      "sample_ids": [
+        "phish_10_features_row_08780",
+        "phish_10_features_row_09804"
+      ]
+    },
+    {
+      "vector": [
+        -1,
+        -1,
+        1,
+        1,
+        1,
+        -1,
+        0,
+        -1,
+        0,
+        1
+      ],
+      "pattern_dict": {
+        "having_IP_Address": -1,
+        "URL_Length": -1,
+        "Shortining_Service": 1,
+        "having_At_Symbol": 1,
+        "double_slash_redirecting": 1,
+        "Prefix_Suffix": -1,
+        "having_Sub_Domain": 0,
+        "HTTPS_token": -1,
+        "SSLfinal_State": 0,
+        "port": 1
+      },
+      "count": 2,
+      "percentage": 0.0408,
+      "sample_ids": [
+        "phish_10_features_row_05761",
+        "phish_10_features_row_06785"
+      ]
+    },
+    {
+      "vector": [
+        -1,
+        -1,
+        1,
+        1,
+        1,
+        -1,
+        0,
+        1,
+        -1,
+        -1
+      ],
+      "pattern_dict": {
+        "having_IP_Address": -1,
+        "URL_Length": -1,
+        "Shortining_Service": 1,
+        "having_At_Symbol": 1,
+        "double_slash_redirecting": 1,
+        "Prefix_Suffix": -1,
+        "having_Sub_Domain": 0,
+        "HTTPS_token": 1,
+        "SSLfinal_State": -1,
+        "port": -1
+      },
+      "count": 2,
+      "percentage": 0.0408,
+      "sample_ids": [
+        "phish_10_features_row_05145",
+        "phish_10_features_row_07223"
+      ]
+    },
+    {
+      "vector": [
+        -1,
+        -1,
+        1,
+        1,
+        1,
+        -1,
+        0,
+        1,
+        1,
+        -1
+      ],
+      "pattern_dict": {
+        "having_IP_Address": -1,
+        "URL_Length": -1,
+        "Shortining_Service": 1,
+        "having_At_Symbol": 1,
+        "double_slash_redirecting": 1,
+        "Prefix_Suffix": -1,
+        "having_Sub_Domain": 0,
+        "HTTPS_token": 1,
+        "SSLfinal_State": 1,
+        "port": -1
+      },
+      "count": 2,
+      "percentage": 0.0408,
+      "sample_ids": [
+        "phish_10_features_row_05402",
+        "phish_10_features_row_08443"
+      ]
+    },
+    {
+      "vector": [
+        -1,
+        0,
+        -1,
+        -1,
+        1,
+        -1,
+        -1,
+        1,
+        -1,
+        1
+      ],
+      "pattern_dict": {
+        "having_IP_Address": -1,
+        "URL_Length": 0,
+        "Shortining_Service": -1,
+        "having_At_Symbol": -1,
+        "double_slash_redirecting": 1,
+        "Prefix_Suffix": -1,
+        "having_Sub_Domain": -1,
+        "HTTPS_token": 1,
+        "SSLfinal_State": -1,
+        "port": 1
+      },
+      "count": 2,
+      "percentage": 0.0408,
+      "sample_ids": [
+        "phish_10_features_row_09251",
+        "phish_10_features_row_10744"
+      ]
+    },
+    {
+      "vector": [
+        -1,
+        0,
+        1,
+        -1,
+        1,
+        -1,
+        0,
+        1,
+        1,
+        -1
+      ],
+      "pattern_dict": {
+        "having_IP_Address": -1,
+        "URL_Length": 0,
+        "Shortining_Service": 1,
+        "having_At_Symbol": -1,
+        "double_slash_redirecting": 1,
+        "Prefix_Suffix": -1,
+        "having_Sub_Domain": 0,
+        "HTTPS_token": 1,
+        "SSLfinal_State": 1,
+        "port": -1
+      },
+      "count": 2,
+      "percentage": 0.0408,
+      "sample_ids": [
+        "phish_10_features_row_05139",
+        "phish_10_features_row_08180"
+      ]
+    },
+    {
+      "vector": [
+        -1,
+        0,
+        1,
+        -1,
+        1,
+        -1,
+        1,
+        -1,
+        -1,
+        1
+      ],
+      "pattern_dict": {
+        "having_IP_Address": -1,
+        "URL_Length": 0,
+        "Shortining_Service": 1,
+        "having_At_Symbol": -1,
+        "double_slash_redirecting": 1,
+        "Prefix_Suffix": -1,
+        "having_Sub_Domain": 1,
+        "HTTPS_token": -1,
+        "SSLfinal_State": -1,
+        "port": 1
+      },
+      "count": 2,
+      "percentage": 0.0408,
+      "sample_ids": [
+        "phish_10_features_row_09429",
+        "phish_10_features_row_10922"
+      ]
+    },
+    {
+      "vector": [
+        -1,
+        0,
+        1,
+        1,
+        1,
+        -1,
+        0,
+        1,
+        -1,
+        1
+      ],
+      "pattern_dict": {
+        "having_IP_Address": -1,
+        "URL_Length": 0,
+        "Shortining_Service": 1,
+        "having_At_Symbol": 1,
+        "double_slash_redirecting": 1,
+        "Prefix_Suffix": -1,
+        "having_Sub_Domain": 0,
+        "HTTPS_token": 1,
+        "SSLfinal_State": -1,
+        "port": 1
+      },
+      "count": 2,
+      "percentage": 0.0408,
+      "sample_ids": [
+        "phish_10_features_row_06021",
+        "phish_10_features_row_09040"
+      ]
+    },
+    {
+      "vector": [
+        -1,
+        1,
+        -1,
+        -1,
+        -1,
+        -1,
+        1,
+        -1,
+        0,
+        1
+      ],
+      "pattern_dict": {
+        "having_IP_Address": -1,
+        "URL_Length": 1,
+        "Shortining_Service": -1,
+        "having_At_Symbol": -1,
+        "double_slash_redirecting": -1,
+        "Prefix_Suffix": -1,
+        "having_Sub_Domain": 1,
+        "HTTPS_token": -1,
+        "SSLfinal_State": 0,
+        "port": 1
+      },
+      "count": 2,
+      "percentage": 0.0408,
+      "sample_ids": [
+        "phish_10_features_row_06733",
+        "phish_10_features_row_09115"
+      ]
+    },
+    {
+      "vector": [
+        -1,
+        1,
+        1,
+        -1,
+        -1,
+        -1,
+        -1,
+        -1,
+        -1,
+        1
+      ],
+      "pattern_dict": {
+        "having_IP_Address": -1,
+        "URL_Length": 1,
+        "Shortining_Service": 1,
+        "having_At_Symbol": -1,
+        "double_slash_redirecting": -1,
+        "Prefix_Suffix": -1,
+        "having_Sub_Domain": -1,
+        "HTTPS_token": -1,
+        "SSLfinal_State": -1,
+        "port": 1
+      },
+      "count": 2,
+      "percentage": 0.0408,
+      "sample_ids": [
+        "phish_10_features_row_05787",
+        "phish_10_features_row_08806"
+      ]
+    },
+    {
+      "vector": [
+        -1,
+        1,
+        1,
+        -1,
+        1,
+        -1,
+        -1,
+        1,
+        -1,
+        1
+      ],
+      "pattern_dict": {
+        "having_IP_Address": -1,
+        "URL_Length": 1,
+        "Shortining_Service": 1,
+        "having_At_Symbol": -1,
+        "double_slash_redirecting": 1,
+        "Prefix_Suffix": -1,
+        "having_Sub_Domain": -1,
+        "HTTPS_token": 1,
+        "SSLfinal_State": -1,
+        "port": 1
+      },
+      "count": 2,
+      "percentage": 0.0408,
+      "sample_ids": [
+        "phish_10_features_row_08473",
+        "phish_10_features_row_08596"
+      ]
+    },
+    {
+      "vector": [
+        -1,
+        1,
+        1,
+        -1,
+        1,
+        -1,
+        -1,
+        1,
+        0,
+        -1
+      ],
+      "pattern_dict": {
+        "having_IP_Address": -1,
+        "URL_Length": 1,
+        "Shortining_Service": 1,
+        "having_At_Symbol": -1,
+        "double_slash_redirecting": 1,
+        "Prefix_Suffix": -1,
+        "having_Sub_Domain": -1,
+        "HTTPS_token": 1,
+        "SSLfinal_State": 0,
+        "port": -1
+      },
+      "count": 2,
+      "percentage": 0.0408,
+      "sample_ids": [
+        "phish_10_features_row_08699",
+        "phish_10_features_row_09722"
+      ]
+    },
+    {
+      "vector": [
+        -1,
+        1,
+        1,
+        -1,
+        1,
+        -1,
+        -1,
+        1,
+        0,
+        1
+      ],
+      "pattern_dict": {
+        "having_IP_Address": -1,
+        "URL_Length": 1,
+        "Shortining_Service": 1,
+        "having_At_Symbol": -1,
+        "double_slash_redirecting": 1,
+        "Prefix_Suffix": -1,
+        "having_Sub_Domain": -1,
+        "HTTPS_token": 1,
+        "SSLfinal_State": 0,
+        "port": 1
+      },
+      "count": 2,
+      "percentage": 0.0408,
+      "sample_ids": [
+        "phish_10_features_row_08366",
+        "phish_10_features_row_09062"
+      ]
+    },
+    {
+      "vector": [
+        -1,
+        1,
+        1,
+        -1,
+        1,
+        -1,
+        0,
+        1,
+        -1,
+        -1
+      ],
+      "pattern_dict": {
+        "having_IP_Address": -1,
+        "URL_Length": 1,
+        "Shortining_Service": 1,
+        "having_At_Symbol": -1,
+        "double_slash_redirecting": 1,
+        "Prefix_Suffix": -1,
+        "having_Sub_Domain": 0,
+        "HTTPS_token": 1,
+        "SSLfinal_State": -1,
+        "port": -1
+      },
+      "count": 2,
+      "percentage": 0.0408,
+      "sample_ids": [
+        "phish_10_features_row_05155",
+        "phish_10_features_row_06561"
+      ]
+    },
+    {
+      "vector": [
+        -1,
+        1,
+        1,
+        -1,
+        1,
+        -1,
+        0,
+        1,
+        1,
+        -1
+      ],
+      "pattern_dict": {
+        "having_IP_Address": -1,
+        "URL_Length": 1,
+        "Shortining_Service": 1,
+        "having_At_Symbol": -1,
+        "double_slash_redirecting": 1,
+        "Prefix_Suffix": -1,
+        "having_Sub_Domain": 0,
+        "HTTPS_token": 1,
+        "SSLfinal_State": 1,
+        "port": -1
+      },
+      "count": 2,
+      "percentage": 0.0408,
+      "sample_ids": [
+        "phish_10_features_row_07595",
+        "phish_10_features_row_10520"
+      ]
+    },
+    {
+      "vector": [
+        -1,
+        1,
+        1,
+        -1,
+        1,
+        -1,
+        1,
+        1,
+        0,
+        -1
+      ],
+      "pattern_dict": {
+        "having_IP_Address": -1,
+        "URL_Length": 1,
+        "Shortining_Service": 1,
+        "having_At_Symbol": -1,
+        "double_slash_redirecting": 1,
+        "Prefix_Suffix": -1,
+        "having_Sub_Domain": 1,
+        "HTTPS_token": 1,
+        "SSLfinal_State": 0,
+        "port": -1
+      },
+      "count": 2,
+      "percentage": 0.0408,
+      "sample_ids": [
+        "phish_10_features_row_06861",
+        "phish_10_features_row_07804"
+      ]
+    },
+    {
+      "vector": [
+        -1,
+        1,
+        1,
+        1,
+        1,
+        -1,
+        -1,
+        -1,
+        -1,
+        1
+      ],
+      "pattern_dict": {
+        "having_IP_Address": -1,
+        "URL_Length": 1,
+        "Shortining_Service": 1,
+        "having_At_Symbol": 1,
+        "double_slash_redirecting": 1,
+        "Prefix_Suffix": -1,
+        "having_Sub_Domain": -1,
+        "HTTPS_token": -1,
+        "SSLfinal_State": -1,
+        "port": 1
+      },
+      "count": 2,
+      "percentage": 0.0408,
+      "sample_ids": [
+        "phish_10_features_row_08821",
+        "phish_10_features_row_09894"
+      ]
+    },
+    {
+      "vector": [
+        -1,
+        1,
+        1,
+        1,
+        1,
+        -1,
+        -1,
+        -1,
+        1,
+        1
+      ],
+      "pattern_dict": {
+        "having_IP_Address": -1,
+        "URL_Length": 1,
+        "Shortining_Service": 1,
+        "having_At_Symbol": 1,
+        "double_slash_redirecting": 1,
+        "Prefix_Suffix": -1,
+        "having_Sub_Domain": -1,
+        "HTTPS_token": -1,
+        "SSLfinal_State": 1,
+        "port": 1
+      },
+      "count": 2,
+      "percentage": 0.0408,
+      "sample_ids": [
+        "phish_10_features_row_05782",
+        "phish_10_features_row_05784"
+      ]
+    },
+    {
+      "vector": [
+        -1,
+        1,
+        1,
+        1,
+        1,
+        -1,
+        -1,
+        1,
+        -1,
+        -1
+      ],
+      "pattern_dict": {
+        "having_IP_Address": -1,
+        "URL_Length": 1,
+        "Shortining_Service": 1,
+        "having_At_Symbol": 1,
+        "double_slash_redirecting": 1,
+        "Prefix_Suffix": -1,
+        "having_Sub_Domain": -1,
+        "HTTPS_token": 1,
+        "SSLfinal_State": -1,
+        "port": -1
+      },
+      "count": 2,
+      "percentage": 0.0408,
+      "sample_ids": [
+        "phish_10_features_row_08245",
+        "phish_10_features_row_08262"
+      ]
+    },
+    {
+      "vector": [
+        -1,
+        1,
+        1,
+        1,
+        1,
+        -1,
+        0,
+        -1,
+        -1,
+        1
+      ],
+      "pattern_dict": {
+        "having_IP_Address": -1,
+        "URL_Length": 1,
+        "Shortining_Service": 1,
+        "having_At_Symbol": 1,
+        "double_slash_redirecting": 1,
+        "Prefix_Suffix": -1,
+        "having_Sub_Domain": 0,
+        "HTTPS_token": -1,
+        "SSLfinal_State": -1,
+        "port": 1
+      },
+      "count": 2,
+      "percentage": 0.0408,
+      "sample_ids": [
+        "phish_10_features_row_05802",
+        "phish_10_features_row_06875"
+      ]
+    },
+    {
+      "vector": [
+        -1,
+        1,
+        1,
+        1,
+        1,
+        -1,
+        0,
+        -1,
+        1,
+        1
+      ],
+      "pattern_dict": {
+        "having_IP_Address": -1,
+        "URL_Length": 1,
+        "Shortining_Service": 1,
+        "having_At_Symbol": 1,
+        "double_slash_redirecting": 1,
+        "Prefix_Suffix": -1,
+        "having_Sub_Domain": 0,
+        "HTTPS_token": -1,
+        "SSLfinal_State": 1,
+        "port": 1
+      },
+      "count": 2,
+      "percentage": 0.0408,
+      "sample_ids": [
+        "phish_10_features_row_08801",
+        "phish_10_features_row_08803"
+      ]
+    },
+    {
+      "vector": [
+        -1,
+        1,
+        1,
+        1,
+        1,
+        -1,
+        0,
+        1,
+        -1,
+        -1
+      ],
+      "pattern_dict": {
+        "having_IP_Address": -1,
+        "URL_Length": 1,
+        "Shortining_Service": 1,
+        "having_At_Symbol": 1,
+        "double_slash_redirecting": 1,
+        "Prefix_Suffix": -1,
+        "having_Sub_Domain": 0,
+        "HTTPS_token": 1,
+        "SSLfinal_State": -1,
+        "port": -1
+      },
+      "count": 2,
+      "percentage": 0.0408,
+      "sample_ids": [
+        "phish_10_features_row_05204",
+        "phish_10_features_row_05221"
+      ]
+    },
+    {
+      "vector": [
+        1,
+        -1,
+        -1,
+        -1,
+        -1,
+        -1,
+        -1,
+        -1,
+        0,
+        1
+      ],
+      "pattern_dict": {
+        "having_IP_Address": 1,
+        "URL_Length": -1,
+        "Shortining_Service": -1,
+        "having_At_Symbol": -1,
+        "double_slash_redirecting": -1,
+        "Prefix_Suffix": -1,
+        "having_Sub_Domain": -1,
+        "HTTPS_token": -1,
+        "SSLfinal_State": 0,
+        "port": 1
+      },
+      "count": 2,
+      "percentage": 0.0408,
+      "sample_ids": [
+        "phish_10_features_row_09285",
+        "phish_10_features_row_10778"
+      ]
+    },
+    {
+      "vector": [
+        1,
+        -1,
+        -1,
+        -1,
+        -1,
+        -1,
+        1,
+        -1,
+        0,
+        1
+      ],
+      "pattern_dict": {
+        "having_IP_Address": 1,
+        "URL_Length": -1,
+        "Shortining_Service": -1,
+        "having_At_Symbol": -1,
+        "double_slash_redirecting": -1,
+        "Prefix_Suffix": -1,
+        "having_Sub_Domain": 1,
+        "HTTPS_token": -1,
+        "SSLfinal_State": 0,
+        "port": 1
+      },
+      "count": 2,
+      "percentage": 0.0408,
+      "sample_ids": [
+        "phish_10_features_row_06266",
+        "phish_10_features_row_07889"
+      ]
+    },
+    {
+      "vector": [
+        1,
+        -1,
+        -1,
+        1,
+        -1,
+        -1,
+        0,
+        -1,
+        0,
+        1
+      ],
+      "pattern_dict": {
+        "having_IP_Address": 1,
+        "URL_Length": -1,
+        "Shortining_Service": -1,
+        "having_At_Symbol": 1,
+        "double_slash_redirecting": -1,
+        "Prefix_Suffix": -1,
+        "having_Sub_Domain": 0,
+        "HTTPS_token": -1,
+        "SSLfinal_State": 0,
+        "port": 1
+      },
+      "count": 2,
+      "percentage": 0.0408,
+      "sample_ids": [
+        "phish_10_features_row_07231",
+        "phish_10_features_row_07786"
+      ]
+    },
+    {
+      "vector": [
+        1,
+        -1,
+        -1,
+        1,
+        1,
+        -1,
+        1,
+        1,
+        -1,
+        1
+      ],
+      "pattern_dict": {
+        "having_IP_Address": 1,
+        "URL_Length": -1,
+        "Shortining_Service": -1,
+        "having_At_Symbol": 1,
+        "double_slash_redirecting": 1,
+        "Prefix_Suffix": -1,
+        "having_Sub_Domain": 1,
+        "HTTPS_token": 1,
+        "SSLfinal_State": -1,
+        "port": 1
+      },
+      "count": 2,
+      "percentage": 0.0408,
+      "sample_ids": [
+        "phish_10_features_row_02512",
+        "phish_10_features_row_04968"
+      ]
+    },
+    {
+      "vector": [
+        1,
+        -1,
+        1,
+        -1,
+        -1,
+        -1,
+        0,
+        -1,
+        1,
+        1
+      ],
+      "pattern_dict": {
+        "having_IP_Address": 1,
+        "URL_Length": -1,
+        "Shortining_Service": 1,
+        "having_At_Symbol": -1,
+        "double_slash_redirecting": -1,
+        "Prefix_Suffix": -1,
+        "having_Sub_Domain": 0,
+        "HTTPS_token": -1,
+        "SSLfinal_State": 1,
+        "port": 1
+      },
+      "count": 2,
+      "percentage": 0.0408,
+      "sample_ids": [
+        "phish_10_features_row_02456",
+        "phish_10_features_row_04912"
+      ]
+    },
+    {
+      "vector": [
+        1,
+        -1,
+        1,
+        -1,
+        -1,
+        -1,
+        0,
+        1,
+        1,
+        1
+      ],
+      "pattern_dict": {
+        "having_IP_Address": 1,
+        "URL_Length": -1,
+        "Shortining_Service": 1,
+        "having_At_Symbol": -1,
+        "double_slash_redirecting": -1,
+        "Prefix_Suffix": -1,
+        "having_Sub_Domain": 0,
+        "HTTPS_token": 1,
+        "SSLfinal_State": 1,
+        "port": 1
+      },
+      "count": 2,
+      "percentage": 0.0408,
+      "sample_ids": [
+        "phish_10_features_row_05195",
+        "phish_10_features_row_08236"
+      ]
+    },
+    {
+      "vector": [
+        1,
+        -1,
+        1,
+        -1,
+        1,
+        -1,
+        -1,
+        1,
+        1,
+        1
+      ],
+      "pattern_dict": {
+        "having_IP_Address": 1,
+        "URL_Length": -1,
+        "Shortining_Service": 1,
+        "having_At_Symbol": -1,
+        "double_slash_redirecting": 1,
+        "Prefix_Suffix": -1,
+        "having_Sub_Domain": -1,
+        "HTTPS_token": 1,
+        "SSLfinal_State": 1,
+        "port": 1
+      },
+      "count": 2,
+      "percentage": 0.0408,
+      "sample_ids": [
+        "phish_10_features_row_02617",
+        "phish_10_features_row_02882"
+      ]
+    },
+    {
+      "vector": [
+        1,
+        -1,
+        1,
+        -1,
+        1,
+        -1,
+        0,
+        -1,
+        1,
+        -1
+      ],
+      "pattern_dict": {
+        "having_IP_Address": 1,
+        "URL_Length": -1,
+        "Shortining_Service": 1,
+        "having_At_Symbol": -1,
+        "double_slash_redirecting": 1,
+        "Prefix_Suffix": -1,
+        "having_Sub_Domain": 0,
+        "HTTPS_token": -1,
+        "SSLfinal_State": 1,
+        "port": -1
+      },
+      "count": 2,
+      "percentage": 0.0408,
+      "sample_ids": [
+        "phish_10_features_row_02546",
+        "phish_10_features_row_02608"
+      ]
+    },
+    {
+      "vector": [
+        1,
+        -1,
+        1,
+        -1,
+        1,
+        -1,
+        0,
+        -1,
+        1,
+        1
+      ],
+      "pattern_dict": {
+        "having_IP_Address": 1,
+        "URL_Length": -1,
+        "Shortining_Service": 1,
+        "having_At_Symbol": -1,
+        "double_slash_redirecting": 1,
+        "Prefix_Suffix": -1,
+        "having_Sub_Domain": 0,
+        "HTTPS_token": -1,
+        "SSLfinal_State": 1,
+        "port": 1
+      },
+      "count": 2,
+      "percentage": 0.0408,
+      "sample_ids": [
+        "phish_10_features_row_06074",
+        "phish_10_features_row_09093"
+      ]
+    },
+    {
+      "vector": [
+        1,
+        -1,
+        1,
+        -1,
+        1,
+        -1,
+        1,
+        1,
+        1,
+        1
+      ],
+      "pattern_dict": {
+        "having_IP_Address": 1,
+        "URL_Length": -1,
+        "Shortining_Service": 1,
+        "having_At_Symbol": -1,
+        "double_slash_redirecting": 1,
+        "Prefix_Suffix": -1,
+        "having_Sub_Domain": 1,
+        "HTTPS_token": 1,
+        "SSLfinal_State": 1,
+        "port": 1
+      },
+      "count": 2,
+      "percentage": 0.0408,
+      "sample_ids": [
+        "phish_10_features_row_02479",
+        "phish_10_features_row_04935"
+      ]
+    },
+    {
+      "vector": [
+        1,
+        -1,
+        1,
+        1,
+        -1,
+        -1,
+        -1,
+        -1,
+        0,
+        1
+      ],
+      "pattern_dict": {
+        "having_IP_Address": 1,
+        "URL_Length": -1,
+        "Shortining_Service": 1,
+        "having_At_Symbol": 1,
+        "double_slash_redirecting": -1,
+        "Prefix_Suffix": -1,
+        "having_Sub_Domain": -1,
+        "HTTPS_token": -1,
+        "SSLfinal_State": 0,
+        "port": 1
+      },
+      "count": 2,
+      "percentage": 0.0408,
+      "sample_ids": [
+        "phish_10_features_row_09424",
+        "phish_10_features_row_10917"
+      ]
+    },
+    {
+      "vector": [
+        1,
+        -1,
+        1,
+        1,
+        -1,
+        -1,
+        1,
+        -1,
+        0,
+        1
+      ],
+      "pattern_dict": {
+        "having_IP_Address": 1,
+        "URL_Length": -1,
+        "Shortining_Service": 1,
+        "having_At_Symbol": 1,
+        "double_slash_redirecting": -1,
+        "Prefix_Suffix": -1,
+        "having_Sub_Domain": 1,
+        "HTTPS_token": -1,
+        "SSLfinal_State": 0,
+        "port": 1
+      },
+      "count": 2,
+      "percentage": 0.0408,
+      "sample_ids": [
+        "phish_10_features_row_06405",
+        "phish_10_features_row_08028"
+      ]
+    },
+    {
+      "vector": [
+        1,
+        -1,
+        1,
+        1,
+        1,
+        -1,
+        -1,
+        -1,
+        0,
+        1
+      ],
+      "pattern_dict": {
+        "having_IP_Address": 1,
+        "URL_Length": -1,
+        "Shortining_Service": 1,
+        "having_At_Symbol": 1,
+        "double_slash_redirecting": 1,
+        "Prefix_Suffix": -1,
+        "having_Sub_Domain": -1,
+        "HTTPS_token": -1,
+        "SSLfinal_State": 0,
+        "port": 1
+      },
+      "count": 2,
+      "percentage": 0.0408,
+      "sample_ids": [
+        "phish_10_features_row_08898",
+        "phish_10_features_row_10662"
+      ]
+    },
+    {
+      "vector": [
+        1,
+        -1,
+        1,
+        1,
+        1,
+        -1,
+        1,
+        -1,
+        -1,
+        -1
+      ],
+      "pattern_dict": {
+        "having_IP_Address": 1,
+        "URL_Length": -1,
+        "Shortining_Service": 1,
+        "having_At_Symbol": 1,
+        "double_slash_redirecting": 1,
+        "Prefix_Suffix": -1,
+        "having_Sub_Domain": 1,
+        "HTTPS_token": -1,
+        "SSLfinal_State": -1,
+        "port": -1
+      },
+      "count": 2,
+      "percentage": 0.0408,
+      "sample_ids": [
+        "phish_10_features_row_02578",
+        "phish_10_features_row_02580"
+      ]
+    },
+    {
+      "vector": [
+        1,
+        0,
+        1,
+        1,
+        1,
+        -1,
+        -1,
+        -1,
+        1,
+        1
+      ],
+      "pattern_dict": {
+        "having_IP_Address": 1,
+        "URL_Length": 0,
+        "Shortining_Service": 1,
+        "having_At_Symbol": 1,
+        "double_slash_redirecting": 1,
+        "Prefix_Suffix": -1,
+        "having_Sub_Domain": -1,
+        "HTTPS_token": -1,
+        "SSLfinal_State": 1,
+        "port": 1
+      },
+      "count": 2,
+      "percentage": 0.0408,
+      "sample_ids": [
+        "phish_10_features_row_00036",
+        "phish_10_features_row_01264"
+      ]
+    },
+    {
+      "vector": [
+        1,
+        1,
+        -1,
+        -1,
+        -1,
+        -1,
+        1,
+        -1,
+        -1,
+        1
+      ],
+      "pattern_dict": {
+        "having_IP_Address": 1,
+        "URL_Length": 1,
+        "Shortining_Service": -1,
+        "having_At_Symbol": -1,
+        "double_slash_redirecting": -1,
+        "Prefix_Suffix": -1,
+        "having_Sub_Domain": 1,
+        "HTTPS_token": -1,
+        "SSLfinal_State": -1,
+        "port": 1
+      },
+      "count": 2,
+      "percentage": 0.0408,
+      "sample_ids": [
+        "phish_10_features_row_05453",
+        "phish_10_features_row_08494"
+      ]
+    },
+    {
+      "vector": [
+        1,
+        1,
+        -1,
+        1,
+        -1,
+        -1,
+        0,
+        -1,
+        1,
+        1
+      ],
+      "pattern_dict": {
+        "having_IP_Address": 1,
+        "URL_Length": 1,
+        "Shortining_Service": -1,
+        "having_At_Symbol": 1,
+        "double_slash_redirecting": -1,
+        "Prefix_Suffix": -1,
+        "having_Sub_Domain": 0,
+        "HTTPS_token": -1,
+        "SSLfinal_State": 1,
+        "port": 1
+      },
+      "count": 2,
+      "percentage": 0.0408,
+      "sample_ids": [
+        "phish_10_features_row_02464",
+        "phish_10_features_row_04920"
+      ]
+    },
+    {
+      "vector": [
+        1,
+        1,
+        -1,
+        1,
+        -1,
+        -1,
+        1,
+        -1,
+        -1,
+        -1
+      ],
+      "pattern_dict": {
+        "having_IP_Address": 1,
+        "URL_Length": 1,
+        "Shortining_Service": -1,
+        "having_At_Symbol": 1,
+        "double_slash_redirecting": -1,
+        "Prefix_Suffix": -1,
+        "having_Sub_Domain": 1,
+        "HTTPS_token": -1,
+        "SSLfinal_State": -1,
+        "port": -1
+      },
+      "count": 2,
+      "percentage": 0.0408,
+      "sample_ids": [
+        "phish_10_features_row_02500",
+        "phish_10_features_row_04956"
+      ]
+    },
+    {
+      "vector": [
+        1,
+        1,
+        1,
+        -1,
+        1,
+        -1,
+        0,
+        1,
+        0,
+        -1
+      ],
+      "pattern_dict": {
+        "having_IP_Address": 1,
+        "URL_Length": 1,
+        "Shortining_Service": 1,
+        "having_At_Symbol": -1,
+        "double_slash_redirecting": 1,
+        "Prefix_Suffix": -1,
+        "having_Sub_Domain": 0,
+        "HTTPS_token": 1,
+        "SSLfinal_State": 0,
+        "port": -1
+      },
+      "count": 2,
+      "percentage": 0.0408,
+      "sample_ids": [
+        "phish_10_features_row_09042",
+        "phish_10_features_row_10307"
+      ]
+    },
+    {
+      "vector": [
+        1,
+        1,
+        1,
+        -1,
+        1,
+        -1,
+        0,
+        1,
+        1,
+        -1
+      ],
+      "pattern_dict": {
+        "having_IP_Address": 1,
+        "URL_Length": 1,
+        "Shortining_Service": 1,
+        "having_At_Symbol": -1,
+        "double_slash_redirecting": 1,
+        "Prefix_Suffix": -1,
+        "having_Sub_Domain": 0,
+        "HTTPS_token": 1,
+        "SSLfinal_State": 1,
+        "port": -1
+      },
+      "count": 2,
+      "percentage": 0.0408,
+      "sample_ids": [
+        "phish_10_features_row_02469",
+        "phish_10_features_row_04925"
+      ]
+    },
+    {
+      "vector": [
+        1,
+        1,
+        1,
+        -1,
+        1,
+        -1,
+        1,
+        1,
+        -1,
+        -1
+      ],
+      "pattern_dict": {
+        "having_IP_Address": 1,
+        "URL_Length": 1,
+        "Shortining_Service": 1,
+        "having_At_Symbol": -1,
+        "double_slash_redirecting": 1,
+        "Prefix_Suffix": -1,
+        "having_Sub_Domain": 1,
+        "HTTPS_token": 1,
+        "SSLfinal_State": -1,
+        "port": -1
+      },
+      "count": 2,
+      "percentage": 0.0408,
+      "sample_ids": [
+        "phish_10_features_row_02521",
+        "phish_10_features_row_05191"
+      ]
+    },
+    {
+      "vector": [
+        1,
+        1,
+        1,
+        -1,
+        1,
+        -1,
+        1,
+        1,
+        1,
+        1
+      ],
+      "pattern_dict": {
+        "having_IP_Address": 1,
+        "URL_Length": 1,
+        "Shortining_Service": 1,
+        "having_At_Symbol": -1,
+        "double_slash_redirecting": 1,
+        "Prefix_Suffix": -1,
+        "having_Sub_Domain": 1,
+        "HTTPS_token": 1,
+        "SSLfinal_State": 1,
+        "port": 1
+      },
+      "count": 2,
+      "percentage": 0.0408,
+      "sample_ids": [
+        "phish_10_features_row_02461",
+        "phish_10_features_row_04917"
+      ]
+    }
+  ]
+}

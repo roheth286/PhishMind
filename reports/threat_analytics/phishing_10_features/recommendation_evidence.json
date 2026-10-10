@@ -1,0 +1,206 @@
+{
+  "model_type": "10_features",
+  "generation_timestamp": "2026-10-10T22:18:55.569678+00:00",
+  "evidence_purpose": "Inputs for future rule-based recommendation engine",
+  "dataset_foundation": {
+    "total_phishing_cases_analyzed": 4898,
+    "distinct_archetype_vectors": 327,
+    "data_quality_certified": true
+  },
+  "high_frequency_threat_markers": [
+    {
+      "signal": "Prefix_Suffix == -1",
+      "feature": "Prefix_Suffix",
+      "value": -1,
+      "support_percentage": 100.0,
+      "evidence_weight": "high"
+    },
+    {
+      "signal": "Shortining_Service == 1",
+      "feature": "Shortining_Service",
+      "value": 1,
+      "support_percentage": 89.5059,
+      "evidence_weight": "high"
+    },
+    {
+      "signal": "double_slash_redirecting == 1",
+      "feature": "double_slash_redirecting",
+      "value": 1,
+      "support_percentage": 88.5259,
+      "evidence_weight": "high"
+    },
+    {
+      "signal": "HTTPS_token == 1",
+      "feature": "HTTPS_token",
+      "value": 1,
+      "support_percentage": 85.4022,
+      "evidence_weight": "high"
+    },
+    {
+      "signal": "port == 1",
+      "feature": "port",
+      "value": 1,
+      "support_percentage": 85.0143,
+      "evidence_weight": "high"
+    },
+    {
+      "signal": "URL_Length == -1",
+      "feature": "URL_Length",
+      "value": -1,
+      "support_percentage": 83.2789,
+      "evidence_weight": "high"
+    },
+    {
+      "signal": "having_At_Symbol == 1",
+      "feature": "having_At_Symbol",
+      "value": 1,
+      "support_percentage": 82.9114,
+      "evidence_weight": "high"
+    },
+    {
+      "signal": "SSLfinal_State == -1",
+      "feature": "SSLfinal_State",
+      "value": -1,
+      "support_percentage": 62.2907,
+      "evidence_weight": "medium"
+    },
+    {
+      "signal": "having_IP_Address == 1",
+      "feature": "having_IP_Address",
+      "value": 1,
+      "support_percentage": 60.6778,
+      "evidence_weight": "medium"
+    }
+  ],
+  "strong_feature_implications": [
+    {
+      "premise": "Shortining_Service == 1",
+      "implication": "Prefix_Suffix == -1",
+      "confidence": 1.0,
+      "support_percentage": 89.5059
+    },
+    {
+      "premise": "double_slash_redirecting == 1",
+      "implication": "Prefix_Suffix == -1",
+      "confidence": 1.0,
+      "support_percentage": 88.5259
+    },
+    {
+      "premise": "Shortining_Service == 1",
+      "implication": "double_slash_redirecting == 1",
+      "confidence": 0.9722,
+      "support_percentage": 87.0151
+    },
+    {
+      "premise": "Prefix_Suffix == -1",
+      "implication": "HTTPS_token == 1",
+      "confidence": 0.854,
+      "support_percentage": 85.4022
+    },
+    {
+      "premise": "Prefix_Suffix == -1",
+      "implication": "port == 1",
+      "confidence": 0.8501,
+      "support_percentage": 85.0143
+    },
+    {
+      "premise": "Shortining_Service == 1",
+      "implication": "HTTPS_token == 1",
+      "confidence": 0.9382,
+      "support_percentage": 83.9731
+    },
+    {
+      "premise": "double_slash_redirecting == 1",
+      "implication": "HTTPS_token == 1",
+      "confidence": 0.9426,
+      "support_percentage": 83.4422
+    },
+    {
+      "premise": "URL_Length == -1",
+      "implication": "Prefix_Suffix == -1",
+      "confidence": 1.0,
+      "support_percentage": 83.2789
+    },
+    {
+      "premise": "having_At_Symbol == 1",
+      "implication": "Prefix_Suffix == -1",
+      "confidence": 1.0,
+      "support_percentage": 82.9114
+    },
+    {
+      "premise": "Shortining_Service == 1",
+      "implication": "port == 1",
+      "confidence": 0.8702,
+      "support_percentage": 77.8889
+    },
+    {
+      "premise": "double_slash_redirecting == 1",
+      "implication": "port == 1",
+      "confidence": 0.8741,
+      "support_percentage": 77.3785
+    },
+    {
+      "premise": "URL_Length == -1",
+      "implication": "Shortining_Service == 1",
+      "confidence": 0.9211,
+      "support_percentage": 76.7048
+    },
+    {
+      "premise": "Shortining_Service == 1",
+      "implication": "having_At_Symbol == 1",
+      "confidence": 0.8485,
+      "support_percentage": 75.9494
+    },
+    {
+      "premise": "having_At_Symbol == 1",
+      "implication": "port == 1",
+      "confidence": 0.9121,
+      "support_percentage": 75.6227
+    },
+    {
+      "premise": "URL_Length == -1",
+      "implication": "double_slash_redirecting == 1",
+      "confidence": 0.9049,
+      "support_percentage": 75.3573
+    }
+  ],
+  "cluster_archetype_signatures": {
+    "cluster_0": {
+      "cluster_id": 0,
+      "percentage_of_phishing_population": 52.8583,
+      "invariant_features": {
+        "having_IP_Address": 1,
+        "having_At_Symbol": 1,
+        "Prefix_Suffix": -1
+      }
+    },
+    "cluster_1": {
+      "cluster_id": 1,
+      "percentage_of_phishing_population": 23.6423,
+      "invariant_features": {
+        "having_IP_Address": -1,
+        "having_At_Symbol": 1,
+        "Prefix_Suffix": -1
+      }
+    },
+    "cluster_2": {
+      "cluster_id": 2,
+      "percentage_of_phishing_population": 9.7387,
+      "invariant_features": {
+        "Prefix_Suffix": -1
+      }
+    },
+    "cluster_3": {
+      "cluster_id": 3,
+      "percentage_of_phishing_population": 13.7607,
+      "invariant_features": {
+        "having_At_Symbol": -1,
+        "Prefix_Suffix": -1
+      }
+    }
+  },
+  "rare_variant_heuristics": {
+    "total_rare_variants_cataloged": 137,
+    "rare_variant_population_share_pct": 4.0425
+  }
+}

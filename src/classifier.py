@@ -208,8 +208,8 @@ def predict_url_10(
 
         probs = model.predict_proba(sample)
         classes_list = list(model.classes_)
-        if 1 in classes_list:
-            pos_idx = classes_list.index(1)
+        if -1 in classes_list:
+            pos_idx = classes_list.index(-1)
             phishing_prob = float(probs[0][pos_idx])
         else:
             phishing_prob = 0.0
@@ -225,7 +225,7 @@ def predict_url_10(
 
 
 def predict_proba_url_10(url: str, model_path: Optional[str] = None) -> float:
-    """Return only the phishing probability (class 1) for the given URL using the 10-feature model."""
+    """Return only the phishing probability (class -1) for the given URL using the 10-feature model."""
     res = predict_url_10(url, model_path=model_path, return_proba=True)
     return res[1]
 

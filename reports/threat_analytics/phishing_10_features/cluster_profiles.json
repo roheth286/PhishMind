@@ -1,0 +1,710 @@
+{
+  "cluster_0": {
+    "cluster_id": 0,
+    "member_count": 2589,
+    "percentage_of_total": 52.8583,
+    "features": {
+      "having_IP_Address": {
+        "counts": {
+          "-1": 0,
+          "0": 0,
+          "1": 2589
+        },
+        "percentages": {
+          "-1": 0.0,
+          "0": 0.0,
+          "1": 100.0
+        },
+        "dominant_values": [
+          1
+        ],
+        "is_uniform": true,
+        "centroid_value": 1.0
+      },
+      "URL_Length": {
+        "counts": {
+          "-1": 2267,
+          "0": 42,
+          "1": 280
+        },
+        "percentages": {
+          "-1": 87.5628,
+          "0": 1.6222,
+          "1": 10.815
+        },
+        "dominant_values": [
+          -1
+        ],
+        "is_uniform": false,
+        "centroid_value": -0.7675
+      },
+      "Shortining_Service": {
+        "counts": {
+          "-1": 27,
+          "0": 0,
+          "1": 2562
+        },
+        "percentages": {
+          "-1": 1.0429,
+          "0": 0.0,
+          "1": 98.9571
+        },
+        "dominant_values": [
+          1
+        ],
+        "is_uniform": false,
+        "centroid_value": 0.9791
+      },
+      "having_At_Symbol": {
+        "counts": {
+          "-1": 0,
+          "0": 0,
+          "1": 2589
+        },
+        "percentages": {
+          "-1": 0.0,
+          "0": 0.0,
+          "1": 100.0
+        },
+        "dominant_values": [
+          1
+        ],
+        "is_uniform": true,
+        "centroid_value": 1.0
+      },
+      "double_slash_redirecting": {
+        "counts": {
+          "-1": 62,
+          "0": 0,
+          "1": 2527
+        },
+        "percentages": {
+          "-1": 2.3947,
+          "0": 0.0,
+          "1": 97.6053
+        },
+        "dominant_values": [
+          1
+        ],
+        "is_uniform": false,
+        "centroid_value": 0.9521
+      },
+      "Prefix_Suffix": {
+        "counts": {
+          "-1": 2589,
+          "0": 0,
+          "1": 0
+        },
+        "percentages": {
+          "-1": 100.0,
+          "0": 0.0,
+          "1": 0.0
+        },
+        "dominant_values": [
+          -1
+        ],
+        "is_uniform": true,
+        "centroid_value": -1.0
+      },
+      "having_Sub_Domain": {
+        "counts": {
+          "-1": 1180,
+          "0": 1035,
+          "1": 374
+        },
+        "percentages": {
+          "-1": 45.5774,
+          "0": 39.9768,
+          "1": 14.4457
+        },
+        "dominant_values": [
+          -1
+        ],
+        "is_uniform": false,
+        "centroid_value": -0.3113
+      },
+      "HTTPS_token": {
+        "counts": {
+          "-1": 134,
+          "0": 0,
+          "1": 2455
+        },
+        "percentages": {
+          "-1": 5.1757,
+          "0": 0.0,
+          "1": 94.8243
+        },
+        "dominant_values": [
+          1
+        ],
+        "is_uniform": false,
+        "centroid_value": 0.8965
+      },
+      "SSLfinal_State": {
+        "counts": {
+          "-1": 1625,
+          "0": 535,
+          "1": 429
+        },
+        "percentages": {
+          "-1": 62.7655,
+          "0": 20.6643,
+          "1": 16.5701
+        },
+        "dominant_values": [
+          -1
+        ],
+        "is_uniform": false,
+        "centroid_value": -0.462
+      },
+      "port": {
+        "counts": {
+          "-1": 251,
+          "0": 0,
+          "1": 2338
+        },
+        "percentages": {
+          "-1": 9.6949,
+          "0": 0.0,
+          "1": 90.3051
+        },
+        "dominant_values": [
+          1
+        ],
+        "is_uniform": false,
+        "centroid_value": 0.8061
+      }
+    }
+  },
+  "cluster_1": {
+    "cluster_id": 1,
+    "member_count": 1158,
+    "percentage_of_total": 23.6423,
+    "features": {
+      "having_IP_Address": {
+        "counts": {
+          "-1": 1158,
+          "0": 0,
+          "1": 0
+        },
+        "percentages": {
+          "-1": 100.0,
+          "0": 0.0,
+          "1": 0.0
+        },
+        "dominant_values": [
+          -1
+        ],
+        "is_uniform": true,
+        "centroid_value": -1.0
+      },
+      "URL_Length": {
+        "counts": {
+          "-1": 964,
+          "0": 16,
+          "1": 178
+        },
+        "percentages": {
+          "-1": 83.247,
+          "0": 1.3817,
+          "1": 15.3713
+        },
+        "dominant_values": [
+          -1
+        ],
+        "is_uniform": false,
+        "centroid_value": -0.6788
+      },
+      "Shortining_Service": {
+        "counts": {
+          "-1": 18,
+          "0": 0,
+          "1": 1140
+        },
+        "percentages": {
+          "-1": 1.5544,
+          "0": 0.0,
+          "1": 98.4456
+        },
+        "dominant_values": [
+          1
+        ],
+        "is_uniform": false,
+        "centroid_value": 0.9689
+      },
+      "having_At_Symbol": {
+        "counts": {
+          "-1": 0,
+          "0": 0,
+          "1": 1158
+        },
+        "percentages": {
+          "-1": 0.0,
+          "0": 0.0,
+          "1": 100.0
+        },
+        "dominant_values": [
+          1
+        ],
+        "is_uniform": true,
+        "centroid_value": 1.0
+      },
+      "double_slash_redirecting": {
+        "counts": {
+          "-1": 17,
+          "0": 0,
+          "1": 1141
+        },
+        "percentages": {
+          "-1": 1.468,
+          "0": 0.0,
+          "1": 98.532
+        },
+        "dominant_values": [
+          1
+        ],
+        "is_uniform": false,
+        "centroid_value": 0.9706
+      },
+      "Prefix_Suffix": {
+        "counts": {
+          "-1": 1158,
+          "0": 0,
+          "1": 0
+        },
+        "percentages": {
+          "-1": 100.0,
+          "0": 0.0,
+          "1": 0.0
+        },
+        "dominant_values": [
+          -1
+        ],
+        "is_uniform": true,
+        "centroid_value": -1.0
+      },
+      "having_Sub_Domain": {
+        "counts": {
+          "-1": 334,
+          "0": 601,
+          "1": 223
+        },
+        "percentages": {
+          "-1": 28.8428,
+          "0": 51.8998,
+          "1": 19.2573
+        },
+        "dominant_values": [
+          0
+        ],
+        "is_uniform": false,
+        "centroid_value": -0.0959
+      },
+      "HTTPS_token": {
+        "counts": {
+          "-1": 54,
+          "0": 0,
+          "1": 1104
+        },
+        "percentages": {
+          "-1": 4.6632,
+          "0": 0.0,
+          "1": 95.3368
+        },
+        "dominant_values": [
+          1
+        ],
+        "is_uniform": false,
+        "centroid_value": 0.9067
+      },
+      "SSLfinal_State": {
+        "counts": {
+          "-1": 738,
+          "0": 277,
+          "1": 143
+        },
+        "percentages": {
+          "-1": 63.7306,
+          "0": 23.9206,
+          "1": 12.3489
+        },
+        "dominant_values": [
+          -1
+        ],
+        "is_uniform": false,
+        "centroid_value": -0.5138
+      },
+      "port": {
+        "counts": {
+          "-1": 19,
+          "0": 0,
+          "1": 1139
+        },
+        "percentages": {
+          "-1": 1.6408,
+          "0": 0.0,
+          "1": 98.3592
+        },
+        "dominant_values": [
+          1
+        ],
+        "is_uniform": false,
+        "centroid_value": 0.9672
+      }
+    }
+  },
+  "cluster_2": {
+    "cluster_id": 2,
+    "member_count": 477,
+    "percentage_of_total": 9.7387,
+    "features": {
+      "having_IP_Address": {
+        "counts": {
+          "-1": 435,
+          "0": 0,
+          "1": 42
+        },
+        "percentages": {
+          "-1": 91.195,
+          "0": 0.0,
+          "1": 8.805
+        },
+        "dominant_values": [
+          -1
+        ],
+        "is_uniform": false,
+        "centroid_value": -0.8239
+      },
+      "URL_Length": {
+        "counts": {
+          "-1": 315,
+          "0": 2,
+          "1": 160
+        },
+        "percentages": {
+          "-1": 66.0377,
+          "0": 0.4193,
+          "1": 33.543
+        },
+        "dominant_values": [
+          -1
+        ],
+        "is_uniform": false,
+        "centroid_value": -0.3249
+      },
+      "Shortining_Service": {
+        "counts": {
+          "-1": 453,
+          "0": 0,
+          "1": 24
+        },
+        "percentages": {
+          "-1": 94.9686,
+          "0": 0.0,
+          "1": 5.0314
+        },
+        "dominant_values": [
+          -1
+        ],
+        "is_uniform": false,
+        "centroid_value": -0.8994
+      },
+      "having_At_Symbol": {
+        "counts": {
+          "-1": 163,
+          "0": 0,
+          "1": 314
+        },
+        "percentages": {
+          "-1": 34.1719,
+          "0": 0.0,
+          "1": 65.8281
+        },
+        "dominant_values": [
+          1
+        ],
+        "is_uniform": false,
+        "centroid_value": 0.3166
+      },
+      "double_slash_redirecting": {
+        "counts": {
+          "-1": 461,
+          "0": 0,
+          "1": 16
+        },
+        "percentages": {
+          "-1": 96.6457,
+          "0": 0.0,
+          "1": 3.3543
+        },
+        "dominant_values": [
+          -1
+        ],
+        "is_uniform": false,
+        "centroid_value": -0.9329
+      },
+      "Prefix_Suffix": {
+        "counts": {
+          "-1": 477,
+          "0": 0,
+          "1": 0
+        },
+        "percentages": {
+          "-1": 100.0,
+          "0": 0.0,
+          "1": 0.0
+        },
+        "dominant_values": [
+          -1
+        ],
+        "is_uniform": true,
+        "centroid_value": -1.0
+      },
+      "having_Sub_Domain": {
+        "counts": {
+          "-1": 137,
+          "0": 250,
+          "1": 90
+        },
+        "percentages": {
+          "-1": 28.7212,
+          "0": 52.4109,
+          "1": 18.8679
+        },
+        "dominant_values": [
+          0
+        ],
+        "is_uniform": false,
+        "centroid_value": -0.0985
+      },
+      "HTTPS_token": {
+        "counts": {
+          "-1": 464,
+          "0": 0,
+          "1": 13
+        },
+        "percentages": {
+          "-1": 97.2746,
+          "0": 0.0,
+          "1": 2.7254
+        },
+        "dominant_values": [
+          -1
+        ],
+        "is_uniform": false,
+        "centroid_value": -0.9455
+      },
+      "SSLfinal_State": {
+        "counts": {
+          "-1": 277,
+          "0": 152,
+          "1": 48
+        },
+        "percentages": {
+          "-1": 58.0713,
+          "0": 31.8658,
+          "1": 10.0629
+        },
+        "dominant_values": [
+          -1
+        ],
+        "is_uniform": false,
+        "centroid_value": -0.4801
+      },
+      "port": {
+        "counts": {
+          "-1": 170,
+          "0": 0,
+          "1": 307
+        },
+        "percentages": {
+          "-1": 35.6394,
+          "0": 0.0,
+          "1": 64.3606
+        },
+        "dominant_values": [
+          1
+        ],
+        "is_uniform": false,
+        "centroid_value": 0.2872
+      }
+    }
+  },
+  "cluster_3": {
+    "cluster_id": 3,
+    "member_count": 674,
+    "percentage_of_total": 13.7607,
+    "features": {
+      "having_IP_Address": {
+        "counts": {
+          "-1": 333,
+          "0": 0,
+          "1": 341
+        },
+        "percentages": {
+          "-1": 49.4065,
+          "0": 0.0,
+          "1": 50.5935
+        },
+        "dominant_values": [
+          1
+        ],
+        "is_uniform": false,
+        "centroid_value": 0.0119
+      },
+      "URL_Length": {
+        "counts": {
+          "-1": 533,
+          "0": 23,
+          "1": 118
+        },
+        "percentages": {
+          "-1": 79.0801,
+          "0": 3.4125,
+          "1": 17.5074
+        },
+        "dominant_values": [
+          -1
+        ],
+        "is_uniform": false,
+        "centroid_value": -0.6157
+      },
+      "Shortining_Service": {
+        "counts": {
+          "-1": 16,
+          "0": 0,
+          "1": 658
+        },
+        "percentages": {
+          "-1": 2.3739,
+          "0": 0.0,
+          "1": 97.6261
+        },
+        "dominant_values": [
+          1
+        ],
+        "is_uniform": false,
+        "centroid_value": 0.9525
+      },
+      "having_At_Symbol": {
+        "counts": {
+          "-1": 674,
+          "0": 0,
+          "1": 0
+        },
+        "percentages": {
+          "-1": 100.0,
+          "0": 0.0,
+          "1": 0.0
+        },
+        "dominant_values": [
+          -1
+        ],
+        "is_uniform": true,
+        "centroid_value": -1.0
+      },
+      "double_slash_redirecting": {
+        "counts": {
+          "-1": 22,
+          "0": 0,
+          "1": 652
+        },
+        "percentages": {
+          "-1": 3.2641,
+          "0": 0.0,
+          "1": 96.7359
+        },
+        "dominant_values": [
+          1
+        ],
+        "is_uniform": false,
+        "centroid_value": 0.9347
+      },
+      "Prefix_Suffix": {
+        "counts": {
+          "-1": 674,
+          "0": 0,
+          "1": 0
+        },
+        "percentages": {
+          "-1": 100.0,
+          "0": 0.0,
+          "1": 0.0
+        },
+        "dominant_values": [
+          -1
+        ],
+        "is_uniform": true,
+        "centroid_value": -1.0
+      },
+      "having_Sub_Domain": {
+        "counts": {
+          "-1": 185,
+          "0": 366,
+          "1": 123
+        },
+        "percentages": {
+          "-1": 27.4481,
+          "0": 54.3027,
+          "1": 18.2493
+        },
+        "dominant_values": [
+          0
+        ],
+        "is_uniform": false,
+        "centroid_value": -0.092
+      },
+      "HTTPS_token": {
+        "counts": {
+          "-1": 63,
+          "0": 0,
+          "1": 611
+        },
+        "percentages": {
+          "-1": 9.3472,
+          "0": 0.0,
+          "1": 90.6528
+        },
+        "dominant_values": [
+          1
+        ],
+        "is_uniform": false,
+        "centroid_value": 0.8131
+      },
+      "SSLfinal_State": {
+        "counts": {
+          "-1": 411,
+          "0": 182,
+          "1": 81
+        },
+        "percentages": {
+          "-1": 60.9792,
+          "0": 27.003,
+          "1": 12.0178
+        },
+        "dominant_values": [
+          -1
+        ],
+        "is_uniform": false,
+        "centroid_value": -0.4896
+      },
+      "port": {
+        "counts": {
+          "-1": 294,
+          "0": 0,
+          "1": 380
+        },
+        "percentages": {
+          "-1": 43.6202,
+          "0": 0.0,
+          "1": 56.3798
+        },
+        "dominant_values": [
+          1
+        ],
+        "is_uniform": false,
+        "centroid_value": 0.1276
+      }
+    }
+  }
+}

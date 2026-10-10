@@ -1,0 +1,362 @@
+{
+  "having_IP_Address": {
+    "feature_name": "having_IP_Address",
+    "feature_index": 0,
+    "counts": {
+      "-1": 1926,
+      "0": 0,
+      "1": 2972
+    },
+    "percentages": {
+      "-1": 39.3222,
+      "0": 0.0,
+      "1": 60.6778
+    },
+    "dominant_values": [
+      1
+    ],
+    "is_uniform": false
+  },
+  "URL_Length": {
+    "feature_name": "URL_Length",
+    "feature_index": 1,
+    "counts": {
+      "-1": 4079,
+      "0": 83,
+      "1": 736
+    },
+    "percentages": {
+      "-1": 83.2789,
+      "0": 1.6946,
+      "1": 15.0265
+    },
+    "dominant_values": [
+      -1
+    ],
+    "is_uniform": false
+  },
+  "Shortining_Service": {
+    "feature_name": "Shortining_Service",
+    "feature_index": 2,
+    "counts": {
+      "-1": 514,
+      "0": 0,
+      "1": 4384
+    },
+    "percentages": {
+      "-1": 10.4941,
+      "0": 0.0,
+      "1": 89.5059
+    },
+    "dominant_values": [
+      1
+    ],
+    "is_uniform": false
+  },
+  "having_At_Symbol": {
+    "feature_name": "having_At_Symbol",
+    "feature_index": 3,
+    "counts": {
+      "-1": 837,
+      "0": 0,
+      "1": 4061
+    },
+    "percentages": {
+      "-1": 17.0886,
+      "0": 0.0,
+      "1": 82.9114
+    },
+    "dominant_values": [
+      1
+    ],
+    "is_uniform": false
+  },
+  "double_slash_redirecting": {
+    "feature_name": "double_slash_redirecting",
+    "feature_index": 4,
+    "counts": {
+      "-1": 562,
+      "0": 0,
+      "1": 4336
+    },
+    "percentages": {
+      "-1": 11.4741,
+      "0": 0.0,
+      "1": 88.5259
+    },
+    "dominant_values": [
+      1
+    ],
+    "is_uniform": false
+  },
+  "Prefix_Suffix": {
+    "feature_name": "Prefix_Suffix",
+    "feature_index": 5,
+    "counts": {
+      "-1": 4898,
+      "0": 0,
+      "1": 0
+    },
+    "percentages": {
+      "-1": 100.0,
+      "0": 0.0,
+      "1": 0.0
+    },
+    "dominant_values": [
+      -1
+    ],
+    "is_uniform": true
+  },
+  "having_Sub_Domain": {
+    "feature_name": "having_Sub_Domain",
+    "feature_index": 6,
+    "counts": {
+      "-1": 1836,
+      "0": 2252,
+      "1": 810
+    },
+    "percentages": {
+      "-1": 37.4847,
+      "0": 45.978,
+      "1": 16.5374
+    },
+    "dominant_values": [
+      0
+    ],
+    "is_uniform": false
+  },
+  "SSLfinal_State": {
+    "feature_name": "SSLfinal_State",
+    "feature_index": 7,
+    "counts": {
+      "-1": 3051,
+      "0": 1146,
+      "1": 701
+    },
+    "percentages": {
+      "-1": 62.2907,
+      "0": 23.3973,
+      "1": 14.312
+    },
+    "dominant_values": [
+      -1
+    ],
+    "is_uniform": false
+  },
+  "port": {
+    "feature_name": "port",
+    "feature_index": 8,
+    "counts": {
+      "-1": 734,
+      "0": 0,
+      "1": 4164
+    },
+    "percentages": {
+      "-1": 14.9857,
+      "0": 0.0,
+      "1": 85.0143
+    },
+    "dominant_values": [
+      1
+    ],
+    "is_uniform": false
+  },
+  "HTTPS_token": {
+    "feature_name": "HTTPS_token",
+    "feature_index": 9,
+    "counts": {
+      "-1": 715,
+      "0": 0,
+      "1": 4183
+    },
+    "percentages": {
+      "-1": 14.5978,
+      "0": 0.0,
+      "1": 85.4022
+    },
+    "dominant_values": [
+      1
+    ],
+    "is_uniform": false
+  },
+  "Favicon": {
+    "feature_name": "Favicon",
+    "feature_index": 10,
+    "counts": {
+      "-1": 909,
+      "0": 0,
+      "1": 3989
+    },
+    "percentages": {
+      "-1": 18.5586,
+      "0": 0.0,
+      "1": 81.4414
+    },
+    "dominant_values": [
+      1
+    ],
+    "is_uniform": false
+  },
+  "Request_URL": {
+    "feature_name": "Request_URL",
+    "feature_index": 11,
+    "counts": {
+      "-1": 2675,
+      "0": 0,
+      "1": 2223
+    },
+    "percentages": {
+      "-1": 54.6141,
+      "0": 0.0,
+      "1": 45.3859
+    },
+    "dominant_values": [
+      -1
+    ],
+    "is_uniform": false
+  },
+  "URL_of_Anchor": {
+    "feature_name": "URL_of_Anchor",
+    "feature_index": 12,
+    "counts": {
+      "-1": 3246,
+      "0": 1502,
+      "1": 150
+    },
+    "percentages": {
+      "-1": 66.2719,
+      "0": 30.6656,
+      "1": 3.0625
+    },
+    "dominant_values": [
+      -1
+    ],
+    "is_uniform": false
+  },
+  "Links_in_tags": {
+    "feature_name": "Links_in_tags",
+    "feature_index": 13,
+    "counts": {
+      "-1": 2387,
+      "0": 1744,
+      "1": 767
+    },
+    "percentages": {
+      "-1": 48.7342,
+      "0": 35.6064,
+      "1": 15.6595
+    },
+    "dominant_values": [
+      -1
+    ],
+    "is_uniform": false
+  },
+  "SFH": {
+    "feature_name": "SFH",
+    "feature_index": 14,
+    "counts": {
+      "-1": 4238,
+      "0": 263,
+      "1": 397
+    },
+    "percentages": {
+      "-1": 86.5251,
+      "0": 5.3695,
+      "1": 8.1053
+    },
+    "dominant_values": [
+      -1
+    ],
+    "is_uniform": false
+  },
+  "Submitting_to_email": {
+    "feature_name": "Submitting_to_email",
+    "feature_index": 15,
+    "counts": {
+      "-1": 931,
+      "0": 0,
+      "1": 3967
+    },
+    "percentages": {
+      "-1": 19.0078,
+      "0": 0.0,
+      "1": 80.9922
+    },
+    "dominant_values": [
+      1
+    ],
+    "is_uniform": false
+  },
+  "Iframe": {
+    "feature_name": "Iframe",
+    "feature_index": 16,
+    "counts": {
+      "-1": 443,
+      "0": 0,
+      "1": 4455
+    },
+    "percentages": {
+      "-1": 9.0445,
+      "0": 0.0,
+      "1": 90.9555
+    },
+    "dominant_values": [
+      1
+    ],
+    "is_uniform": false
+  },
+  "Redirect": {
+    "feature_name": "Redirect",
+    "feature_index": 17,
+    "counts": {
+      "-1": 0,
+      "0": 4296,
+      "1": 602
+    },
+    "percentages": {
+      "-1": 0.0,
+      "0": 87.7093,
+      "1": 12.2907
+    },
+    "dominant_values": [
+      0
+    ],
+    "is_uniform": false
+  },
+  "on_mouseover": {
+    "feature_name": "on_mouseover",
+    "feature_index": 18,
+    "counts": {
+      "-1": 657,
+      "0": 0,
+      "1": 4241
+    },
+    "percentages": {
+      "-1": 13.4136,
+      "0": 0.0,
+      "1": 86.5864
+    },
+    "dominant_values": [
+      1
+    ],
+    "is_uniform": false
+  },
+  "RightClick": {
+    "feature_name": "RightClick",
+    "feature_index": 19,
+    "counts": {
+      "-1": 225,
+      "0": 0,
+      "1": 4673
+    },
+    "percentages": {
+      "-1": 4.5937,
+      "0": 0.0,
+      "1": 95.4063
+    },
+    "dominant_values": [
+      1
+    ],
+    "is_uniform": false
+  }
+}

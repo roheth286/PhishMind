@@ -1,0 +1,107 @@
+[
+  {
+    "feature_name": "Prefix_Suffix",
+    "feature_value": -1,
+    "signal_name": "Prefix_Suffix == -1",
+    "count": 4898,
+    "percentage": 100.0
+  },
+  {
+    "feature_name": "RightClick",
+    "feature_value": 1,
+    "signal_name": "RightClick == 1",
+    "count": 4673,
+    "percentage": 95.4063
+  },
+  {
+    "feature_name": "Iframe",
+    "feature_value": 1,
+    "signal_name": "Iframe == 1",
+    "count": 4455,
+    "percentage": 90.9555
+  },
+  {
+    "feature_name": "Shortining_Service",
+    "feature_value": 1,
+    "signal_name": "Shortining_Service == 1",
+    "count": 4384,
+    "percentage": 89.5059
+  },
+  {
+    "feature_name": "double_slash_redirecting",
+    "feature_value": 1,
+    "signal_name": "double_slash_redirecting == 1",
+    "count": 4336,
+    "percentage": 88.5259
+  },
+  {
+    "feature_name": "Redirect",
+    "feature_value": 0,
+    "signal_name": "Redirect == 0",
+    "count": 4296,
+    "percentage": 87.7093
+  },
+  {
+    "feature_name": "on_mouseover",
+    "feature_value": 1,
+    "signal_name": "on_mouseover == 1",
+    "count": 4241,
+    "percentage": 86.5864
+  },
+  {
+    "feature_name": "SFH",
+    "feature_value": -1,
+    "signal_name": "SFH == -1",
+    "count": 4238,
+    "percentage": 86.5251
+  },
+  {
+    "feature_name": "HTTPS_token",
+    "feature_value": 1,
+    "signal_name": "HTTPS_token == 1",
+    "count": 4183,
+    "percentage": 85.4022
+  },
+  {
+    "feature_name": "port",
+    "feature_value": 1,
+    "signal_name": "port == 1",
+    "count": 4164,
+    "percentage": 85.0143
+  },
+  {
+    "feature_name": "URL_Length",
+    "feature_value": -1,
+    "signal_name": "URL_Length == -1",
+    "count": 4079,
+    "percentage": 83.2789
+  },
+  {
+    "feature_name": "having_At_Symbol",
+    "feature_value": 1,
+    "signal_name": "having_At_Symbol == 1",
+    "count": 4061,
+    "percentage": 82.9114
+  },
+  {
+    "feature_name": "Favicon",
+    "feature_value": 1,
+    "signal_name": "Favicon == 1",
+    "count": 3989,
+    "percentage": 81.4414
+  },
+  {
+    "feature_name": "Submitting_to_email",
+    "feature_value": 1,
+    "signal_name": "Submitting_to_email == 1",
+    "count": 3967,
+    "percentage": 80.9922
+  },
+  {
+    "feature_name": "URL_of_Anchor",
+    "feature_value": -1,
+    "signal_name": "URL_of_Anchor == -1",
+    "count": 3246,
+    "percentage": 66.2719
+  }
+]

@@ -6,8 +6,8 @@ Dataset row count: 11055
 Feature count: 20
 Target column: Result
 Class distribution:
-  Result = -1: 4898 (44.31%)
-  Result =  1: 6157 (55.69%)
+  Result = -1 (Phishing):   4898 (44.31%)
+  Result =  1 (Legitimate): 6157 (55.69%)
 Train row count: 8844
 Test row count: 2211
 Train/Test split ratio: 80% Train / 20% Test
@@ -16,14 +16,14 @@ n_estimators: 300
 max_features: sqrt
 class_weight: balanced
 
-EVALUATION METRICS (Test Set, positive class = 1):
+EVALUATION METRICS (Test Set, positive class = -1 (Phishing)):
 Accuracy:  0.957033 (95.70%)
-Precision: 0.955128 (95.51%)
-Recall:    0.968318 (96.83%)
-F1 Score:  0.961678 (96.17%)
+Precision: 0.959502 (95.95%)
+Recall:    0.942857 (94.29%)
+F1 Score:  0.951107 (95.11%)
 
 CONFUSION MATRIX (True \ Pred: [-1, 1]):
-  TN (-1 as -1): 924
-  FP (-1 as  1): 56
-  FN ( 1 as -1): 39
-  TP ( 1 as  1): 1192
+  TP (-1 as -1): 924
+  FN (-1 as  1): 56
+  FP ( 1 as -1): 39
+  TN ( 1 as  1): 1192

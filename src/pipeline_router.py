@@ -217,8 +217,11 @@ def route_url(
             sample_2d = np.array([vector], dtype=int)
             probs = model_20.predict_proba(sample_2d)
             classes_list = list(model_20.classes_)
-            pos_idx = classes_list.index(1) if 1 in classes_list else 1
-            phishing_prob = float(probs[0][pos_idx])
+            if -1 in classes_list:
+                pos_idx = classes_list.index(-1)
+                phishing_prob = float(probs[0][pos_idx])
+            else:
+                phishing_prob = 0.0
         except Exception as e:
             raise RuntimeError(f"Pipeline A (20-feature) execution failed: {e}") from e
 

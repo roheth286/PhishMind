@@ -20,8 +20,8 @@ Ordered feature names:
 
 Target column: Result
 Target class distribution:
-  Result = -1 (Legitimate): 4898 (44.31%)
-  Result =  1 (Phishing):   6157 (55.69%)
+  Result = -1 (Phishing):   4898 (44.31%)
+  Result =  1 (Legitimate): 6157 (55.69%)
 
 Train row count: 8844
 Test row count:  2211
@@ -33,22 +33,22 @@ Random Forest configuration:
   max_features=sqrt
   n_jobs=-1
 
-EVALUATION METRICS (Test Set, positive class = 1):
+EVALUATION METRICS (Test Set, positive class = -1 (Phishing)):
   Accuracy:  0.909543 (90.95%)
-  Precision: 0.913392 (91.34%)
-  Recall:    0.925264 (92.53%)
-  F1 Score:  0.919290 (91.93%)
+  Precision: 0.904564 (90.46%)
+  Recall:    0.889796 (88.98%)
+  F1 Score:  0.897119 (89.71%)
 
 CONFUSION MATRIX (True \ Pred: [-1, 1]):
-  TN (-1 as -1): 872
-  FP (-1 as  1): 108
-  FN ( 1 as -1): 92
-  TP ( 1 as  1): 1139
+  TP (-1 as -1): 872
+  FN (-1 as  1): 108
+  FP ( 1 as -1): 92
+  TN ( 1 as  1): 1139
 
 PROBABILITY PREDICTION VERIFICATION:
   predict_proba() verified: YES
   model.classes_: [-1, 1]
-  Positive class (1) probability index: 1
+  Phishing class (-1) probability index: 0
 
 MODEL ARTIFACT PATHS:
   Model:              models\random_forest_10_features.pkl

@@ -1,0 +1,245 @@
+{
+  "model_type": "20_features",
+  "generation_timestamp": "2026-10-10T22:18:58.129879+00:00",
+  "evidence_purpose": "Inputs for future rule-based recommendation engine",
+  "dataset_foundation": {
+    "total_phishing_cases_analyzed": 4898,
+    "distinct_archetype_vectors": 1336,
+    "data_quality_certified": true
+  },
+  "high_frequency_threat_markers": [
+    {
+      "signal": "Prefix_Suffix == -1",
+      "feature": "Prefix_Suffix",
+      "value": -1,
+      "support_percentage": 100.0,
+      "evidence_weight": "high"
+    },
+    {
+      "signal": "RightClick == 1",
+      "feature": "RightClick",
+      "value": 1,
+      "support_percentage": 95.4063,
+      "evidence_weight": "high"
+    },
+    {
+      "signal": "Iframe == 1",
+      "feature": "Iframe",
+      "value": 1,
+      "support_percentage": 90.9555,
+      "evidence_weight": "high"
+    },
+    {
+      "signal": "Shortining_Service == 1",
+      "feature": "Shortining_Service",
+      "value": 1,
+      "support_percentage": 89.5059,
+      "evidence_weight": "high"
+    },
+    {
+      "signal": "double_slash_redirecting == 1",
+      "feature": "double_slash_redirecting",
+      "value": 1,
+      "support_percentage": 88.5259,
+      "evidence_weight": "high"
+    },
+    {
+      "signal": "Redirect == 0",
+      "feature": "Redirect",
+      "value": 0,
+      "support_percentage": 87.7093,
+      "evidence_weight": "high"
+    },
+    {
+      "signal": "on_mouseover == 1",
+      "feature": "on_mouseover",
+      "value": 1,
+      "support_percentage": 86.5864,
+      "evidence_weight": "high"
+    },
+    {
+      "signal": "SFH == -1",
+      "feature": "SFH",
+      "value": -1,
+      "support_percentage": 86.5251,
+      "evidence_weight": "high"
+    },
+    {
+      "signal": "HTTPS_token == 1",
+      "feature": "HTTPS_token",
+      "value": 1,
+      "support_percentage": 85.4022,
+      "evidence_weight": "high"
+    },
+    {
+      "signal": "port == 1",
+      "feature": "port",
+      "value": 1,
+      "support_percentage": 85.0143,
+      "evidence_weight": "high"
+    },
+    {
+      "signal": "URL_Length == -1",
+      "feature": "URL_Length",
+      "value": -1,
+      "support_percentage": 83.2789,
+      "evidence_weight": "high"
+    },
+    {
+      "signal": "having_At_Symbol == 1",
+      "feature": "having_At_Symbol",
+      "value": 1,
+      "support_percentage": 82.9114,
+      "evidence_weight": "high"
+    },
+    {
+      "signal": "Favicon == 1",
+      "feature": "Favicon",
+      "value": 1,
+      "support_percentage": 81.4414,
+      "evidence_weight": "high"
+    },
+    {
+      "signal": "Submitting_to_email == 1",
+      "feature": "Submitting_to_email",
+      "value": 1,
+      "support_percentage": 80.9922,
+      "evidence_weight": "high"
+    },
+    {
+      "signal": "URL_of_Anchor == -1",
+      "feature": "URL_of_Anchor",
+      "value": -1,
+      "support_percentage": 66.2719,
+      "evidence_weight": "medium"
+    }
+  ],
+  "strong_feature_implications": [
+    {
+      "premise": "Prefix_Suffix == -1",
+      "implication": "RightClick == 1",
+      "confidence": 0.9541,
+      "support_percentage": 95.4063
+    },
+    {
+      "premise": "Prefix_Suffix == -1",
+      "implication": "Iframe == 1",
+      "confidence": 0.9096,
+      "support_percentage": 90.9555
+    },
+    {
+      "premise": "Iframe == 1",
+      "implication": "RightClick == 1",
+      "confidence": 0.9982,
+      "support_percentage": 90.7922
+    },
+    {
+      "premise": "Shortining_Service == 1",
+      "implication": "Prefix_Suffix == -1",
+      "confidence": 1.0,
+      "support_percentage": 89.5059
+    },
+    {
+      "premise": "double_slash_redirecting == 1",
+      "implication": "Prefix_Suffix == -1",
+      "confidence": 1.0,
+      "support_percentage": 88.5259
+    },
+    {
+      "premise": "Shortining_Service == 1",
+      "implication": "double_slash_redirecting == 1",
+      "confidence": 0.9722,
+      "support_percentage": 87.0151
+    },
+    {
+      "premise": "Prefix_Suffix == -1",
+      "implication": "on_mouseover == 1",
+      "confidence": 0.8659,
+      "support_percentage": 86.5864
+    },
+    {
+      "premise": "Prefix_Suffix == -1",
+      "implication": "SFH == -1",
+      "confidence": 0.8653,
+      "support_percentage": 86.5251
+    },
+    {
+      "premise": "Shortining_Service == 1",
+      "implication": "RightClick == 1",
+      "confidence": 0.9649,
+      "support_percentage": 86.3618
+    },
+    {
+      "premise": "on_mouseover == 1",
+      "implication": "RightClick == 1",
+      "confidence": 0.9962,
+      "support_percentage": 86.2597
+    },
+    {
+      "premise": "Iframe == 1",
+      "implication": "on_mouseover == 1",
+      "confidence": 0.9412,
+      "support_percentage": 85.6064
+    },
+    {
+      "premise": "double_slash_redirecting == 1",
+      "implication": "RightClick == 1",
+      "confidence": 0.9649,
+      "support_percentage": 85.4226
+    },
+    {
+      "premise": "Prefix_Suffix == -1",
+      "implication": "HTTPS_token == 1",
+      "confidence": 0.854,
+      "support_percentage": 85.4022
+    },
+    {
+      "premise": "Prefix_Suffix == -1",
+      "implication": "port == 1",
+      "confidence": 0.8501,
+      "support_percentage": 85.0143
+    },
+    {
+      "premise": "port == 1",
+      "implication": "RightClick == 1",
+      "confidence": 0.9976,
+      "support_percentage": 84.8101
+    }
+  ],
+  "cluster_archetype_signatures": {
+    "cluster_0": {
+      "cluster_id": 0,
+      "percentage_of_phishing_population": 35.7493,
+      "invariant_features": {
+        "Prefix_Suffix": -1,
+        "Request_URL": 1
+      }
+    },
+    "cluster_1": {
+      "cluster_id": 1,
+      "percentage_of_phishing_population": 6.9008,
+      "invariant_features": {
+        "Prefix_Suffix": -1
+      }
+    },
+    "cluster_2": {
+      "cluster_id": 2,
+      "percentage_of_phishing_population": 42.8542,
+      "invariant_features": {
+        "Prefix_Suffix": -1,
+        "Request_URL": -1
+      }
+    },
+    "cluster_3": {
+      "cluster_id": 3,
+      "percentage_of_phishing_population": 14.4957,
+      "invariant_features": {
+        "Prefix_Suffix": -1
+      }
+    }
+  },
+  "rare_variant_heuristics": {
+    "total_rare_variants_cataloged": 881,
+    "rare_variant_population_share_pct": 23.0911
+  }
+}

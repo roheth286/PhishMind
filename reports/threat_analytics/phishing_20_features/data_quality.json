@@ -1,0 +1,15 @@
+{
+  "model_type": "20_features",
+  "collection_name": "phishing_20_features",
+  "audit_timestamp": "2026-10-10T22:18:57.067027+00:00",
+  "status": "complete",
+  "total_records_examined": 4898,
+  "valid_records_count": 4898,
+  "invalid_records_count": 0,
+  "data_quality_percentage": 100.0,
+  "distinct_vectors_count": 1336,
+  "duplicate_vectors_count": 3562,
+  "issues_by_category": {},
+  "invalid_record_details": {},
+  "notes": "All records meet authoritative schema requirements."
+}

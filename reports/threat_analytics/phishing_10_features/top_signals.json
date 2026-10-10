@@ -1,0 +1,107 @@
+[
+  {
+    "feature_name": "Prefix_Suffix",
+    "feature_value": -1,
+    "signal_name": "Prefix_Suffix == -1",
+    "count": 4898,
+    "percentage": 100.0
+  },
+  {
+    "feature_name": "Shortining_Service",
+    "feature_value": 1,
+    "signal_name": "Shortining_Service == 1",
+    "count": 4384,
+    "percentage": 89.5059
+  },
+  {
+    "feature_name": "double_slash_redirecting",
+    "feature_value": 1,
+    "signal_name": "double_slash_redirecting == 1",
+    "count": 4336,
+    "percentage": 88.5259
+  },
+  {
+    "feature_name": "HTTPS_token",
+    "feature_value": 1,
+    "signal_name": "HTTPS_token == 1",
+    "count": 4183,
+    "percentage": 85.4022
+  },
+  {
+    "feature_name": "port",
+    "feature_value": 1,
+    "signal_name": "port == 1",
+    "count": 4164,
+    "percentage": 85.0143
+  },
+  {
+    "feature_name": "URL_Length",
+    "feature_value": -1,
+    "signal_name": "URL_Length == -1",
+    "count": 4079,
+    "percentage": 83.2789
+  },
+  {
+    "feature_name": "having_At_Symbol",
+    "feature_value": 1,
+    "signal_name": "having_At_Symbol == 1",
+    "count": 4061,
+    "percentage": 82.9114
+  },
+  {
+    "feature_name": "SSLfinal_State",
+    "feature_value": -1,
+    "signal_name": "SSLfinal_State == -1",
+    "count": 3051,
+    "percentage": 62.2907
+  },
+  {
+    "feature_name": "having_IP_Address",
+    "feature_value": 1,
+    "signal_name": "having_IP_Address == 1",
+    "count": 2972,
+    "percentage": 60.6778
+  },
+  {
+    "feature_name": "having_Sub_Domain",
+    "feature_value": 0,
+    "signal_name": "having_Sub_Domain == 0",
+    "count": 2252,
+    "percentage": 45.978
+  },
+  {
+    "feature_name": "having_IP_Address",
+    "feature_value": -1,
+    "signal_name": "having_IP_Address == -1",
+    "count": 1926,
+    "percentage": 39.3222
+  },
+  {
+    "feature_name": "having_Sub_Domain",
+    "feature_value": -1,
+    "signal_name": "having_Sub_Domain == -1",
+    "count": 1836,
+    "percentage": 37.4847
+  },
+  {
+    "feature_name": "SSLfinal_State",
+    "feature_value": 0,
+    "signal_name": "SSLfinal_State == 0",
+    "count": 1146,
+    "percentage": 23.3973
+  },
+  {
+    "feature_name": "having_At_Symbol",
+    "feature_value": -1,
+    "signal_name": "having_At_Symbol == -1",
+    "count": 837,
+    "percentage": 17.0886
+  },
+  {
+    "feature_name": "having_Sub_Domain",
+    "feature_value": 1,
+    "signal_name": "having_Sub_Domain == 1",
+    "count": 810,
+    "percentage": 16.5374
+  }
+]

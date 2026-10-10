@@ -77,7 +77,7 @@ class TestPipelineRouter(unittest.TestCase):
         self.assertEqual(result.pipeline, PIPELINE_FULL)
         self.assertEqual(result.feature_count, 20)
         self.assertEqual(result.predicted_label, 1)
-        self.assertAlmostEqual(result.phishing_probability, 0.9)
+        self.assertAlmostEqual(result.phishing_probability, 0.1)
         self.assertEqual(result.status_code, 200)
         self.assertEqual(result.content_type, "text/html")
         self.assertIn("200 OK with text/html", result.routing_reason)
@@ -100,7 +100,7 @@ class TestPipelineRouter(unittest.TestCase):
         self.assertEqual(result.pipeline, PIPELINE_FULL)
         self.assertEqual(result.feature_count, 20)
         self.assertEqual(result.predicted_label, -1)
-        self.assertAlmostEqual(result.phishing_probability, 0.15)
+        self.assertAlmostEqual(result.phishing_probability, 0.85)
         self.assertEqual(result.content_type, "text/html; charset=utf-8")
 
     # --- Scenario 3: 200 OK + application/javascript -> Pipeline B ---
@@ -384,6 +384,54 @@ class TestPipelineRouter(unittest.TestCase):
         self.assertEqual(res_b.pipeline, PIPELINE_REDUCED)
         self.assertIsInstance(res_b.phishing_probability, float)
         self.assertIn(res_b.predicted_label, (-1, 1))
+
+    # --- Scenario 20: Pipeline A explicitly extracts class -1 for phishing probability ---
+    @patch("src.pipeline_router.predict_url")
+    @patch("src.pipeline_router.load_model")
+    @patch("requests.Session.get")
+    def test_scenario_20_pipeline_a_phishing_probability_class_neg1(self, mock_get, mock_load_model, mock_predict_20):
+        mock_get.return_value = self._mock_response(200, "text/html")
+        mock_predict_20.return_value = (-1, [-1] * 20)
+        mock_rf = MagicMock()
+        mock_rf.classes_ = [-1, 1]
+        # High phishing case: P(-1) = 0.94, P(1) = 0.06
+        mock_rf.predict_proba.return_value = [[0.94, 0.06]]
+        mock_load_model.return_value = mock_rf
+
+        res_phish = route_url("https://example.com/login_phish")
+        self.assertEqual(res_phish.pipeline, PIPELINE_FULL)
+        self.assertEqual(res_phish.predicted_label, -1)
+        self.assertEqual(res_phish.label_description, "Phishing")
+        self.assertAlmostEqual(res_phish.phishing_probability, 0.94)
+
+        # High legitimate case: P(-1) = 0.04, P(1) = 0.96
+        mock_predict_20.return_value = (1, [1] * 20)
+        mock_rf.predict_proba.return_value = [[0.04, 0.96]]
+
+        res_legit = route_url("https://example.com/safe_page")
+        self.assertEqual(res_legit.pipeline, PIPELINE_FULL)
+        self.assertEqual(res_legit.predicted_label, 1)
+        self.assertEqual(res_legit.label_description, "Legitimate")
+        self.assertAlmostEqual(res_phish.phishing_probability, 0.94)
+        self.assertAlmostEqual(res_legit.phishing_probability, 0.04)
+
+    # --- Scenario 21: Pipeline A handles missing class -1 explicitly without error ---
+    @patch("src.pipeline_router.predict_url")
+    @patch("src.pipeline_router.load_model")
+    @patch("requests.Session.get")
+    def test_scenario_21_pipeline_a_missing_class_neg1_handled_explicitly(self, mock_get, mock_load_model, mock_predict_20):
+        mock_get.return_value = self._mock_response(200, "text/html")
+        mock_predict_20.return_value = (1, [1] * 20)
+        mock_rf = MagicMock()
+        # Simulated edge case: model only trained on class 1
+        mock_rf.classes_ = [1]
+        mock_rf.predict_proba.return_value = [[1.0]]
+        mock_load_model.return_value = mock_rf
+
+        res = route_url("https://example.com/single_class_edge_case")
+        self.assertEqual(res.pipeline, PIPELINE_FULL)
+        self.assertEqual(res.predicted_label, 1)
+        self.assertEqual(res.phishing_probability, 0.0)
 
 
 if __name__ == "__main__":

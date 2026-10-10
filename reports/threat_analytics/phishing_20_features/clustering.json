@@ -1,0 +1,41 @@
+{
+  "model_type": "20_features",
+  "algorithm": "KMeans",
+  "distance_metric": "euclidean",
+  "random_state": 42,
+  "n_clusters": 4,
+  "inertia": 28469.8841,
+  "silhouette_score": 0.1865,
+  "status": "success",
+  "rationale": "KMeans clustering with Euclidean distance in discrete ternary space (-1, 0, 1) using 4 clusters, n_init=10, random_state=42. Provides partition stability, avoids chaining artifacts, and yields interpretable threat archetype centroids.",
+  "cluster_sizes": [
+    {
+      "cluster_id": 0,
+      "member_count": 1751,
+      "percentage": 35.7493,
+      "noise_count": 0,
+      "distinct_vector_patterns_count": 378
+    },
+    {
+      "cluster_id": 1,
+      "member_count": 338,
+      "percentage": 6.9008,
+      "noise_count": 0,
+      "distinct_vector_patterns_count": 177
+    },
+    {
+      "cluster_id": 2,
+      "member_count": 2099,
+      "percentage": 42.8542,
+      "noise_count": 0,
+      "distinct_vector_patterns_count": 452
+    },
+    {
+      "cluster_id": 3,
+      "member_count": 710,
+      "percentage": 14.4957,
+      "noise_count": 0,
+      "distinct_vector_patterns_count": 329
+    }
+  ]
+}

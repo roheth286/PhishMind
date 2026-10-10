@@ -1,0 +1,92 @@
+{
+  "model_type": "20_features",
+  "collection_name": "phishing_20_features",
+  "generated_at": "2026-10-10T22:18:58.130272+00:00",
+  "total_cases_summary": {
+    "model_type": "20_features",
+    "total_records_stored": 4898,
+    "valid_phishing_records": 4898,
+    "invalid_records_count": 0,
+    "distinct_vector_patterns": 1336,
+    "duplicate_vector_count": 3562,
+    "duplicate_rate_percentage": 72.7236
+  },
+  "data_quality_summary": {
+    "status": "complete",
+    "quality_percentage": 100.0,
+    "invalid_records_count": 0
+  },
+  "clustering_summary": {
+    "algorithm": "KMeans",
+    "n_clusters": 4,
+    "silhouette_score": 0.1865,
+    "cluster_distribution": [
+      {
+        "cluster_id": 0,
+        "size": 1751,
+        "percentage": 35.7493
+      },
+      {
+        "cluster_id": 1,
+        "size": 338,
+        "percentage": 6.9008
+      },
+      {
+        "cluster_id": 2,
+        "size": 2099,
+        "percentage": 42.8542
+      },
+      {
+        "cluster_id": 3,
+        "size": 710,
+        "percentage": 14.4957
+      }
+    ]
+  },
+  "unusual_patterns_summary": {
+    "rare_pattern_count": 881,
+    "rare_sample_count": 1131,
+    "rare_sample_percentage": 23.0911
+  },
+  "top_5_signals": [
+    {
+      "feature_name": "Prefix_Suffix",
+      "feature_value": -1,
+      "signal_name": "Prefix_Suffix == -1",
+      "count": 4898,
+      "percentage": 100.0
+    },
+    {
+      "feature_name": "RightClick",
+      "feature_value": 1,
+      "signal_name": "RightClick == 1",
+      "count": 4673,
+      "percentage": 95.4063
+    },
+    {
+      "feature_name": "Iframe",
+      "feature_value": 1,
+      "signal_name": "Iframe == 1",
+      "count": 4455,
+      "percentage": 90.9555
+    },
+    {
+      "feature_name": "Shortining_Service",
+      "feature_value": 1,
+      "signal_name": "Shortining_Service == 1",
+      "count": 4384,
+      "percentage": 89.5059
+    },
+    {
+      "feature_name": "double_slash_redirecting",
+      "feature_value": 1,
+      "signal_name": "double_slash_redirecting == 1",
+      "count": 4336,
+      "percentage": 88.5259
+    }
+  ],
+  "timestamp_handling_disclosure": {
+    "historical_time_trends_available": false,
+    "observed_at_semantics": "The 'observed_at' metadata field records database batch import timestamp. The source phishing dataset does not contain historical incident event dates. Time trend analytics are accurately reported as unavailable without fabricating temporal distributions."
+  }
+}

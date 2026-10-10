@@ -1,0 +1,182 @@
+{
+  "having_IP_Address": {
+    "feature_name": "having_IP_Address",
+    "feature_index": 0,
+    "counts": {
+      "-1": 1926,
+      "0": 0,
+      "1": 2972
+    },
+    "percentages": {
+      "-1": 39.3222,
+      "0": 0.0,
+      "1": 60.6778
+    },
+    "dominant_values": [
+      1
+    ],
+    "is_uniform": false
+  },
+  "URL_Length": {
+    "feature_name": "URL_Length",
+    "feature_index": 1,
+    "counts": {
+      "-1": 4079,
+      "0": 83,
+      "1": 736
+    },
+    "percentages": {
+      "-1": 83.2789,
+      "0": 1.6946,
+      "1": 15.0265
+    },
+    "dominant_values": [
+      -1
+    ],
+    "is_uniform": false
+  },
+  "Shortining_Service": {
+    "feature_name": "Shortining_Service",
+    "feature_index": 2,
+    "counts": {
+      "-1": 514,
+      "0": 0,
+      "1": 4384
+    },
+    "percentages": {
+      "-1": 10.4941,
+      "0": 0.0,
+      "1": 89.5059
+    },
+    "dominant_values": [
+      1
+    ],
+    "is_uniform": false
+  },
+  "having_At_Symbol": {
+    "feature_name": "having_At_Symbol",
+    "feature_index": 3,
+    "counts": {
+      "-1": 837,
+      "0": 0,
+      "1": 4061
+    },
+    "percentages": {
+      "-1": 17.0886,
+      "0": 0.0,
+      "1": 82.9114
+    },
+    "dominant_values": [
+      1
+    ],
+    "is_uniform": false
+  },
+  "double_slash_redirecting": {
+    "feature_name": "double_slash_redirecting",
+    "feature_index": 4,
+    "counts": {
+      "-1": 562,
+      "0": 0,
+      "1": 4336
+    },
+    "percentages": {
+      "-1": 11.4741,
+      "0": 0.0,
+      "1": 88.5259
+    },
+    "dominant_values": [
+      1
+    ],
+    "is_uniform": false
+  },
+  "Prefix_Suffix": {
+    "feature_name": "Prefix_Suffix",
+    "feature_index": 5,
+    "counts": {
+      "-1": 4898,
+      "0": 0,
+      "1": 0
+    },
+    "percentages": {
+      "-1": 100.0,
+      "0": 0.0,
+      "1": 0.0
+    },
+    "dominant_values": [
+      -1
+    ],
+    "is_uniform": true
+  },
+  "having_Sub_Domain": {
+    "feature_name": "having_Sub_Domain",
+    "feature_index": 6,
+    "counts": {
+      "-1": 1836,
+      "0": 2252,
+      "1": 810
+    },
+    "percentages": {
+      "-1": 37.4847,
+      "0": 45.978,
+      "1": 16.5374
+    },
+    "dominant_values": [
+      0
+    ],
+    "is_uniform": false
+  },
+  "HTTPS_token": {
+    "feature_name": "HTTPS_token",
+    "feature_index": 7,
+    "counts": {
+      "-1": 715,
+      "0": 0,
+      "1": 4183
+    },
+    "percentages": {
+      "-1": 14.5978,
+      "0": 0.0,
+      "1": 85.4022
+    },
+    "dominant_values": [
+      1
+    ],
+    "is_uniform": false
+  },
+  "SSLfinal_State": {
+    "feature_name": "SSLfinal_State",
+    "feature_index": 8,
+    "counts": {
+      "-1": 3051,
+      "0": 1146,
+      "1": 701
+    },
+    "percentages": {
+      "-1": 62.2907,
+      "0": 23.3973,
+      "1": 14.312
+    },
+    "dominant_values": [
+      -1
+    ],
+    "is_uniform": false
+  },
+  "port": {
+    "feature_name": "port",
+    "feature_index": 9,
+    "counts": {
+      "-1": 734,
+      "0": 0,
+      "1": 4164
+    },
+    "percentages": {
+      "-1": 14.9857,
+      "0": 0.0,
+      "1": 85.0143
+    },
+    "dominant_values": [
+      1
+    ],
+    "is_uniform": false
+  }
+}

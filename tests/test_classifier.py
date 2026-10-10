@@ -22,10 +22,14 @@ sys.path.insert(0, os.path.abspath(os.path.join(os.path.dirname(__file__), "..")
 from src.feature_contract import FEATURE_NAMES
 from src.classifier import (
     predict_url,
+    predict_url_10,
+    predict_proba_url_10,
     load_model,
+    load_10_feature_model,
     clear_model_cache,
     LABEL_DESCRIPTIONS,
     DEFAULT_MODEL_PATH,
+    DEFAULT_MODEL_10_PATH,
 )
 
 
@@ -158,12 +162,74 @@ class TestClassifier(unittest.TestCase):
         probs = model.predict_proba(sample)
         self.assertEqual(probs.shape, (1, 2))
         self.assertAlmostEqual(float(np.sum(probs)), 1.0, places=5)
-        # Class 1 (phishing) index is 1
-        pos_idx = list(model.classes_).index(1)
-        self.assertEqual(pos_idx, 1)
-        phishing_prob = probs[0][pos_idx]
+
+        # Index 0 is class -1 (phishing), Index 1 is class 1 (legitimate)
+        classes_list = list(model.classes_)
+        phish_idx = classes_list.index(-1)
+        legit_idx = classes_list.index(1)
+        self.assertEqual(phish_idx, 0)
+        self.assertEqual(legit_idx, 1)
+
+        phishing_prob = probs[0][phish_idx]
+        legit_prob = probs[0][legit_idx]
         self.assertGreaterEqual(phishing_prob, 0.0)
         self.assertLessEqual(phishing_prob, 1.0)
+        self.assertAlmostEqual(phishing_prob + legit_prob, 1.0, places=5)
+
+    @patch("src.classifier.extract_10_features")
+    def test_predict_url_10_returns_class_neg1_phishing_probability(self, mock_extract):
+        # Sample vector audited in task: [1, 1, 1, 1, 1, 1, 1, 1, -1, -1]
+        audited_vector = [1, 1, 1, 1, 1, 1, 1, 1, -1, -1]
+        mock_extract.return_value = audited_vector
+
+        label, prob, vec = predict_url_10("https://example.com/test_audited")
+        # Class 1 is LEGITIMATE
+        self.assertEqual(label, 1)
+        self.assertEqual(LABEL_DESCRIPTIONS[label], "Legitimate")
+        # Phishing probability for this sample must be ~0.0694 (6.94%), NOT 0.9306
+        self.assertAlmostEqual(prob, 0.069385, places=4)
+        self.assertLess(prob, 0.10)
+
+    @patch("src.classifier.extract_10_features")
+    @patch("src.classifier.load_10_feature_model")
+    def test_predict_url_10_high_phishing_and_high_legitimate(self, mock_load, mock_extract):
+        mock_extract.return_value = [1] * 10
+        mock_rf = MagicMock()
+        mock_rf.classes_ = [-1, 1]
+
+        # Case 1: High phishing (95% phishing -> P(-1)=0.95, P(1)=0.05)
+        mock_rf.predict.return_value = np.array([-1])
+        mock_rf.predict_proba.return_value = np.array([[0.95, 0.05]])
+        mock_load.return_value = mock_rf
+
+        label, prob, _ = predict_url_10("https://phish.example.com")
+        self.assertEqual(label, -1)
+        self.assertEqual(LABEL_DESCRIPTIONS[label], "Phishing")
+        self.assertAlmostEqual(prob, 0.95)
+
+        # Case 2: High legitimate (98% legitimate -> P(-1)=0.02, P(1)=0.98)
+        mock_rf.predict.return_value = np.array([1])
+        mock_rf.predict_proba.return_value = np.array([[0.02, 0.98]])
+
+        label, prob, _ = predict_url_10("https://safe.example.com")
+        self.assertEqual(label, 1)
+        self.assertEqual(LABEL_DESCRIPTIONS[label], "Legitimate")
+        self.assertAlmostEqual(prob, 0.02)
+
+    @patch("src.classifier.extract_10_features")
+    @patch("src.classifier.load_10_feature_model")
+    def test_predict_url_10_missing_class_neg1_handled_explicitly(self, mock_load, mock_extract):
+        mock_extract.return_value = [1] * 10
+        mock_rf = MagicMock()
+        # Simulated edge case: model only contains class 1
+        mock_rf.classes_ = [1]
+        mock_rf.predict.return_value = np.array([1])
+        mock_rf.predict_proba.return_value = np.array([[1.0]])
+        mock_load.return_value = mock_rf
+
+        label, prob, _ = predict_url_10("https://edge-case.example.com")
+        self.assertEqual(label, 1)
+        self.assertEqual(prob, 0.0)
 
 
 if __name__ == "__main__":

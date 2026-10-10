@@ -1,0 +1,92 @@
+{
+  "model_type": "10_features",
+  "collection_name": "phishing_10_features",
+  "generated_at": "2026-10-10T22:18:55.569704+00:00",
+  "total_cases_summary": {
+    "model_type": "10_features",
+    "total_records_stored": 4898,
+    "valid_phishing_records": 4898,
+    "invalid_records_count": 0,
+    "distinct_vector_patterns": 327,
+    "duplicate_vector_count": 4571,
+    "duplicate_rate_percentage": 93.3238
+  },
+  "data_quality_summary": {
+    "status": "complete",
+    "quality_percentage": 100.0,
+    "invalid_records_count": 0
+  },
+  "clustering_summary": {
+    "algorithm": "KMeans",
+    "n_clusters": 4,
+    "silhouette_score": 0.3247,
+    "cluster_distribution": [
+      {
+        "cluster_id": 0,
+        "size": 2589,
+        "percentage": 52.8583
+      },
+      {
+        "cluster_id": 1,
+        "size": 1158,
+        "percentage": 23.6423
+      },
+      {
+        "cluster_id": 2,
+        "size": 477,
+        "percentage": 9.7387
+      },
+      {
+        "cluster_id": 3,
+        "size": 674,
+        "percentage": 13.7607
+      }
+    ]
+  },
+  "unusual_patterns_summary": {
+    "rare_pattern_count": 137,
+    "rare_sample_count": 198,
+    "rare_sample_percentage": 4.0425
+  },
+  "top_5_signals": [
+    {
+      "feature_name": "Prefix_Suffix",
+      "feature_value": -1,
+      "signal_name": "Prefix_Suffix == -1",
+      "count": 4898,
+      "percentage": 100.0
+    },
+    {
+      "feature_name": "Shortining_Service",
+      "feature_value": 1,
+      "signal_name": "Shortining_Service == 1",
+      "count": 4384,
+      "percentage": 89.5059
+    },
+    {
+      "feature_name": "double_slash_redirecting",
+      "feature_value": 1,
+      "signal_name": "double_slash_redirecting == 1",
+      "count": 4336,
+      "percentage": 88.5259
+    },
+    {
+      "feature_name": "HTTPS_token",
+      "feature_value": 1,
+      "signal_name": "HTTPS_token == 1",
+      "count": 4183,
+      "percentage": 85.4022
+    },
+    {
+      "feature_name": "port",
+      "feature_value": 1,
+      "signal_name": "port == 1",
+      "count": 4164,
+      "percentage": 85.0143
+    }
+  ],
+  "timestamp_handling_disclosure": {
+    "historical_time_trends_available": false,
+    "observed_at_semantics": "The 'observed_at' metadata field records database batch import timestamp. The source phishing dataset does not contain historical incident event dates. Time trend analytics are accurately reported as unavailable without fabricating temporal distributions."
+  }
+}
