@@ -26,6 +26,7 @@ try:
         load_10_feature_model,
         LABEL_DESCRIPTIONS,
     )
+    from src.threat_integration_service import process_prediction_result
 except ImportError:
     from feature_extractor import _is_safe_url_destination
     from classifier import (
@@ -35,6 +36,7 @@ except ImportError:
         load_10_feature_model,
         LABEL_DESCRIPTIONS,
     )
+    from threat_integration_service import process_prediction_result
 
 PIPELINE_FULL = "20-feature"
 PIPELINE_REDUCED = "10-feature"
@@ -59,6 +61,7 @@ class RoutingResult:
     status_code: Optional[int] = None
     content_type: Optional[str] = None
     final_url: Optional[str] = None
+    threat_intel: Optional[Dict[str, Any]] = None
 
     def __getitem__(self, item: str) -> Any:
         try:
@@ -179,7 +182,9 @@ def route_url(
     max_redirects: int = DEFAULT_MAX_REDIRECTS,
     model_20_path: Optional[str] = None,
     model_10_path: Optional[str] = None,
-    session: Optional[requests.Session] = None
+    session: Optional[requests.Session] = None,
+    update_threat_intel: bool = False,
+    event_id: Optional[str] = None,
 ) -> RoutingResult:
     """
     Decide whether to execute Pipeline A (20-feature) or Pipeline B (10-feature)
@@ -190,6 +195,8 @@ def route_url(
     2. If status is exactly 200 OK and media type is text/html -> Pipeline A (20-feature).
     3. In all other safe cases -> Pipeline B (10-feature).
     4. Unsafe URLs are rejected before making any request.
+    5. If update_threat_intel is True and prediction is phishing (-1), invokes
+       process_prediction_result() and attaches outcome to RoutingResult.threat_intel.
 
     Returns:
         RoutingResult containing the chosen pipeline name, predicted class,
@@ -208,6 +215,8 @@ def route_url(
         session=session
     )
 
+    threat_intel_result: Optional[Dict[str, Any]] = None
+
     # Step 2: Route to selected pipeline
     if is_html_200:
         # Route A: Full-feature pipeline (20 features)
@@ -225,6 +234,18 @@ def route_url(
         except Exception as e:
             raise RuntimeError(f"Pipeline A (20-feature) execution failed: {e}") from e
 
+        if update_threat_intel and pred_label == -1:
+            try:
+                threat_intel_result = process_prediction_result(
+                    prediction_label=pred_label,
+                    model_type="20_features",
+                    feature_vector=vector,
+                    phishing_probability=phishing_prob,
+                    event_id=event_id,
+                )
+            except Exception as e:
+                threat_intel_result = {"status": "error", "error": str(e)}
+
         return RoutingResult(
             pipeline=PIPELINE_FULL,
             predicted_label=pred_label,
@@ -235,7 +256,8 @@ def route_url(
             routing_reason=reason,
             status_code=status_code,
             content_type=content_type,
-            final_url=final_url
+            final_url=final_url,
+            threat_intel=threat_intel_result
         )
     else:
         # Route B: Reduced-feature pipeline (10 features)
@@ -248,6 +270,18 @@ def route_url(
         except Exception as e:
             raise RuntimeError(f"Pipeline B (10-feature) execution failed: {e}") from e
 
+        if update_threat_intel and pred_label == -1:
+            try:
+                threat_intel_result = process_prediction_result(
+                    prediction_label=pred_label,
+                    model_type="10_features",
+                    feature_vector=vector,
+                    phishing_probability=phishing_prob,
+                    event_id=event_id,
+                )
+            except Exception as e:
+                threat_intel_result = {"status": "error", "error": str(e)}
+
         return RoutingResult(
             pipeline=PIPELINE_REDUCED,
             predicted_label=pred_label,
@@ -258,5 +292,6 @@ def route_url(
             routing_reason=reason,
             status_code=status_code,
             content_type=content_type,
-            final_url=final_url
+            final_url=final_url,
+            threat_intel=threat_intel_result
         )

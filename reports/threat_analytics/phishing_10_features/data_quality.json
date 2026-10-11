@@ -1,7 +1,7 @@
 {
   "model_type": "10_features",
   "collection_name": "phishing_10_features",
-  "audit_timestamp": "2026-10-10T22:18:54.729805+00:00",
+  "audit_timestamp": "2026-10-10T23:25:42.490360+00:00",
   "status": "complete",
   "total_records_examined": 4898,
   "valid_records_count": 4898,

@@ -1,7 +1,7 @@
 {
   "model_type": "10_features",
   "collection_name": "phishing_10_features",
-  "generated_at": "2026-10-10T22:18:55.569704+00:00",
+  "generated_at": "2026-10-10T23:25:43.182301+00:00",
   "total_cases_summary": {
     "model_type": "10_features",
     "total_records_stored": 4898,
