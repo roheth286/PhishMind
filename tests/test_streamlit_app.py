@@ -81,3 +81,71 @@ def test_dashboard_evidence_loading_structure():
         # Ensure collection stats are available
         stats = get_collection_stats(m)
         assert stats["count"] >= 4898
+
+
+def test_feature_vector_dataframe_column_names_and_order():
+    """Verify that feature vectors are formatted with authoritative column names in exact order."""
+    import pandas as pd
+    from src.threat_vector_db import FEATURES_10, FEATURES_20
+
+    # 1. Test 10-feature vector mapping
+    vec_10 = [-1, 1, 1, 1, -1, 1, -1, 1, 0, 1]
+    df_10 = pd.DataFrame(
+        [
+            list(range(1, len(vec_10) + 1)),
+            vec_10,
+        ],
+        index=["Feature Index", "Value"],
+        columns=list(FEATURES_10),
+    )
+    assert list(df_10.columns) == [
+        "having_IP_Address",
+        "URL_Length",
+        "Shortining_Service",
+        "having_At_Symbol",
+        "double_slash_redirecting",
+        "Prefix_Suffix",
+        "having_Sub_Domain",
+        "HTTPS_token",
+        "SSLfinal_State",
+        "port",
+    ]
+    assert df_10.loc["Value", "having_IP_Address"] == -1
+    assert df_10.loc["Value", "port"] == 1
+    assert "0" not in [str(c) for c in df_10.columns]
+
+    # 2. Test 20-feature vector mapping
+    vec_20 = [-1, 1, 1, 1, -1, 1, -1, 0, 1, 1, 1, -1, -1, 0, -1, 1, 1, 0, 1, 1]
+    df_20 = pd.DataFrame(
+        [
+            list(range(1, len(vec_20) + 1)),
+            vec_20,
+        ],
+        index=["Feature Index", "Value"],
+        columns=list(FEATURES_20),
+    )
+    assert list(df_20.columns) == [
+        "having_IP_Address",
+        "URL_Length",
+        "Shortining_Service",
+        "having_At_Symbol",
+        "double_slash_redirecting",
+        "Prefix_Suffix",
+        "having_Sub_Domain",
+        "SSLfinal_State",
+        "port",
+        "HTTPS_token",
+        "Favicon",
+        "Request_URL",
+        "URL_of_Anchor",
+        "Links_in_tags",
+        "SFH",
+        "Submitting_to_email",
+        "Iframe",
+        "Redirect",
+        "on_mouseover",
+        "RightClick",
+    ]
+    assert df_20.loc["Value", "having_IP_Address"] == -1
+    assert df_20.loc["Value", "RightClick"] == 1
+    assert "0" not in [str(c) for c in df_20.columns]

@@ -29,7 +29,7 @@ if PROJECT_ROOT not in sys.path:
 from src.pipeline_router import route_url
 from src.threat_integration_service import get_current_recommendation_state
 from src.threat_recommendations import load_analytics_evidence
-from src.threat_vector_db import get_collection_stats
+from src.threat_vector_db import FEATURES_10, FEATURES_20, get_collection_stats
 from src.ui_validator import validate_url_format
 
 st.set_page_config(
@@ -192,11 +192,47 @@ def render_prediction_result_view():
     # Feature Vector Display
     with st.expander("🔍 View Extracted Feature Vector", expanded=False):
         st.write("Feature values (`-1`: Phishing / Suspicious, `0`: Moderate / Neutral, `1`: Legitimate):")
-        feat_df = pd.DataFrame({
-            "Feature Index": range(1, len(res.feature_vector) + 1),
-            "Value": res.feature_vector,
-        })
-        st.dataframe(feat_df.T, use_container_width=True)
+        
+        # Determine expected feature schema based on pipeline / feature count
+        vec = list(res.feature_vector)
+        vec_len = len(vec)
+        is_10_feature = (res.feature_count == 10 or getattr(res, "pipeline", "") == "10-feature")
+        
+        if is_10_feature:
+            expected_names = list(FEATURES_10)
+        else:
+            expected_names = list(FEATURES_20)
+
+        # Check if vector genuinely includes the target label 'Result' at the end
+        if vec_len == len(expected_names) + 1:
+            col_names = expected_names + ["Result"]
+        elif vec_len == len(expected_names):
+            col_names = expected_names
+        else:
+            col_names = None
+
+        if col_names is not None:
+            # Build DataFrame with feature names as column headers
+            # Index includes "Feature Index" and "Value" rows for clarity
+            feat_df = pd.DataFrame(
+                [
+                    list(range(1, vec_len + 1)),
+                    vec,
+                ],
+                index=["Feature Index", "Value"],
+                columns=col_names,
+            )
+            st.dataframe(feat_df, use_container_width=True)
+        else:
+            st.warning(
+                f"⚠️ Extracted vector length ({vec_len}) does not match expected schema "
+                f"({len(expected_names)} features). Displaying raw vector to prevent mislabeling."
+            )
+            raw_df = pd.DataFrame({
+                "Feature Index": range(1, vec_len + 1),
+                "Value": vec,
+            })
+            st.dataframe(raw_df.T, use_container_width=True)
 
     # Threat Intelligence Action Notice
     if is_phishing:

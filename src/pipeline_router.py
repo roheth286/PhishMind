@@ -18,6 +18,7 @@ import requests
 import numpy as np
 
 try:
+    from src.feature_contract import FEATURE_NAMES_10
     from src.feature_extractor import _is_safe_url_destination
     from src.classifier import (
         predict_url,
@@ -28,6 +29,7 @@ try:
     )
     from src.threat_integration_service import process_prediction_result
 except ImportError:
+    from feature_contract import FEATURE_NAMES_10
     from feature_extractor import _is_safe_url_destination
     from classifier import (
         predict_url,
@@ -269,6 +271,15 @@ def route_url(
             )
         except Exception as e:
             raise RuntimeError(f"Pipeline B (10-feature) execution failed: {e}") from e
+
+        # Apply SSLfinal_State Decision Rule for the 10-feature pipeline:
+        # Locate SSLfinal_State using the verified 10-feature schema
+        ssl_idx = FEATURE_NAMES_10.index("SSLfinal_State")
+        ssl_val = vector[ssl_idx]
+        if ssl_val == -1:
+            pred_label = -1
+        elif ssl_val == 1:
+            pred_label = 1
 
         if update_threat_intel and pred_label == -1:
             try:
