@@ -1,6 +1,6 @@
 {
   "model_type": "10_features",
-  "total_records": 4898,
+  "total_records": 4899,
   "min_support": 0.1,
   "top_pairs_count": 40,
   "top_cooccurrences": [
@@ -12,9 +12,9 @@
       "value_B": -1,
       "condition_B": "Prefix_Suffix == -1",
       "joint_count": 4384,
-      "support": 0.8951,
-      "support_percentage": 89.5059,
-      "confidence_A_to_B": 1.0,
+      "support": 0.8949,
+      "support_percentage": 89.4877,
+      "confidence_A_to_B": 0.9998,
       "confidence_B_to_A": 0.8951
     },
     {
@@ -25,9 +25,9 @@
       "value_B": -1,
       "condition_B": "Prefix_Suffix == -1",
       "joint_count": 4336,
-      "support": 0.8853,
-      "support_percentage": 88.5259,
-      "confidence_A_to_B": 1.0,
+      "support": 0.8851,
+      "support_percentage": 88.5079,
+      "confidence_A_to_B": 0.9998,
       "confidence_B_to_A": 0.8853
     },
     {
@@ -37,9 +37,9 @@
       "feature_B": "double_slash_redirecting",
       "value_B": 1,
       "condition_B": "double_slash_redirecting == 1",
-      "joint_count": 4262,
+      "joint_count": 4263,
       "support": 0.8702,
-      "support_percentage": 87.0151,
+      "support_percentage": 87.0178,
       "confidence_A_to_B": 0.9722,
       "confidence_B_to_A": 0.9829
     },
@@ -51,10 +51,10 @@
       "value_B": 1,
       "condition_B": "HTTPS_token == 1",
       "joint_count": 4183,
-      "support": 0.854,
-      "support_percentage": 85.4022,
+      "support": 0.8538,
+      "support_percentage": 85.3848,
       "confidence_A_to_B": 0.854,
-      "confidence_B_to_A": 1.0
+      "confidence_B_to_A": 0.9998
     },
     {
       "feature_A": "Prefix_Suffix",
@@ -64,8 +64,8 @@
       "value_B": 1,
       "condition_B": "port == 1",
       "joint_count": 4164,
-      "support": 0.8501,
-      "support_percentage": 85.0143,
+      "support": 0.85,
+      "support_percentage": 84.9969,
       "confidence_A_to_B": 0.8501,
       "confidence_B_to_A": 1.0
     },
@@ -76,9 +76,9 @@
       "feature_B": "HTTPS_token",
       "value_B": 1,
       "condition_B": "HTTPS_token == 1",
-      "joint_count": 4113,
-      "support": 0.8397,
-      "support_percentage": 83.9731,
+      "joint_count": 4114,
+      "support": 0.8398,
+      "support_percentage": 83.9763,
       "confidence_A_to_B": 0.9382,
       "confidence_B_to_A": 0.9833
     },
@@ -89,11 +89,11 @@
       "feature_B": "HTTPS_token",
       "value_B": 1,
       "condition_B": "HTTPS_token == 1",
-      "joint_count": 4087,
-      "support": 0.8344,
-      "support_percentage": 83.4422,
+      "joint_count": 4088,
+      "support": 0.8345,
+      "support_percentage": 83.4456,
       "confidence_A_to_B": 0.9426,
-      "confidence_B_to_A": 0.977
+      "confidence_B_to_A": 0.9771
     },
     {
       "feature_A": "URL_Length",
@@ -103,9 +103,9 @@
       "value_B": -1,
       "condition_B": "Prefix_Suffix == -1",
       "joint_count": 4079,
-      "support": 0.8328,
-      "support_percentage": 83.2789,
-      "confidence_A_to_B": 1.0,
+      "support": 0.8326,
+      "support_percentage": 83.2619,
+      "confidence_A_to_B": 0.9998,
       "confidence_B_to_A": 0.8328
     },
     {
@@ -116,9 +116,9 @@
       "value_B": -1,
       "condition_B": "Prefix_Suffix == -1",
       "joint_count": 4061,
-      "support": 0.8291,
-      "support_percentage": 82.9114,
-      "confidence_A_to_B": 1.0,
+      "support": 0.8289,
+      "support_percentage": 82.8945,
+      "confidence_A_to_B": 0.9998,
       "confidence_B_to_A": 0.8291
     },
     {
@@ -129,9 +129,9 @@
       "value_B": 1,
       "condition_B": "port == 1",
       "joint_count": 3815,
-      "support": 0.7789,
-      "support_percentage": 77.8889,
-      "confidence_A_to_B": 0.8702,
+      "support": 0.7787,
+      "support_percentage": 77.873,
+      "confidence_A_to_B": 0.87,
       "confidence_B_to_A": 0.9162
     },
     {
@@ -142,9 +142,9 @@
       "value_B": 1,
       "condition_B": "port == 1",
       "joint_count": 3790,
-      "support": 0.7738,
-      "support_percentage": 77.3785,
-      "confidence_A_to_B": 0.8741,
+      "support": 0.7736,
+      "support_percentage": 77.3627,
+      "confidence_A_to_B": 0.8739,
       "confidence_B_to_A": 0.9102
     },
     {
@@ -154,9 +154,9 @@
       "feature_B": "Shortining_Service",
       "value_B": 1,
       "condition_B": "Shortining_Service == 1",
-      "joint_count": 3757,
-      "support": 0.767,
-      "support_percentage": 76.7048,
+      "joint_count": 3758,
+      "support": 0.7671,
+      "support_percentage": 76.7095,
       "confidence_A_to_B": 0.9211,
       "confidence_B_to_A": 0.857
     },
@@ -167,11 +167,11 @@
       "feature_B": "having_At_Symbol",
       "value_B": 1,
       "condition_B": "having_At_Symbol == 1",
-      "joint_count": 3720,
+      "joint_count": 3721,
       "support": 0.7595,
-      "support_percentage": 75.9494,
-      "confidence_A_to_B": 0.8485,
-      "confidence_B_to_A": 0.916
+      "support_percentage": 75.9543,
+      "confidence_A_to_B": 0.8486,
+      "confidence_B_to_A": 0.9161
     },
     {
       "feature_A": "having_At_Symbol",
@@ -181,9 +181,9 @@
       "value_B": 1,
       "condition_B": "port == 1",
       "joint_count": 3704,
-      "support": 0.7562,
-      "support_percentage": 75.6227,
-      "confidence_A_to_B": 0.9121,
+      "support": 0.7561,
+      "support_percentage": 75.6073,
+      "confidence_A_to_B": 0.9119,
       "confidence_B_to_A": 0.8895
     },
     {
@@ -193,11 +193,11 @@
       "feature_B": "double_slash_redirecting",
       "value_B": 1,
       "condition_B": "double_slash_redirecting == 1",
-      "joint_count": 3691,
+      "joint_count": 3692,
       "support": 0.7536,
-      "support_percentage": 75.3573,
+      "support_percentage": 75.3623,
       "confidence_A_to_B": 0.9049,
-      "confidence_B_to_A": 0.8512
+      "confidence_B_to_A": 0.8513
     },
     {
       "feature_A": "having_At_Symbol",
@@ -206,9 +206,9 @@
       "feature_B": "double_slash_redirecting",
       "value_B": 1,
       "condition_B": "double_slash_redirecting == 1",
-      "joint_count": 3673,
+      "joint_count": 3674,
       "support": 0.7499,
-      "support_percentage": 74.9898,
+      "support_percentage": 74.9949,
       "confidence_A_to_B": 0.9045,
       "confidence_B_to_A": 0.8471
     },
@@ -220,9 +220,9 @@
       "value_B": 1,
       "condition_B": "port == 1",
       "joint_count": 3652,
-      "support": 0.7456,
-      "support_percentage": 74.561,
-      "confidence_A_to_B": 0.8731,
+      "support": 0.7455,
+      "support_percentage": 74.5458,
+      "confidence_A_to_B": 0.8728,
       "confidence_B_to_A": 0.877
     },
     {
@@ -232,9 +232,9 @@
       "feature_B": "HTTPS_token",
       "value_B": 1,
       "condition_B": "HTTPS_token == 1",
-      "joint_count": 3578,
-      "support": 0.7305,
-      "support_percentage": 73.0502,
+      "joint_count": 3579,
+      "support": 0.7306,
+      "support_percentage": 73.0557,
       "confidence_A_to_B": 0.8772,
       "confidence_B_to_A": 0.8554
     },
@@ -245,11 +245,11 @@
       "feature_B": "HTTPS_token",
       "value_B": 1,
       "condition_B": "HTTPS_token == 1",
-      "joint_count": 3562,
-      "support": 0.7272,
-      "support_percentage": 72.7236,
-      "confidence_A_to_B": 0.8771,
-      "confidence_B_to_A": 0.8515
+      "joint_count": 3563,
+      "support": 0.7273,
+      "support_percentage": 72.7291,
+      "confidence_A_to_B": 0.8772,
+      "confidence_B_to_A": 0.8516
     },
     {
       "feature_A": "URL_Length",
@@ -259,9 +259,9 @@
       "value_B": 1,
       "condition_B": "port == 1",
       "joint_count": 3449,
-      "support": 0.7042,
-      "support_percentage": 70.4165,
-      "confidence_A_to_B": 0.8456,
+      "support": 0.704,
+      "support_percentage": 70.4021,
+      "confidence_A_to_B": 0.8453,
       "confidence_B_to_A": 0.8283
     },
     {
@@ -271,11 +271,11 @@
       "feature_B": "having_At_Symbol",
       "value_B": 1,
       "condition_B": "having_At_Symbol == 1",
-      "joint_count": 3428,
+      "joint_count": 3429,
       "support": 0.6999,
-      "support_percentage": 69.9878,
+      "support_percentage": 69.9939,
       "confidence_A_to_B": 0.8404,
-      "confidence_B_to_A": 0.8441
+      "confidence_B_to_A": 0.8442
     },
     {
       "feature_A": "Prefix_Suffix",
@@ -285,10 +285,10 @@
       "value_B": -1,
       "condition_B": "SSLfinal_State == -1",
       "joint_count": 3051,
-      "support": 0.6229,
-      "support_percentage": 62.2907,
+      "support": 0.6228,
+      "support_percentage": 62.278,
       "confidence_A_to_B": 0.6229,
-      "confidence_B_to_A": 1.0
+      "confidence_B_to_A": 0.9997
     },
     {
       "feature_A": "having_IP_Address",
@@ -298,8 +298,8 @@
       "value_B": -1,
       "condition_B": "Prefix_Suffix == -1",
       "joint_count": 2972,
-      "support": 0.6068,
-      "support_percentage": 60.6778,
+      "support": 0.6067,
+      "support_percentage": 60.6654,
       "confidence_A_to_B": 1.0,
       "confidence_B_to_A": 0.6068
     },
@@ -311,10 +311,10 @@
       "value_B": 1,
       "condition_B": "Shortining_Service == 1",
       "joint_count": 2902,
-      "support": 0.5925,
-      "support_percentage": 59.2487,
+      "support": 0.5924,
+      "support_percentage": 59.2366,
       "confidence_A_to_B": 0.9764,
-      "confidence_B_to_A": 0.662
+      "confidence_B_to_A": 0.6618
     },
     {
       "feature_A": "having_IP_Address",
@@ -324,10 +324,10 @@
       "value_B": 1,
       "condition_B": "double_slash_redirecting == 1",
       "joint_count": 2862,
-      "support": 0.5843,
-      "support_percentage": 58.432,
+      "support": 0.5842,
+      "support_percentage": 58.4201,
       "confidence_A_to_B": 0.963,
-      "confidence_B_to_A": 0.6601
+      "confidence_B_to_A": 0.6599
     },
     {
       "feature_A": "having_IP_Address",
@@ -337,10 +337,10 @@
       "value_B": 1,
       "condition_B": "HTTPS_token == 1",
       "joint_count": 2780,
-      "support": 0.5676,
-      "support_percentage": 56.7579,
+      "support": 0.5675,
+      "support_percentage": 56.7463,
       "confidence_A_to_B": 0.9354,
-      "confidence_B_to_A": 0.6646
+      "confidence_B_to_A": 0.6644
     },
     {
       "feature_A": "Shortining_Service",
@@ -349,11 +349,11 @@
       "feature_B": "SSLfinal_State",
       "value_B": -1,
       "condition_B": "SSLfinal_State == -1",
-      "joint_count": 2753,
-      "support": 0.5621,
-      "support_percentage": 56.2066,
-      "confidence_A_to_B": 0.628,
-      "confidence_B_to_A": 0.9023
+      "joint_count": 2754,
+      "support": 0.5622,
+      "support_percentage": 56.2156,
+      "confidence_A_to_B": 0.6281,
+      "confidence_B_to_A": 0.9024
     },
     {
       "feature_A": "double_slash_redirecting",
@@ -362,11 +362,11 @@
       "feature_B": "SSLfinal_State",
       "value_B": -1,
       "condition_B": "SSLfinal_State == -1",
-      "joint_count": 2714,
-      "support": 0.5541,
-      "support_percentage": 55.4104,
-      "confidence_A_to_B": 0.6259,
-      "confidence_B_to_A": 0.8895
+      "joint_count": 2715,
+      "support": 0.5542,
+      "support_percentage": 55.4195,
+      "confidence_A_to_B": 0.626,
+      "confidence_B_to_A": 0.8896
     },
     {
       "feature_A": "having_IP_Address",
@@ -376,10 +376,10 @@
       "value_B": 1,
       "condition_B": "having_At_Symbol == 1",
       "joint_count": 2624,
-      "support": 0.5357,
-      "support_percentage": 53.5729,
+      "support": 0.5356,
+      "support_percentage": 53.562,
       "confidence_A_to_B": 0.8829,
-      "confidence_B_to_A": 0.6461
+      "confidence_B_to_A": 0.646
     },
     {
       "feature_A": "HTTPS_token",
@@ -388,10 +388,10 @@
       "feature_B": "SSLfinal_State",
       "value_B": -1,
       "condition_B": "SSLfinal_State == -1",
-      "joint_count": 2608,
-      "support": 0.5325,
-      "support_percentage": 53.2462,
-      "confidence_A_to_B": 0.6235,
+      "joint_count": 2609,
+      "support": 0.5326,
+      "support_percentage": 53.2558,
+      "confidence_A_to_B": 0.6236,
       "confidence_B_to_A": 0.8548
     },
     {
@@ -402,8 +402,8 @@
       "value_B": 1,
       "condition_B": "port == 1",
       "joint_count": 2605,
-      "support": 0.5318,
-      "support_percentage": 53.185,
+      "support": 0.5317,
+      "support_percentage": 53.1741,
       "confidence_A_to_B": 0.8765,
       "confidence_B_to_A": 0.6256
     },
@@ -414,11 +414,11 @@
       "feature_B": "SSLfinal_State",
       "value_B": -1,
       "condition_B": "SSLfinal_State == -1",
-      "joint_count": 2590,
-      "support": 0.5288,
-      "support_percentage": 52.8787,
+      "joint_count": 2591,
+      "support": 0.5289,
+      "support_percentage": 52.8883,
       "confidence_A_to_B": 0.635,
-      "confidence_B_to_A": 0.8489
+      "confidence_B_to_A": 0.849
     },
     {
       "feature_A": "SSLfinal_State",
@@ -428,9 +428,9 @@
       "value_B": 1,
       "condition_B": "port == 1",
       "joint_count": 2586,
-      "support": 0.528,
-      "support_percentage": 52.7971,
-      "confidence_A_to_B": 0.8476,
+      "support": 0.5279,
+      "support_percentage": 52.7863,
+      "confidence_A_to_B": 0.8473,
       "confidence_B_to_A": 0.621
     },
     {
@@ -441,10 +441,10 @@
       "value_B": -1,
       "condition_B": "URL_Length == -1",
       "joint_count": 2575,
-      "support": 0.5257,
-      "support_percentage": 52.5725,
+      "support": 0.5256,
+      "support_percentage": 52.5617,
       "confidence_A_to_B": 0.8664,
-      "confidence_B_to_A": 0.6313
+      "confidence_B_to_A": 0.6311
     },
     {
       "feature_A": "having_At_Symbol",
@@ -453,11 +453,11 @@
       "feature_B": "SSLfinal_State",
       "value_B": -1,
       "condition_B": "SSLfinal_State == -1",
-      "joint_count": 2537,
-      "support": 0.518,
-      "support_percentage": 51.7967,
-      "confidence_A_to_B": 0.6247,
-      "confidence_B_to_A": 0.8315
+      "joint_count": 2538,
+      "support": 0.5181,
+      "support_percentage": 51.8065,
+      "confidence_A_to_B": 0.6248,
+      "confidence_B_to_A": 0.8316
     },
     {
       "feature_A": "having_IP_Address",
@@ -467,9 +467,9 @@
       "value_B": -1,
       "condition_B": "Prefix_Suffix == -1",
       "joint_count": 1926,
-      "support": 0.3932,
-      "support_percentage": 39.3222,
-      "confidence_A_to_B": 1.0,
+      "support": 0.3931,
+      "support_percentage": 39.3141,
+      "confidence_A_to_B": 0.9995,
       "confidence_B_to_A": 0.3932
     },
     {
@@ -481,9 +481,9 @@
       "condition_B": "SSLfinal_State == -1",
       "joint_count": 1856,
       "support": 0.3789,
-      "support_percentage": 37.893,
+      "support_percentage": 37.8853,
       "confidence_A_to_B": 0.6245,
-      "confidence_B_to_A": 0.6083
+      "confidence_B_to_A": 0.6081
     },
     {
       "feature_A": "Prefix_Suffix",
@@ -494,9 +494,9 @@
       "condition_B": "having_Sub_Domain == -1",
       "joint_count": 1836,
       "support": 0.3748,
-      "support_percentage": 37.4847,
+      "support_percentage": 37.477,
       "confidence_A_to_B": 0.3748,
-      "confidence_B_to_A": 1.0
+      "confidence_B_to_A": 0.9995
     },
     {
       "feature_A": "Shortining_Service",
@@ -505,11 +505,11 @@
       "feature_B": "having_Sub_Domain",
       "value_B": -1,
       "condition_B": "having_Sub_Domain == -1",
-      "joint_count": 1689,
-      "support": 0.3448,
-      "support_percentage": 34.4835,
-      "confidence_A_to_B": 0.3853,
-      "confidence_B_to_A": 0.9199
+      "joint_count": 1690,
+      "support": 0.345,
+      "support_percentage": 34.4968,
+      "confidence_A_to_B": 0.3854,
+      "confidence_B_to_A": 0.92
     },
     {
       "feature_A": "double_slash_redirecting",
@@ -518,11 +518,11 @@
       "feature_B": "having_Sub_Domain",
       "value_B": -1,
       "condition_B": "having_Sub_Domain == -1",
-      "joint_count": 1662,
-      "support": 0.3393,
-      "support_percentage": 33.9322,
-      "confidence_A_to_B": 0.3833,
-      "confidence_B_to_A": 0.9052
+      "joint_count": 1663,
+      "support": 0.3395,
+      "support_percentage": 33.9457,
+      "confidence_A_to_B": 0.3834,
+      "confidence_B_to_A": 0.9053
     }
   ]
 }

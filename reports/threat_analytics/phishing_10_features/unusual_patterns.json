@@ -1,12 +1,12 @@
 {
   "model_type": "10_features",
-  "total_samples": 4898,
-  "total_distinct_patterns": 327,
+  "total_samples": 4899,
+  "total_distinct_patterns": 328,
   "rarity_count_threshold": 2,
   "rarity_percentage_threshold": null,
-  "rare_pattern_count": 137,
-  "rare_sample_count": 198,
-  "rare_sample_percentage": 4.0425,
+  "rare_pattern_count": 138,
+  "rare_sample_count": 199,
+  "rare_sample_percentage": 4.0621,
   "rare_patterns": [
     {
       "vector": [
@@ -967,6 +967,37 @@
       "percentage": 0.0204,
       "sample_ids": [
         "phish_10_features_row_10148"
+      ]
+    },
+    {
+      "vector": [
+        -1,
+        -1,
+        1,
+        1,
+        1,
+        1,
+        -1,
+        1,
+        -1,
+        -1
+      ],
+      "pattern_dict": {
+        "having_IP_Address": -1,
+        "URL_Length": -1,
+        "Shortining_Service": 1,
+        "having_At_Symbol": 1,
+        "double_slash_redirecting": 1,
+        "Prefix_Suffix": 1,
+        "having_Sub_Domain": -1,
+        "HTTPS_token": 1,
+        "SSLfinal_State": -1,
+        "port": -1
+      },
+      "count": 1,
+      "percentage": 0.0204,
+      "sample_ids": [
+        "phish_10_features_event_04899"
       ]
     },
     {

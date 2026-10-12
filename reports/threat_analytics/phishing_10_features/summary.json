@@ -1,15 +1,15 @@
 {
   "model_type": "10_features",
   "collection_name": "phishing_10_features",
-  "generated_at": "2026-10-10T23:25:43.182301+00:00",
+  "generated_at": "2026-10-12T06:54:49.286027+00:00",
   "total_cases_summary": {
     "model_type": "10_features",
-    "total_records_stored": 4898,
-    "valid_phishing_records": 4898,
+    "total_records_stored": 4899,
+    "valid_phishing_records": 4899,
     "invalid_records_count": 0,
-    "distinct_vector_patterns": 327,
+    "distinct_vector_patterns": 328,
     "duplicate_vector_count": 4571,
-    "duplicate_rate_percentage": 93.3238
+    "duplicate_rate_percentage": 93.3048
   },
   "data_quality_summary": {
     "status": "complete",
@@ -24,29 +24,29 @@
       {
         "cluster_id": 0,
         "size": 2589,
-        "percentage": 52.8583
+        "percentage": 52.8475
       },
       {
         "cluster_id": 1,
-        "size": 1158,
-        "percentage": 23.6423
+        "size": 477,
+        "percentage": 9.7367
       },
       {
         "cluster_id": 2,
-        "size": 477,
-        "percentage": 9.7387
+        "size": 674,
+        "percentage": 13.7579
       },
       {
         "cluster_id": 3,
-        "size": 674,
-        "percentage": 13.7607
+        "size": 1159,
+        "percentage": 23.6579
       }
     ]
   },
   "unusual_patterns_summary": {
-    "rare_pattern_count": 137,
-    "rare_sample_count": 198,
-    "rare_sample_percentage": 4.0425
+    "rare_pattern_count": 138,
+    "rare_sample_count": 199,
+    "rare_sample_percentage": 4.0621
   },
   "top_5_signals": [
     {
@@ -54,35 +54,35 @@
       "feature_value": -1,
       "signal_name": "Prefix_Suffix == -1",
       "count": 4898,
-      "percentage": 100.0
+      "percentage": 99.9796
     },
     {
       "feature_name": "Shortining_Service",
       "feature_value": 1,
       "signal_name": "Shortining_Service == 1",
-      "count": 4384,
-      "percentage": 89.5059
+      "count": 4385,
+      "percentage": 89.5081
     },
     {
       "feature_name": "double_slash_redirecting",
       "feature_value": 1,
       "signal_name": "double_slash_redirecting == 1",
-      "count": 4336,
-      "percentage": 88.5259
+      "count": 4337,
+      "percentage": 88.5283
     },
     {
       "feature_name": "HTTPS_token",
       "feature_value": 1,
       "signal_name": "HTTPS_token == 1",
-      "count": 4183,
-      "percentage": 85.4022
+      "count": 4184,
+      "percentage": 85.4052
     },
     {
       "feature_name": "port",
       "feature_value": 1,
       "signal_name": "port == 1",
       "count": 4164,
-      "percentage": 85.0143
+      "percentage": 84.9969
     }
   ],
   "timestamp_handling_disclosure": {
