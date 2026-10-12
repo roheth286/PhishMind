@@ -32,6 +32,8 @@ Every technical description, schema, flowchart, and table in this document refle
   - [6.5.3 Threat Analytics and Unsupervised Clustering](#653-threat-analytics-and-unsupervised-clustering)
   - [6.5.4 Defensive Recommendation Engine (20 Rules)](#654-defensive-recommendation-engine-20-rules)
   - [Figure 6.6: Analysis and Recommendation Pipeline](#figure-66-analysis-and-recommendation-pipeline)
+- [6.6 Recommendation Pipeline Workflow](#66-recommendation-pipeline-workflow)
+  - [Figure 6.7: Complete Recommendation Pipeline Workflow](#figure-67-complete-recommendation-pipeline-workflow)
 - [Documentation Verification Notes](#documentation-verification-notes)
 
 ---
@@ -476,3 +478,132 @@ The following technical implementation items were verified against the repositor
 3. **ChromaDB Record Count**: Historical dataset import seeded exactly **4,898 phishing records** into each ChromaDB collection (`phishing_threat_vectors_10` and `phishing_threat_vectors_20`). A live integration run dynamically appended an additional verified phishing vector, bringing the active count to **4,899 records**.
 4. **Playwright Execution Mode**: Playwright is defined in `requirements.txt` and wrapped in `src/feature_extractor.py` within a `try...except` block. If Playwright browser binaries are not installed locally, the extractor falls back to static HTML fetching via `requests` and BeautifulSoup.
 5. **No URL Storage in Vector DB**: Verified via automated test `test_no_urls_or_domains_in_metadata` in `tests/test_threat_vector_db.py`. ChromaDB metadata contains only `model_type`, `import_batch`, `case_id`, `created_at`, and `is_historical`.
+
+---
+
+## 6.6 Recommendation Pipeline Workflow
+
+The recommendation pipeline represents the intelligence layer of the platform, transforming raw feature vectors and supervised classification outcomes into actionable, prioritized enterprise defensive playbooks. Rather than relying on speculative rules or disconnected threat feeds, the recommendation engine operates on empirical, measurable evidence mined directly from historical and runtime phishing vectors stored within the ChromaDB vector database.
+
+### 6.6.1 End-to-End Analytical Workflow
+
+The pipeline transitions sequentially through eight operational stages:
+
+1. **Feature Vector Generation & Contract Validation**: When a target URL is analyzed, either `extract_10_features()` or `extract_features()` produces an integer array adhering to the schema contract in `src/feature_contract.py`. The vector is strictly validated against dimensional boundaries (10 or 20 elements) and discrete allowed values $\{-1, 0, 1\}$.
+2. **Prediction Integration & Threat Filtering**: The classification engine (`src/classifier.py`) assigns a predicted class label and calibrated probability. If the prediction is legitimate (`+1`), the vector is discarded immediately to safeguard client privacy. If confirmed as phishing (`-1`), the vector enters `process_prediction_result()` in `src/threat_integration_service.py`.
+3. **Privacy Enforcing & ChromaDB Ingestion**: All URL strings, hostnames, and query parameters are stripped. The anonymous vector is checked for idempotency using its `case_id` or `event_id` to prevent duplicate ingestion. The record is then committed to the schema-isolated ChromaDB collection (`phishing_threat_vectors_10` or `phishing_threat_vectors_20`) under a per-collection threading lock.
+4. **Statistical Profiling, Clustering & Data Quality Auditing**: Vector insertion triggers `generate_threat_analytics_report()`, which coordinates three analytical streams:
+   - *Statistical Profiling (`src/threat_analytics.py`)*: Calculates total valid/distinct cases, feature value frequency distributions, top threat signals, feature co-occurrence matrices, and rare outlier signatures.
+   - *Unsupervised KMeans Clustering (`src/threat_clustering.py`)*: Partitions vectors into four archetypal clusters ($k=4$, `random_state=42`), evaluating silhouette scores, centroid values, and uniform invariant features.
+   - *Data Quality Auditing (`src/threat_data_quality.py`)*: Verifies vector bounds, validates the absence of NaN/Inf values, and confirms that zero URL metadata exists in storage.
+5. **Evidence Bundle Assembly & Loading**: The analytics outputs are saved across 9 standalone JSON reports in `reports/threat_analytics/{model_type}/`. `load_analytics_evidence()` reads these files into an evidence bundle, which is checked by `validate_evidence_bundle()` for schema consistency, complete reports, and valid denominators.
+6. **Rule Evaluation & Threshold Scoring**: The recommendation engine (`evaluate_all_rules()` in `src/threat_recommendations.py`) iterates through all 20 rules registered in `ALL_RULES` (`src/recommendation_rules.py`). Each rule compares measured evidence against configurable thresholds defined in `RecommendationConfig` (`src/recommendation_config.py`):
+   - If the total dataset count is below minimum requirements ($< 100$), status is marked as `insufficient_evidence` or `unavailable`.
+   - If empirical criteria are satisfied (e.g., minimum case count and percentage thresholds), the rule transitions to `triggered` (active), with an assigned priority (`Critical`, `High`, `Medium`, or `Low`), trigger rationale, and defensive action.
+   - If thresholds are not met, status is logged as `not_triggered` in the evaluation audit trail.
+   - Active rules are sorted deterministically by priority and rule ID, capped to `max_active_recommendations` (default: 10).
+7. **State Transition Diffing & Report Persistence**: `compute_recommendation_diff()` compares current active recommendations against the previous published state (`recommendations.json`), categorizing rules into `newly_triggered`, `still_active`, `materially_updated`, or `deactivated`. The final report is persisted atomically.
+8. **Interactive Dashboard Rendering**: When an analyst accesses View 3 in the Streamlit application (`render_analysis_dashboard_view()` in `app.py`), `get_current_recommendation_state()` and `load_analytics_evidence()` load the verified report. The dashboard displays global metrics, distribution bar charts, KMeans cluster archetypes, and prioritized defensive recommendations highlighted with `🔥 [NEWLY TRIGGERED]` badges.
+
+```mermaid
+flowchart TD
+    subgraph S1["1. Feature Vector Generation & Schema Validation"]
+        VEC_IN["Extracted Feature Vector<br/>(10-feature or 20-feature)"] --> VAL_SCHEMA{"src.feature_contract.py<br/>validate_feature_vector()<br/>/ validate_10_feature_vector()"}
+        VAL_SCHEMA -->|Invalid Bounds / Length| REJ_VAL["Reject Vector<br/>(Raise ValueError)"]
+        VAL_SCHEMA -->|Valid: Values in {-1, 0, 1}| MODEL_INFER["Random Forest Inference<br/>src.classifier.py<br/>predict_url() / predict_url_10()"]
+    end
+
+    subgraph S2["2. Prediction Integration & Threat Filtering"]
+        MODEL_INFER --> PROC_ENTRY["Integration Entry Point<br/>src.threat_integration_service.py<br/>process_prediction_result()"]
+        PROC_ENTRY --> PHISH_DECISION{"Is Prediction Phishing?<br/>prediction_label == -1"}
+        PHISH_DECISION -->|No: Label == +1| SKIP_LEGIT["Discard Event<br/>('ignored_legitimate')<br/>Client Privacy Guarantee"]
+        PHISH_DECISION -->|Yes: Label == -1| DEDUP{"Check Duplicate Event ID<br/>existing_records = col.get(ids=[case_id])"}
+        DEDUP -->|Duplicate ID Found| SKIP_DEDUP["Skip Re-ingestion<br/>('duplicate_event')"]
+        DEDUP -->|New / Unique Event| PRIV_ANON["Enforce Anonymization<br/>Strip URLs & Hostnames<br/>Attach UUID case_id & UTC Timestamp"]
+    end
+
+    subgraph S3["3. ChromaDB Threat Vector Storage"]
+        PRIV_ANON --> CHROMA_STORE["src.threat_vector_db.py<br/>insert_phishing_vector()"]
+        CHROMA_STORE --> COL_SELECT{"Target Collection Routing"}
+        COL_SELECT -->|10-feature| C10["ChromaDB Collection:<br/>phishing_threat_vectors_10"]
+        COL_SELECT -->|20-feature| C20["ChromaDB Collection:<br/>phishing_threat_vectors_20"]
+    end
+
+    subgraph S4["4. Threat Analytics & Unsupervised Clustering"]
+        C10 --> ANALYTICS_TRIGGER["Analytics Refresh Trigger<br/>generate_threat_analytics_report()"]
+        C20 --> ANALYTICS_TRIGGER
+        
+        ANALYTICS_TRIGGER --> STATS_BRANCH["Statistical & Pattern Profiling<br/>src.threat_analytics.py"]
+        ANALYTICS_TRIGGER --> CLUST_BRANCH["KMeans Cluster Discovery<br/>src.threat_clustering.py"]
+        ANALYTICS_TRIGGER --> DQ_BRANCH["Data Quality Audit<br/>src.threat_data_quality.py"]
+
+        STATS_BRANCH --> S_TOTAL["compute_total_cases()<br/>(Valid, distinct & duplicate counts)"]
+        STATS_BRANCH --> S_FREQ["compute_feature_statistics()<br/>(Percentages & counts of -1, 0, 1)"]
+        STATS_BRANCH --> S_SIGNALS["extract_top_signals()<br/>(Rank features by phishing prevalence)"]
+        STATS_BRANCH --> S_COOCCUR["compute_feature_cooccurrence()<br/>(Pairwise support & confidence)"]
+        STATS_BRANCH --> S_RARE["detect_unusual_patterns()<br/>(Rare signatures with occurrence <= 2)"]
+
+        CLUST_BRANCH --> KMEANS_RUN["discover_clusters(k=4)<br/>KMeans (random_state=42)"]
+        KMEANS_RUN --> C_SIL["Compute Silhouette Score"]
+        KMEANS_RUN --> C_PROF["profile_clusters()<br/>Centroids & dominant feature values"]
+        KMEANS_RUN --> C_SIZE["analyze_cluster_sizes()<br/>Member counts & population share %"]
+
+        DQ_BRANCH --> DQ_RUN["audit_collection_data_quality()<br/>NaN/Inf checks, vector bounds & privacy check"]
+    end
+
+    subgraph S5["5. Evidence Assembly & Loading"]
+        S_TOTAL --> E_FILES["Persist 9 Analytics JSON Reports<br/>reports/threat_analytics/{model_type}/<br/>summary.json, data_quality.json, feature_statistics.json,<br/>top_signals.json, clustering.json, cluster_profiles.json,<br/>unusual_patterns.json, feature_cooccurrence.json, recommendation_evidence.json"]
+        S_FREQ --> E_FILES
+        S_SIGNALS --> E_FILES
+        S_COOCCUR --> E_FILES
+        S_RARE --> E_FILES
+        C_SIL --> E_FILES
+        C_PROF --> E_FILES
+        C_SIZE --> E_FILES
+        DQ_RUN --> E_FILES
+
+        E_FILES --> LOAD_EV["src.threat_recommendations.py<br/>load_analytics_evidence()"]
+        LOAD_EV --> VAL_EV{"validate_evidence_bundle()<br/>1. Model type aligned?<br/>2. Critical reports present?<br/>3. Total cases valid (>0)?"}
+        VAL_EV -->|Corrupted / Incomplete| EV_FAIL["Log Validation Issues<br/>Halt Evaluation"]
+        VAL_EV -->|Valid Bundle| BUNDLE_READY["Validated Evidence Bundle Ready"]
+    end
+
+    subgraph S6["6. Rule Evaluation & Priority Ranking"]
+        BUNDLE_READY --> EVAL_ALL["src.threat_recommendations.py<br/>evaluate_all_rules()"]
+        CONFIG_THRESH["src.recommendation_config.py<br/>RecommendationConfig<br/>(min_count, min_percentage thresholds)"] --> EVAL_ALL
+
+        EVAL_ALL --> RULE_LOOP["Iterate through ALL_RULES registry<br/>(RULE_01 to RULE_20 in src.recommendation_rules.py)"]
+        
+        RULE_LOOP --> RULE_CHECK{"Evaluate Preconditions & Thresholds<br/>1. Total records >= min_collection_records (100)?<br/>2. Measured feature count & % >= threshold?"}
+        
+        RULE_CHECK -->|Records < 100| ST_INSUFF["Status: 'insufficient_evidence'<br/>Log in audit trail"]
+        RULE_CHECK -->|Threshold Not Met| ST_NOT_TRIG["Status: 'not_triggered'<br/>Log non-trigger reason in audit trail"]
+        RULE_CHECK -->|Threshold Satisfied| ST_TRIG["Status: 'triggered' (Active)<br/>Assign priority (Critical, High, Med, Low)<br/>Attach rationale, evidence & action plan"]
+
+        ST_TRIG --> SORT_DEDUP["Sort by Priority & Rule ID<br/>Cap to max_active_recommendations (10)"]
+    end
+
+    subgraph S7["7. State Transition Diffing & Report Publication"]
+        SORT_DEDUP --> DIFF_CALC["src.threat_integration_service.py<br/>compute_recommendation_diff()"]
+        PREV_STATE["Previous Published Report<br/>recommendations.json"] --> DIFF_CALC
+
+        DIFF_CALC --> TRANS_OUT["Categorize State Transitions:<br/>- newly_triggered: Previously inactive -> Now active<br/>- still_active: Active in both with same priority<br/>- materially_updated: Priority / evidence changed<br/>- deactivated: Active in previous -> Now inactive"]
+
+        TRANS_OUT --> GEN_REP["generate_recommendation_report()<br/>Persist to reports/threat_recommendations/<br/>recommendations.json"]
+    end
+
+    subgraph S8["8. Streamlit Dashboard Presentation (View 3)"]
+        GEN_REP --> APP_DASH["app.py: render_analysis_dashboard_view()<br/>View 3: Threat Activity Dashboard"]
+        
+        APP_DASH --> UI_METRICS["Summary Cards<br/>Total Cases, Clusters, Active Recs, Newly Triggered Count"]
+        APP_DASH --> UI_STATS["Feature Analytics<br/>Value Distribution Bar Charts & Top 5 Threat Signals"]
+        APP_DASH --> UI_CLUST["Cluster Analysis<br/>KMeans Sizes, Silhouette Score & Profile Centroids"]
+        APP_DASH --> UI_RECS["Actionable Defenses<br/>- Highlight 🔥 [NEWLY TRIGGERED] Badges<br/>- Priority Filter (Critical, High, Medium, Low)<br/>- Expandable Evidence JSON & Thresholds"]
+    end
+```
+
+#### Figure 6.7: Complete Recommendation Pipeline Workflow
+- **Diagram source**: Mermaid flowchart (`flowchart TD`).
+- **Diagram purpose**: Illustrates the end-to-end recommendation workflow from feature-vector extraction and validation, through privacy-preserving threat storage and analytics profiling, to rule evaluation, transition diffing, and dashboard rendering.
+- **Report explanation**: The recommendation workflow couples supervised URL classification with unsupervised threat intelligence. When a URL is classified as phishing, its feature vector is validated against the schema contract and passed to the integration service. To maintain privacy, all identifying URLs and hostnames are removed before the vector is stored in ChromaDB. The analytics engine then updates case statistics, top threat signals, co-occurrence matrices, and KMeans cluster profiles ($k=4$). The assembled evidence bundle is passed to the recommendation engine, which tests 20 configurable security rules. Rules satisfying count and prevalence thresholds are ranked by priority, diffed against the previous published state to flag newly triggered recommendations, and formatted for display in the interactive Streamlit dashboard.
+- **Suggested caption**: Figure 6.7: Complete Recommendation Pipeline Workflow from Feature Vector Generation to Interactive Dashboard Presentation.
